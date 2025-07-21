@@ -3,7 +3,7 @@
   "description": "Next.js + Sanity: A Powerful Website Starter with Real-time Visual Editing",
   "scripts": {
     "dev": "npm-run-all --parallel dev:*",
-    "dev:next": "npm run dev --deestincts",
+    "dev:next": "npm run dev --workspace=deestincts",
     "dev:studio": "npm run dev --workspace=studio",
     "import-sample-data": "cd studio && sanity dataset import sample-data.tar.gz --replace"
   },
