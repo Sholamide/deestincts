@@ -65,7 +65,7 @@ export function NewsletterForm() {
         {isSubmitting ? "Sending..." : "Send Message"}
       </Button>
       {isSuccess && (
-        <p className="text-center text-sm text-green-400">Thank you for your message! We'll get back to you soon.</p>
+        <p className="text-center text-sm text-green-400">Thank you for your message! We&apos;ll get back to you soon.</p>
       )}
     </form>
   )
