@@ -13,6 +13,17 @@ const postFields = /* groq */ `
   "author": author->{firstName, lastName, picture},
 `;
 
+const projectFields = /* groq */ `
+  _id,
+  title,
+  "slug": slug.current,
+  excerpt,
+  featuredImage,
+  projectType,
+  isFeatured,
+  client,
+`;
+
 const linkReference = /* groq */ `
   _type == "link" => {
     "page": page->slug.current,
@@ -64,6 +75,13 @@ export const sitemapData = defineQuery(`
 export const allPostsQuery = defineQuery(`
   *[_type == "post" && defined(slug.current)] | order(date desc, _updatedAt desc) {
     ${postFields}
+  }
+`);
+
+// Then update the featured projects query
+export const featuredProjectsQuery = defineQuery(`
+  *[_type == "project" && defined(slug.current) && isFeatured == true] | order(_updatedAt desc) {
+    ${projectFields}
   }
 `);
 
