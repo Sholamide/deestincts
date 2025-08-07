@@ -19,6 +19,8 @@
     "@radix-ui/react-select": "^2.2.5",
     "@radix-ui/react-separator": "^1.1.7",
     "@radix-ui/react-tooltip": "^1.2.7",
+    "@react-three/drei": "^10.6.1",
+    "@react-three/fiber": "^9.3.0",
     "@sanity/client": "^6.27.2",
     "@sanity/image-url": "^1.1.0",
     "@sanity/uuid": "^3.0.2",
@@ -34,7 +36,8 @@
     "react-hook-form": "^7.60.0",
     "resend": "^4.7.0",
     "sanity": "^4.1.0",
-    "sonner": "^1.7.0"
+    "sonner": "^1.7.0",
+    "three": "^0.179.1"
   },
   "devDependencies": {
     "@types/node": "^20.17.17",
