@@ -1,135 +1,65 @@
-import { sanityFetch } from "@/sanity/lib/live";
-import { featuredProjectsQuery } from "@/sanity/lib/queries";
+'use client'
 
-import Image from "next/image";
-import Link from "next/link";
-import { ArrowRight, ArrowUpRight } from "lucide-react";
-import { Button } from "./ui/button";
-import SanityImage from "./sanity-image";
+import { motion } from 'framer-motion'
+import Link from 'next/link'
+import { Project } from '@/lib/types'
+import SanityImage from './sanity-image'
 
-interface ProjectCardProps {
-  title: string;
-  excerpt: string;
-  client: string;
-  category: string;
-  image: string;
+interface ProjectsSectionProps {
+  projects: Project[]
 }
 
-export function ProjectCard({
-  title,
-  excerpt,
-  client,
-  category,
-  image,
-}: ProjectCardProps) {
+export default function ProjectsSection({ projects }: ProjectsSectionProps) {
   return (
-    <div className="group relative overflow-hidden rounded-xl border border-white/10 bg-white/5 transition-all duration-300 hover:border-[#C3122B]/50 hover:bg-white/10">
-      <div className="h-full w-full overflow-hidden">
-        <SanityImage
-          image={image}
-          aspectRatio="3:2"
-          className="object-cover transition-transform duration-500 group-hover:scale-105"
-        />
-      </div>
-      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
-      <div className="absolute bottom-0 left-0 right-0 p-6 translate-y-4 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
-        <div className="mb-2 inline-block rounded-full bg-[#C3122B]/90 px-3 py-1 text-xs font-medium backdrop-blur-sm">
-          {category}
-        </div>
-        <h3 className="mb-1 text-xl font-bold">{title}</h3>
-        <p className="mb-2 text-sm text-white/70">{excerpt}</p>
-        <p className="mb-4 text-xs text-white/50">Client: {client}</p>
-        <Link
-          href="#"
-          className="inline-flex items-center gap-1 text-sm font-medium text-white hover:text-[#C3122B] transition-colors"
+    <section className="py-24 bg-white">
+      <div className="container mx-auto px-4">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="text-center mb-16"
         >
-          View Project <ArrowUpRight className="h-4 w-4" />
-        </Link>
-      </div>
-      <div className="absolute bottom-0 left-0 right-0 p-6 translate-y-4 opacity-100 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-0">
-        <div className="mb-2 inline-block rounded-full bg-[#C3122B]/90 px-3 py-1 uppercase text-xs font-medium backdrop-blur-sm">
-          {category}
+          <h2 className="text-4xl md:text-6xl font-serif text-black mb-6">
+            Selected Works
+          </h2>
+          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            A curated collection of our most impactful projects, each crafted with precision and purpose.
+          </p>
+        </motion.div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {projects.map((project, index) => (
+            <motion.div
+              key={project.slug}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              className="group"
+            >
+              <Link href={`/projects/${project.slug}`}>
+                <div className="relative overflow-hidden bg-gray-100 aspect-[4/3] mb-6">
+                  <SanityImage
+                    image={project.featuredImage}
+                    aspectRatio="auto"
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
+                </div>
+                <motion.h3
+                  className="text-xl font-serif text-black mb-2 group-hover:text-gray-600 transition-colors duration-300"
+                  whileHover={{ x: 10 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  {project.title}
+                </motion.h3>
+                <p className="text-gray-600 text-sm leading-relaxed">
+                  {project.excerpt}
+                </p>
+              </Link>
+            </motion.div>
+          ))}
         </div>
-        <h3 className="mb-1 z-50 text-xl text-muted font-bold">{title}</h3>
       </div>
-    </div>
-  );
+    </section>
+  )
 }
-
-const Projects = ({
-  children,
-  heading,
-  subHeading,
-}: {
-  children: React.ReactNode;
-  heading?: string;
-  subHeading?: string;
-}) => {
-  return (
-    <div className="space-y-12 text-center">
-      {heading && (
-        <h2 className="mb-4 text-3xl font-bold md:text-4xl">{heading}</h2>
-      )}
-      {subHeading && (
-        <p className="mx-auto max-w-3xl text-white/70 md:text-lg">
-          {subHeading}
-        </p>
-      )}
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">{children}</div>
-    </div>
-  );
-};
-
-export const FeaturedProjects = async () => {
-  const { data } = await sanityFetch({ query: featuredProjectsQuery });
-  if (!data || data.length === 0) {
-    return <div>No projects found</div>;
-  }
-  return (
-    <>
-      <Projects
-        heading="Featured Projects"
-        subHeading="Explore our portfolio of award-winning designs and successful client projects that showcase our expertise and creativity."
-      >
-        {data.map((project: any) => (
-          <ProjectCard 
-            key={project._id}
-            title={project.title || "E-commerce Platform"}
-            excerpt={
-              project.excerpt ||
-              "Custom shopping experience with advanced filtering"
-            }
-            client={project.client || "RetailTech Solutions"}
-            category={project.projectType.join(", ") || "Web Development"}
-            image={
-              project.featuredImage || "/placeholder.svg?height=400&width=600"
-            }
-            //   key={project._id}
-            //   title={project.title}
-            //   description={project.description}
-            //   client={project.client}
-            //   category={project.projectType.join(", ")}
-            //   image={project.mainImage.asset.url}
-          />
-        ))}
-      </Projects>
-      <div className="mt-12 text-center">
-        <Link href="/projects">
-          <Button className="bg-transparent border border-[#C3122B] text-white hover:bg-[#C3122B]">
-            View All Projects
-            <ArrowRight className="ml-2 h-4 w-4" />
-          </Button>
-        </Link>
-      </div>
-    </>
-  );
-  //   return <Projects heading="Featured Projects" subHeading="Explore our portfolio of award-winning designs and successful client projects that showcase our expertise and creativity.">
-  //             {data.map((project: any) => (
-  //                <ProjectCard title="Luxury Brand Website"
-  //                description="Complete website redesign for a premium fashion brand"
-  //                client="Fashion House Inc."
-  //                category="Web Design"
-  //                image="/placeholder.svg?height=400&width=600" />
-  //             )}
-  //         </Projects>;
-};

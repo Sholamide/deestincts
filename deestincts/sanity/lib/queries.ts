@@ -13,6 +13,19 @@ const postFields = /* groq */ `
   "author": author->{firstName, lastName, picture},
 `;
 
+const aboutFields = `
+ _id,
+ title,
+ slug,
+ content,
+ teamMembers[] {
+ name,
+ role,
+ bio,
+ image
+ }
+`
+
 const projectFields = /* groq */ `
   _id,
   title,
@@ -85,8 +98,41 @@ export const featuredProjectsQuery = defineQuery(`
   }
 `);
 
+export const projectQuery = defineQuery(`
+  *[_type == "project" && defined(slug.current)] | order(_updatedAt desc) {
+    ${projectFields}
+  }
+`);
+
+
 export const morePostsQuery = defineQuery(`
   *[_type == "post" && _id != $skip && defined(slug.current)] | order(date desc, _updatedAt desc) [0...$limit] {
+    ${postFields}
+  }
+`);
+
+export const AboutQuery = defineQuery(`
+  *[_type == "about"][0] {
+    content[]{
+    ...,
+    markDefs[]{
+      ...,
+      ${linkReference}
+    }
+  },
+    ${aboutFields}
+  }
+`);
+
+export const AllPostsQuery = defineQuery(`
+  *[_type == "post"] {
+    content[]{
+    ...,
+    markDefs[]{
+      ...,
+      ${linkReference}
+    }
+  },
     ${postFields}
   }
 `);

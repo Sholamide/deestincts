@@ -70,7 +70,7 @@ export default {
         "accordion-up": "accordion-up 0.2s ease-out",
       },
       fontFamily: {
-        sans: ["var(--font-inter)"],
+        sans: ["Helvetica Neue", "Helvetica", "Arial", "sans-serif"],
       },
     },
   },
