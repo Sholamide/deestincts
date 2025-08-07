@@ -21,8 +21,6 @@ export default async function Page() {
     getAboutInfo()
   ])
 
-  console.log("Posts", about);
-
   return (
     <>
       <main className="bg-white text-black">
