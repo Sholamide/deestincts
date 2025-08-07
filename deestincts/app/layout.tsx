@@ -2,7 +2,7 @@ import "./globals.css";
 
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Playfair_Display } from "next/font/google";
 import { draftMode } from "next/headers";
 import { VisualEditing, toPlainText } from "next-sanity";
 import { Toaster } from "sonner";
@@ -15,6 +15,7 @@ import { sanityFetch, SanityLive } from "@/sanity/lib/live";
 import { settingsQuery } from "@/sanity/lib/queries";
 import { resolveOpenGraphImage } from "@/sanity/lib/utils";
 import { handleError } from "./client-utils";
+import CustomCursor from "./components/CustomCursor";
 
 /**
  * Generate metadata for the page.
@@ -28,7 +29,6 @@ export async function generateMetadata(): Promise<Metadata> {
   });
   const title = settings?.title || demo.title;
   const description = settings?.description || demo.description;
-
   const ogImage = resolveOpenGraphImage(settings?.ogImage);
   let metadataBase: URL | undefined = undefined;
   try {
@@ -57,6 +57,12 @@ const inter = Inter({
   display: "swap",
 });
 
+const playfair = Playfair_Display({ 
+  subsets: ['latin'],
+  variable: '--font-playfair',
+  display: 'swap'
+})
+
 export default async function RootLayout({
   children,
 }: {
@@ -65,10 +71,8 @@ export default async function RootLayout({
   const { isEnabled: isDraftMode } = await draftMode();
 
   return (
-    <html lang="en" className={`${inter.variable} bg-white text-black`}>
-      <body>
-        <section className="min-h-screen pt-24">
-          {/* The <Toaster> component is responsible for rendering toast notifications used in /app/client-utils.ts and /app/components/DraftModeToast.tsx */}
+    <html lang="en" className={`bg-white text-black`} suppressHydrationWarning={true}>
+      <body className="font-sans antialiased cursor-none">
           <Toaster />
           {isDraftMode && (
             <>
@@ -79,12 +83,33 @@ export default async function RootLayout({
           )}
           {/* The <SanityLive> component is responsible for making all sanityFetch calls in your application live, so should always be rendered. */}
           <SanityLive onError={handleError} />
+          <CustomCursor />
           <Header />
-          <main className="">{children}</main>
+          {children}
           <Footer />
-        </section>
         <SpeedInsights />
       </body>
     </html>
   );
 }
+
+// <body>
+// <section className="min-h-screen pt-24">
+//   {/* The <Toaster> component is responsible for rendering toast notifications used in /app/client-utils.ts and /app/components/DraftModeToast.tsx */}
+//   <Toaster />
+//   {isDraftMode && (
+//     <>
+//       <DraftModeToast />
+//       {/*  Enable Visual Editing, only to be rendered when Draft Mode is enabled */}
+//       <VisualEditing />
+//     </>
+//   )}
+//   {/* The <SanityLive> component is responsible for making all sanityFetch calls in your application live, so should always be rendered. */}
+//   <SanityLive onError={handleError} />
+//   <CustomCursor />
+//   <Header />
+//   <main className="">{children}</main>
+//   <Footer />
+// </section>
+// <SpeedInsights />
+// </body>
