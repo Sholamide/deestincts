@@ -5,8 +5,6 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { Canvas } from '@react-three/fiber'
 import { OrbitControls, Sphere } from '@react-three/drei'
 import { Project } from '@/lib/types'
-import Image from 'next/image'
-import { urlFor } from '@/sanity/lib/image'
 import SanityImage from './sanity-image'
 
 interface HeroSectionProps {
