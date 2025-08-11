@@ -20,7 +20,7 @@ export default function PostsSection({ posts }: PostsSectionProps) {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-6xl font-serif text-black mb-6">
+          <h2 className="text-4xl md:text-6xl  text-black mb-6">
             Latest Insights
           </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
@@ -53,7 +53,7 @@ export default function PostsSection({ posts }: PostsSectionProps) {
                       day: 'numeric'
                     })}
                   </time>
-                  <h3 className="text-xl font-serif text-black mb-3 group-hover:text-gray-600 transition-colors duration-300 line-clamp-2">
+                  <h3 className="text-xl  text-black mb-3 group-hover:text-gray-600 transition-colors duration-300 line-clamp-2">
                     {post.title}
                   </h3>
                   <p className="text-gray-600 text-sm leading-relaxed line-clamp-3">

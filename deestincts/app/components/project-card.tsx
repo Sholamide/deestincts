@@ -1,56 +1,86 @@
-import Image from "next/image";
-import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
+"use client"
+
+import Image from "next/image"
+import Link from "next/link"
+import { ArrowUpRight } from "lucide-react"
+import { urlForImage } from "@/sanity/lib/utils"
+import type { Image as SanityImage } from "@sanity/types"
+import { useMemo } from "react"
 
 interface ProjectCardProps {
-  title: string;
-  description: string;
-  client: string;
-  category: string;
-  image: string;
+  title: string
+  excerpt: string
+  client?: string
+  projectType: string[]
+  featuredImage: string | SanityImage
+  slug?: string
+  heroMediaType?: "image" | "video"
+  featuredVideo?: any
 }
 
 export function ProjectCard({
   title,
-  description,
+  excerpt,
   client,
-  category,
-  image,
+  projectType,
+  featuredImage,
+  slug = "#",
+  heroMediaType = "image",
+  featuredVideo,
 }: ProjectCardProps) {
+  const imageUrl = useMemo(() => {
+    if (typeof featuredImage === "string") {
+      return featuredImage
+    }
+
+    const builder = urlForImage(featuredImage)
+    return builder?.url() ?? "/placeholder.svg?height=600&width=800" // Fallback placeholder
+  }, [featuredImage])
+
+  const displayCategory = projectType && projectType.length > 0 ? projectType[0] : "Uncategorized"
+
   return (
-    <div className="group relative overflow-hidden rounded-xl border border-white/10 bg-white/5 transition-all duration-300 hover:border-[#C3122B]/50 hover:bg-white/10">
-      <div className="aspect-[4/3] w-full overflow-hidden">
-        <Image
-          src={image || "/placeholder.svg"}
-          alt={title}
-          width={600}
-          height={400}
-          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-        />
-      </div>
-      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
-      <div className="absolute bottom-0 left-0 right-0 p-6 translate-y-4 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
-        <div className="mb-2 inline-block rounded-full bg-[#C3122B]/90 px-3 py-1 text-xs font-medium backdrop-blur-sm">
-          {category}
+    <Link href={`/projects/${slug}`} className="group block">
+      <div className="relative w-full aspect-[4/3] overflow-hidden rounded-md border border-white/30 transition-all duration-300 hover:border-[#ffffff]/50 grid grid-rows-[3fr_1fr]">
+        {/* Media container - takes up the top 3/4 of the card's height */}
+        <div className="relative w-full h-full overflow-hidden">
+          {heroMediaType === "video" && featuredVideo ? (
+            <video
+              src={featuredVideo}
+              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+              autoPlay={true}
+              loop={true}
+              muted={ true}
+              playsInline
+              controls={false}
+              preload="auto"
+            >
+              Your browser does not support the video tag.
+            </video>
+          ) : (
+            <Image
+              src={imageUrl || "/placeholder.svg"}
+              alt={title}
+              fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              className="object-cover transition-transform duration-500 group-hover:scale-105"
+              priority
+            />
+          )}
         </div>
-        <h3 className="mb-1 text-xl font-bold">{title}</h3>
-        <p className="mb-2 text-sm text-white/70">{description}</p>
-        <p className="mb-4 text-xs text-white/50">Client: {client}</p>
-        <Link
-          href="#"
-          className="inline-flex items-center gap-1 text-sm font-medium text-white hover:text-[#C3122B] transition-colors"
-        >
-          View Project <ArrowUpRight className="h-4 w-4" />
-        </Link>
-      </div>
-      <div className="p-6">
-        <div className="mb-1 inline-block rounded-full bg-white/10 px-3 py-1 text-xs font-medium">
-          {category}
+
+        <div className="p-4 flex flex-col justify-center">
+          <div className="mb-2 inline-block rounded-full  px-3 py-1 text-xs font-medium">
+            {displayCategory}
+          </div>
+          <h3 className="mb-1 text-xl font-bold text-white">{title}</h3>
+          <p className="mb-2 text-sm text-white/90 line-clamp-2">{excerpt}</p> {/* line-clamp for consistent height */}
+          {client && <p className="mb-4 text-xs text-white/70">Client: {client}</p>}
+          <span className="inline-flex items-center gap-1 text-sm font-medium text-white hover:text-[#C3122B] transition-colors">
+            View Project <ArrowUpRight className="h-4 w-4" />
+          </span>
         </div>
-        <h3 className="mb-1 text-xl font-bold">{title}</h3>
-        <p className="mb-2 text-sm text-white/70">{description}</p>
-        <p className="text-xs text-white/50">Client: {client}</p>
       </div>
-    </div>
-  );
+    </Link>
+  )
 }

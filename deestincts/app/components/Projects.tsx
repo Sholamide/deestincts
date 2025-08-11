@@ -19,7 +19,7 @@ export default function ProjectsSection({ projects }: ProjectsSectionProps) {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-6xl font-serif text-black mb-6">
+          <h2 className="text-4xl md:text-6xl text-black mb-6">
             Selected Works
           </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
@@ -46,7 +46,7 @@ export default function ProjectsSection({ projects }: ProjectsSectionProps) {
                   <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
                 </div>
                 <motion.h3
-                  className="text-xl font-serif text-black mb-2 group-hover:text-gray-600 transition-colors duration-300"
+                  className="text-xl  text-black mb-2 group-hover:text-gray-600 transition-colors duration-300"
                   whileHover={{ x: 10 }}
                   transition={{ duration: 0.3 }}
                 >

@@ -21,6 +21,8 @@ export default async function Page() {
     getAboutInfo()
   ])
 
+  console.log("projects", projects);
+
   return (
     <>
       <main className="bg-white text-black">
