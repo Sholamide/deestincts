@@ -22,7 +22,13 @@ const aboutFields = `
  name,
  role,
  bio,
- image
+ image,
+ "projectVideos": projectVideos[]{
+    title,
+    "videoUrl": videoFile.asset->url,
+    description,
+    videoSettings
+  },
  }
 `
 
@@ -32,9 +38,23 @@ const projectFields = /* groq */ `
   "slug": slug.current,
   excerpt,
   featuredImage,
+  "featuredVideo": featuredVideo.asset->url,
+  heroMediaType,
   projectType,
   isFeatured,
   client,
+  "projectImages": projectImages[]{
+    "url": asset->url,
+    "alt": alt
+  },
+  description,
+  "projectVideos": projectVideos[]{
+    title,
+    "videoUrl": videoFile.asset->url,
+    description,
+    videoSettings
+  },
+  externalVideos
 `;
 
 const linkReference = /* groq */ `

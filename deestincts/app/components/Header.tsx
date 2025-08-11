@@ -53,7 +53,7 @@ export default function Navigation() {
               <Link
                 key={item.name}
                 href={item.href}
-                className={`${isScrolled ? "text-black" : "text-white"} relative  hover:text-gray-600 transition-colors duration-300 group`}
+                className={`${isScrolled ? "text-black" : "text-gray-500"} relative  hover:text-gray-600 transition-colors duration-300 group`}
               >
                 {item.name}
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-black group-hover:w-full transition-all duration-300" />

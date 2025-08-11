@@ -43,6 +43,22 @@ export default function HeroSection({ projects }: HeroSectionProps) {
 
     const currentProject = projects[currentIndex]
 
+    // Animation variants for text reveal
+    const containerVariants = {
+        hidden: { opacity: 0 },
+        visible: {
+            opacity: 1,
+            transition: {
+                staggerChildren: 0.05, // Stagger words
+                delayChildren: 0.5, // Delay before words start animating
+            },
+        },
+    }
+
+    const wordVariants = {
+        hidden: { opacity: 0, y: 20 },
+        visible: { opacity: 1, y: 0 },
+    }
     return (
         <section className="relative min-h-screen h-[100dvh] overflow-hidden bg-black">
             {/* Three.js Background */}
@@ -65,14 +81,28 @@ export default function HeroSection({ projects }: HeroSectionProps) {
                     className="absolute inset-0"
                 >
                     <div className="relative h-full">
+                        {currentProject.heroMediaType === 'video' && currentProject.featuredVideo ? (
+                            <video
+                                src={currentProject.featuredVideo}
+                                className={`w-full h-full object-cover`}
+                                autoPlay={true}
+                                loop={true}
+                                muted={true}
+                                controls={false}
+                                playsInline
+                                preload="auto"
+                            >
+                                Your browser does not support the video tag.
+                            </video>
+                        ) : (
+                            <SanityImage
+                                aspectRatio='auto'
+                                image={currentProject.featuredImage}
+                            />
+                        )}
                         {currentProject.featuredImage ? (
                             <>
-                                <SanityImage
-                                    aspectRatio='auto'
-                                    image={currentProject.featuredImage}
-                                    
-                                    // className="object-cover transition-transform duration-500 group-hover:scale-105"
-                                />
+
                                 <div className="absolute inset-0 bg-black/40" />
                             </>
                         ) : null}
@@ -84,20 +114,28 @@ export default function HeroSection({ projects }: HeroSectionProps) {
             <div className="absolute inset-0 flex flex-col justify-between p-8 md:p-16">
                 <div className="flex-1" />
 
-                <div className="flex justify-between items-end">
+                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-end gap-6 sm:gap-">
                     {/* Project Info */}
                     <motion.div
-                        key={`content-${currentIndex}`}
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, delay: 0.3 }}
+                        key={`content-${currentIndex}`} // Key ensures re-animation on slide change
+                        initial="hidden"
+                        animate="visible"
+                        variants={containerVariants}
                         className="max-w-2xl"
                     >
-                        <h1 className="text-4xl md:text-6xl font-serif text-white mb-4 leading-tight">
-                            {currentProject.title}
+                        <h1 className="text-3xl sm:text-4xl md:text-6xl font-serif text-white mb-3 sm:mb-4 leading-tight">
+                            {currentProject.title.split(' ').map((word, i) => (
+                                <motion.span key={i} variants={wordVariants} className="inline-block mr-2">
+                                    {word}
+                                </motion.span>
+                            ))}
                         </h1>
-                        <p className="text-lg md:text-xl text-gray-300 font-light">
-                            {currentProject.excerpt}
+                        <p className="text-base sm:text-lg md:text-xl text-gray-300 font-light leading-relaxed">
+                            {currentProject.excerpt.split(' ').map((word, i) => ( // Use excerpt here
+                                <motion.span key={i} variants={wordVariants} className="inline-block mr-1">
+                                    {word}
+                                </motion.span>
+                            ))}
                         </p>
                     </motion.div>
 

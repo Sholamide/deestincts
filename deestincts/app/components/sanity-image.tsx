@@ -7,19 +7,22 @@ interface SanityImageProps {
   image: any;
   className?: string;
   aspectRatio?: "square" | "4:3" | "16:9" | "3:2" | "auto";
-  alt?: string
+  alt?: string;
+  grayscale?: boolean
 }
 
 export default function SanityImage({
   image,
   className,
   aspectRatio = "auto",
-  alt
+  alt,
+  grayscale = false,
 }: SanityImageProps) {
   if (!image) return null;
 
-  const { width: originalWidth, height: originalHeight } =
-    getImageDimensions(image);
+  // const { width: originalWidth, height: originalHeight } =
+  //   getImageDimensions(image);
+  
   const imageAlt = alt || image.alt || "Image without alt text";
 
   const aspectRatioClass = getAspectRatioClass(aspectRatio);
@@ -30,13 +33,10 @@ export default function SanityImage({
         src={urlForImage(image)?.url() ?? ''}
         alt={imageAlt}
         fill
-        // width={originalWidth}
-        // height={originalHeight}
         placeholder="blur"
         blurDataURL={urlForImage(image)?.width(20).height(20).quality(10).url() ?? ''}
         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 40vw"
-        className={`object-cover contrast-110 brightness-90 ${className || ''}`}
-      // className={`w-full grayscale h-full object-cover ${className || ''}`}
+        className={`${grayscale ? "grayscale" : ""} object-cover contrast-110 brightness-90  ${className || ''}`}
       />
     </div>
   );
