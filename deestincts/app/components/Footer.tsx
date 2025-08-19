@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function Footer() {
   return (
-    <footer className="border-t border-white/10 bg-[#161519]">
+    <footer className="border-t border-white/10 bg-black">
       <div className="container px-4 py-16 md:px-6">
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
           <div>
@@ -22,7 +22,7 @@ export default function Footer() {
             </p>
           </div>
           <div>
-            <h3 className="mb-4 text-sm font-medium">Quick Links</h3>
+            <h3 className="mb-4 text-sm text-white/70 font-medium">Quick Links</h3>
             <ul className="space-y-2 text-sm">
               <li>
                 <Link href="/" className="text-white/70 hover:text-white transition-colors">
@@ -52,7 +52,7 @@ export default function Footer() {
             </ul>
           </div>
           <div>
-            <h3 className="mb-4 text-sm font-medium">Services</h3>
+            <h3 className="mb-4 text-sm font-medium text-white/70">Services</h3>
             <ul className="space-y-2 text-sm">
               <li>
                 <Link href="/projects" className="text-white/70 hover:text-white transition-colors">

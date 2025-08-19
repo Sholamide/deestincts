@@ -59,7 +59,7 @@ export default async function RootLayout({
   const { isEnabled: isDraftMode } = await draftMode();
 
   return (
-    <html lang="en" className={`bg-white text-black`} suppressHydrationWarning={true}>
+    <html lang="en" className={`bg-black text-black`} suppressHydrationWarning={true}>
       <body className="font-sans antialiased cursor-none">
           <Toaster />
           {isDraftMode && (

@@ -16,7 +16,7 @@ const companies = [
 
 export default function CompanyMarquee() {
   return (
-    <section className="py-16 bg-gray-50 border-y border-gray-200">
+    <section className="py-16 bg-black  border-gray-200">
       <div className="container mx-auto px-4">
         <motion.p
           initial={{ opacity: 0, y: 20 }}

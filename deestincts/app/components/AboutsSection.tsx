@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import { About } from '@/lib/types'
 import InfinityPattern from './InfinityPattern'
+import CompanyMarquee from './CompanyMarquee'
 
 interface AboutSectionProps {
   about: About | null
@@ -30,6 +31,7 @@ export default function AboutSection({ about }: AboutSectionProps) {
           </p>
         </motion.div>
       </div>
+      <CompanyMarquee />
     </section>
   )
 }

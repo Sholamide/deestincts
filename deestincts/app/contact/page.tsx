@@ -37,12 +37,12 @@ export default function ContactPage() {
         <section className="relative py-20 md:py-28">
           <div className="absolute inset-0 z-0">
             <div className="absolute inset-0 bg-[#161519] opacity-90"></div>
-            <div className="absolute left-0 top-0 h-full w-1/3 bg-[#C3122B] opacity-10 blur-3xl"></div>
+            <div className="absolute left-0 top-0 h-full w-1/3 bg-[#a3a2a2] opacity-10 blur-3xl"></div>
           </div>
           <div className="container relative z-10 px-4 md:px-6">
             <div className="mx-auto max-w-4xl text-center">
               <h1 className="mb-6 text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl">
-                Get in <span className="text-[#C3122B]">Touch</span>
+                Get in <span className="text-[#c7c4c4]">Touch</span>
               </h1>
               <p className="mb-8 text-xl text-white/70">
                 Have a project in mind? Let&apos;s discuss how we can help transform your brand with exceptional design.
@@ -59,7 +59,7 @@ export default function ContactPage() {
                 <div className="space-y-6">
                   <div className="flex items-start gap-4">
                     <div className="rounded-full bg-[#C3122B]/10 p-3">
-                      <Mail className="h-6 w-6 text-[#C3122B]" />
+                      <Mail className="h-6 w-6 text-[#5b5a5a]" />
                     </div>
                     <div>
                       <h3 className="mb-1 text-lg font-medium">Email Us</h3>
@@ -69,7 +69,7 @@ export default function ContactPage() {
                   </div>
                   <div className="flex items-start gap-4">
                     <div className="rounded-full bg-[#C3122B]/10 p-3">
-                      <Phone className="h-6 w-6 text-[#C3122B]" />
+                      <Phone className="h-6 w-6 text-[#5b5a5a]" />
                     </div>
                     <div>
                       <h3 className="mb-1 text-lg font-medium">Call Us</h3>
@@ -79,7 +79,7 @@ export default function ContactPage() {
                   </div>
                   <div className="flex items-start gap-4">
                     <div className="rounded-full bg-[#C3122B]/10 p-3">
-                      <MapPin className="h-6 w-6 text-[#C3122B]" />
+                      <MapPin className="h-6 w-6 text-[#5b5a5a]" />
                     </div>
                     <div>
                       <h3 className="mb-1 text-lg font-medium">Visit Us</h3>
@@ -90,7 +90,7 @@ export default function ContactPage() {
                   </div>
                   <div className="flex items-start gap-4">
                     <div className="rounded-full bg-[#C3122B]/10 p-3">
-                      <Clock className="h-6 w-6 text-[#C3122B]" />
+                      <Clock className="h-6 w-6 text-[#5b5a5a]" />
                     </div>
                     <div>
                       <h3 className="mb-1 text-lg font-medium">Office Hours</h3>
@@ -202,7 +202,7 @@ export default function ContactPage() {
                           id="name"
                           placeholder="Your name"
                           required
-                          className="border-white/10 bg-white/5 text-white placeholder:text-white/50 focus-visible:ring-[#C3122B]"
+                          className="border-white/10 bg-white/5 text-white placeholder:text-white/50 focus-visible:ring-[#5b5a5a]"
                         />
                       </div>
                       <div className="grid gap-2">
@@ -212,7 +212,7 @@ export default function ContactPage() {
                           type="email"
                           placeholder="Your email"
                           required
-                          className="border-white/10 bg-white/5 text-white placeholder:text-white/50 focus-visible:ring-[#C3122B]"
+                          className="border-white/10 bg-white/5 text-white placeholder:text-white/50 focus-visible:ring-[#5b5a5a]"
                         />
                       </div>
                     </div>
@@ -222,7 +222,7 @@ export default function ContactPage() {
                         id="subject"
                         placeholder="Subject of your message"
                         required
-                        className="border-white/10 bg-white/5 text-white placeholder:text-white/50 focus-visible:ring-[#C3122B]"
+                        className="border-white/10 bg-white/5 text-white placeholder:text-white/50 focus-visible:ring-[#5b5a5a]"
                       />
                     </div>
                     <div className="grid gap-2">
@@ -231,12 +231,12 @@ export default function ContactPage() {
                         id="message"
                         placeholder="Your message"
                         required
-                        className="min-h-[150px] border-white/10 bg-white/5 text-white placeholder:text-white/50 focus-visible:ring-[#C3122B]"
+                        className="min-h-[150px] border-white/10 bg-white/5 text-white placeholder:text-white/50 focus-visible:ring-[#5b5a5a]"
                       />
                     </div>
                     <Button
                       type="submit"
-                      className="w-full bg-[#C3122B] hover:bg-[#C3122B]/90 text-white"
+                      className="w-full bg-[#5b5a5a] hover:bg-[#5b5a5a]/90 text-white"
                       disabled={isSubmitting}
                     >
                       {isSubmitting ? (
@@ -311,7 +311,7 @@ export default function ContactPage() {
               <p className="mb-8 text-white/70 md:text-lg">
                 Contact us today to schedule a consultation and discuss your design needs.
               </p>
-              <Button className="bg-[#C3122B] hover:bg-[#C3122B]/90 text-white">Schedule a Consultation</Button>
+              <Button className="bg-[#5b5a5a] hover:bg-[#5b5a5a]/90 text-white">Schedule a Consultation</Button>
             </div>
           </div>
         </section>
