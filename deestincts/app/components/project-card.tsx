@@ -41,8 +41,7 @@ export function ProjectCard({
 
   return (
     <Link href={`/projects/${slug}`} className="group block">
-      <div className="relative w-full aspect-[4/3] overflow-hidden rounded-md border border-white/30 transition-all duration-300 hover:border-[#ffffff]/50 grid grid-rows-[3fr_1fr]">
-        {/* Media container - takes up the top 3/4 of the card's height */}
+      <div className="relative w-full aspect-[4/3] overflow-hidden rounded-xl border border-white/10 transition-all duration-300 hover:border-[#ffffff]/20 grid grid-rows-[3fr_1fr]">
         <div className="relative w-full h-full overflow-hidden">
           {heroMediaType === "video" && featuredVideo ? (
             <video
@@ -50,7 +49,7 @@ export function ProjectCard({
               className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
               autoPlay={true}
               loop={true}
-              muted={ true}
+              muted={true}
               playsInline
               controls={false}
               preload="auto"
@@ -59,7 +58,7 @@ export function ProjectCard({
             </video>
           ) : (
             <Image
-              src={imageUrl || "/placeholder.svg"}
+              src={imageUrl}
               alt={title}
               fill
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"

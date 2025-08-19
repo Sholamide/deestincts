@@ -1,6 +1,6 @@
 "use client";
+
 import Image from "next/image";
-import { getImageDimensions } from "@sanity/asset-utils";
 import { urlForImage } from "@/sanity/lib/utils";
 
 interface SanityImageProps {
@@ -20,17 +20,14 @@ export default function SanityImage({
 }: SanityImageProps) {
   if (!image) return null;
 
-  // const { width: originalWidth, height: originalHeight } =
-  //   getImageDimensions(image);
-  
-  const imageAlt = alt || image.alt || "Image without alt text";
+  const imageAlt = alt || image.alt || "Deestincts Image";
 
   const aspectRatioClass = getAspectRatioClass(aspectRatio);
 
   return (
     <div className={`relative overflow-hidden ${aspectRatioClass} ${aspectRatio === 'auto' ? 'h-full w-full' : ''}`}>
       <Image
-        src={urlForImage(image)?.url() ?? ''}
+        src={urlForImage(image)?.url() ?? ""}
         alt={imageAlt}
         fill
         placeholder="blur"
@@ -41,7 +38,6 @@ export default function SanityImage({
     </div>
   );
 }
-
 
 // Helper function to get the appropriate aspect ratio class
 function getAspectRatioClass(aspectRatio: "square" | "4:3" | "16:9" | "3:2" | "auto") {

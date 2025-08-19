@@ -98,6 +98,7 @@ export default function HeroSection({ projects }: HeroSectionProps) {
                             <SanityImage
                                 aspectRatio='auto'
                                 image={currentProject.featuredImage}
+                                className="object-contain transition-transform duration-500 group-hover:scale-105"
                             />
                         )}
                         {currentProject.featuredImage ? (

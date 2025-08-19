@@ -28,7 +28,7 @@ export default function ProjectsSection({ projects }: ProjectsSectionProps) {
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project, index) => (
+          {projects.map((project: any, index: number) => (
             <motion.div
               key={project.slug}
               initial={{ opacity: 0, y: 30 }}
@@ -38,11 +38,26 @@ export default function ProjectsSection({ projects }: ProjectsSectionProps) {
             >
               <Link href={`/projects/${project.slug}`}>
                 <div className="relative overflow-hidden bg-gray-100 aspect-[4/3] mb-6">
-                  <SanityImage
-                    image={project.featuredImage}
-                    aspectRatio="auto"
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
+                  {project.heroMediaType === "video" && project.featuredVideo ? (
+                    <video
+                      src={project.featuredVideo}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      autoPlay={true}
+                      loop={true}
+                      muted={true}
+                      playsInline
+                      controls={false}
+                      preload="auto"
+                    >
+                      Your browser does not support the video tag.
+                    </video>
+                  ) : (
+                    <SanityImage
+                      image={project.featuredImage}
+                      aspectRatio="auto"
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                  )}
                   <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
                 </div>
                 <motion.h3
