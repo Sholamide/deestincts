@@ -1,8 +1,18 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // images: {
+  //   domains: ['cdn.sanity.io','images.unsplash.com'],
+  // },
   images: {
-    domains: ['cdn.sanity.io','images.unsplash.com'],
+    remotePatterns: [
+      {
+        hostname: 'cdn.sanity.io',
+      },
+      {
+        hostname: 'images.unsplash.com',
+      },
+    ],
   },
   // images: {
   //   remotePatterns: [

@@ -3,32 +3,42 @@
 import type React from "react"
 
 import { useState } from "react"
+import { useForm } from "react-hook-form"
 import { Mail, Phone, MapPin, Clock, Send } from "lucide-react"
 import { Label } from "../components/ui/label"
 import { Input } from "../components/ui/input"
 import { Textarea } from "../components/ui/textarea"
 import { Button } from "../components/ui/button"
 
+type ContactFormValues = {
+  name: string
+  email: string
+  subject: string
+  message: string
+}
+
 export default function ContactPage() {
-  const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSuccess, setIsSuccess] = useState(false)
+  const { register, handleSubmit, reset, formState: { errors, isSubmitting } } = useForm<ContactFormValues>({
+    defaultValues: { name: "", email: "", subject: "", message: "" }
+  })
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsSubmitting(true)
-
-    // Simulate form submission
-    setTimeout(() => {
-      setIsSubmitting(false)
+  const onSubmit = async (values: ContactFormValues) => {
+    console.log("values", values)
+    setIsSuccess(false)
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(values),
+      })
+      if (!res.ok) throw new Error("Failed to send message")
       setIsSuccess(true)
-
-      // Reset form
-      const form = e.target as HTMLFormElement
-      form.reset()
-
-      // Reset success message after 5 seconds
+      reset()
       setTimeout(() => setIsSuccess(false), 5000)
-    }, 1500)
+    } catch (err) {
+      alert("There was an error sending your message. Please try again later.")
+    }
   }
 
   return (
@@ -63,7 +73,7 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <h3 className="mb-1 text-lg font-medium">Email Us</h3>
-                      <p className="text-white/70">hello@deestincts.com</p>
+                      <p className="text-white/70">contacts@deestincts.com</p>
                       <p className="text-white/70">info@deestincts.com</p>
                     </div>
                   </div>
@@ -73,8 +83,7 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <h3 className="mb-1 text-lg font-medium">Call Us</h3>
-                      <p className="text-white/70">+1 (555) 123-4567</p>
-                      <p className="text-white/70">+1 (555) 987-6543</p>
+                      <a href="tel:+2349054356854" className="text-white/70">+234 905 435 6854</a>
                     </div>
                   </div>
                   <div className="flex items-start gap-4">
@@ -83,9 +92,9 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <h3 className="mb-1 text-lg font-medium">Visit Us</h3>
-                      <p className="text-white/70">123 Design Street</p>
-                      <p className="text-white/70">Creative City, State 12345</p>
-                      <p className="text-white/70">United States</p>
+                      <p className="text-white/70">Ogudu GRA, </p>
+                      <p className="text-white/70">Lagos State</p>
+                      <p className="text-white/70">Nigeria</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-4">
@@ -194,45 +203,60 @@ export default function ContactPage() {
               <div>
                 <div className="rounded-xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm">
                   <h2 className="mb-6 text-2xl font-bold">Send Us a Message</h2>
-                  <form onSubmit={handleSubmit} className="space-y-4">
+                  <form onSubmit={handleSubmit(onSubmit)} className="space-y-4" noValidate>
                     <div className="grid gap-4 sm:grid-cols-2">
                       <div className="grid gap-2">
                         <Label htmlFor="name">Name</Label>
                         <Input
                           id="name"
+                          {...register("name", { required: "Name is required" })}
                           placeholder="Your name"
-                          required
                           className="border-white/10 bg-white/5 text-white placeholder:text-white/50 focus-visible:ring-[#5b5a5a]"
                         />
+                        {errors.name && (
+                          <p className="text-sm text-red-400">{errors.name.message}</p>
+                        )}
                       </div>
                       <div className="grid gap-2">
                         <Label htmlFor="email">Email</Label>
                         <Input
                           id="email"
                           type="email"
+                          {...register("email", {
+                            required: "Email is required",
+                            pattern: { value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, message: "Enter a valid email" }
+                          })}
                           placeholder="Your email"
-                          required
                           className="border-white/10 bg-white/5 text-white placeholder:text-white/50 focus-visible:ring-[#5b5a5a]"
                         />
+                        {errors.email && (
+                          <p className="text-sm text-red-400">{errors.email.message}</p>
+                        )}
                       </div>
                     </div>
                     <div className="grid gap-2">
                       <Label htmlFor="subject">Subject</Label>
                       <Input
                         id="subject"
+                        {...register("subject", { required: "Subject is required" })}
                         placeholder="Subject of your message"
-                        required
                         className="border-white/10 bg-white/5 text-white placeholder:text-white/50 focus-visible:ring-[#5b5a5a]"
                       />
+                      {errors.subject && (
+                        <p className="text-sm text-red-400">{errors.subject.message}</p>
+                      )}
                     </div>
                     <div className="grid gap-2">
                       <Label htmlFor="message">Message</Label>
                       <Textarea
                         id="message"
+                        {...register("message", { required: "Message is required", minLength: { value: 10, message: "Message should be at least 10 characters" } })}
                         placeholder="Your message"
-                        required
                         className="min-h-[150px] border-white/10 bg-white/5 text-white placeholder:text-white/50 focus-visible:ring-[#5b5a5a]"
                       />
+                      {errors.message && (
+                        <p className="text-sm text-red-400">{errors.message.message}</p>
+                      )}
                     </div>
                     <Button
                       type="submit"
