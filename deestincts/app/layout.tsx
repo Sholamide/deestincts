@@ -58,7 +58,7 @@ export default async function RootLayout({
 
   return (
     <html lang="en" className={`bg-black text-black`} suppressHydrationWarning={true}>
-      <body className="font-sans antialiased cursor-none">
+      <body className="font-sans antialiased">
           <Toaster />
           {isDraftMode && (
             <>
