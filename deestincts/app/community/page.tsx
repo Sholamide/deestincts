@@ -1,18 +1,15 @@
-import Link from "next/link"
-import { trainings, publications, getCommunityStats } from "@/lib/community-data"
-import { Search, ArrowRight, Users, BookOpen, Award } from "lucide-react"
+import { trainings, getCommunityStats } from "@/lib/community-data"
+import { Search, ArrowRight, Users, BookOpen } from "lucide-react"
 import { ShaderBackground } from "../components/shader-background"
 import { Button } from "../components/ui/button"
 import { CommunityStats } from "../components/commuity-stats"
 import { TrainingCard } from "../components/training-card"
-import { PublicationCard } from "../components/publication-card"
 import { Input } from "../components/ui/input"
 
 export default function CommunityPage() {
   const activeTrainings = trainings.filter((t) => t.status === "active")
   const upcomingTrainings = trainings.filter((t) => t.status === "upcoming")
   const archivedTrainings = trainings.filter((t) => t.status === "archived")
-  const featuredPublications = publications.slice(0, 4)
   const communityStats = getCommunityStats()
 
   return (
@@ -101,30 +98,6 @@ export default function CommunityPage() {
           </section>
         )}
 
-        {/* Publications */}
-        {/* <section className="py-16 md:py-24 bg-white/5">
-          <div className="container px-4 md:px-6">
-            <div className="mb-12 flex items-center justify-between">
-              <div>
-                <h2 className="mb-4 text-3xl font-bold md:text-4xl">
-                  <Award className="mr-3 inline h-8 w-8 text-purple-400" />
-                  Featured Publications
-                </h2>
-                <p className="text-white/70">Dive deep into industry insights and best practices</p>
-              </div>
-              <Link href="/community/publications">
-                <Button variant="outline" className="border-white/20 text-white hover:bg-white/10 bg-transparent">
-                  View All Publications
-                </Button>
-              </Link>
-            </div>
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-              {featuredPublications.map((publication) => (
-                <PublicationCard key={publication.id} publication={publication} />
-              ))}
-            </div>
-          </div>
-        </section> */}
 
         {/* Archived Trainings */}
         {archivedTrainings.length > 0 && (
