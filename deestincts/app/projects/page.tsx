@@ -27,7 +27,7 @@ export default async function ProjectsPage() {
           </div>
           <div className="container relative z-10 px-4 mt-12 md:px-6">
             <div className="max-w-4xl">
-              <p className="mb-8 text-lg md:text-3xl lg:text-4xl text-white">
+              <p className="mb-8 text-lg md:text-2xl text-white">
                 From global brands to game-changing startups, we design the future at pivotal moments.
               </p>
             </div>
@@ -37,7 +37,7 @@ export default async function ProjectsPage() {
         <section className="py-16 md:py-24">
           <div className="container px-4 md:px-6">
             <div className="grid gap-6 sm:grid-cols-2">
-              {allProjects.map((project:any, index:any) => (
+              {allProjects.map((project: any, index: any) => (
                 <div key={project._id} className={getProjectColSpan(index)}>
                   <ProjectCard
                     title={project.title}

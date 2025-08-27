@@ -12,7 +12,7 @@ interface PostsSectionProps {
 
 export default function PostsSection({ posts }: PostsSectionProps) {
   return (
-    <section className="py-24 bg-gray-50">
+    <section className="py-24 bg-black">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -20,10 +20,10 @@ export default function PostsSection({ posts }: PostsSectionProps) {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-6xl  text-black mb-6">
+          <h2 className="text-4xl md:text-6xl  text-white mb-6">
             Latest Insights
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="text-lg text-white max-w-2xl mx-auto">
             Thoughts, ideas, and perspectives on design, technology, and the creative process.
           </p>
         </motion.div>

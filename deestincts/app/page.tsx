@@ -3,7 +3,7 @@ import HeroSection from "./components/HeroSection";
 import { getAboutInfo, getPosts, getProjects } from "@/lib/sanity";
 import ProjectsSection from "./components/Projects";
 import PostsSection from "./components/PostsSection";
-import AboutSection from "./components/AboutsSection";
+import AboutSection from "./components/AboutSection";
 
 export default async function Page() {
   const [projects, posts, about] = await Promise.all([

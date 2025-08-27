@@ -12,7 +12,7 @@ export default async function AboutPage() {
   const aboutData = await getAboutInfo()
 
   return (
-    <main className="pt-24 bg-[#161519]">
+    <main className="pt-24 bg-[#000000]">
       {" "}
       {/* Ensure consistent background */}
       <AboutContent about={aboutData} />
