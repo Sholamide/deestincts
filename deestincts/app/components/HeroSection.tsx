@@ -124,14 +124,14 @@ export default function HeroSection({ projects }: HeroSectionProps) {
                         variants={containerVariants}
                         className="max-w-2xl"
                     >
-                        <h1 className="text-3xl sm:text-4xl md:text-6xl font-serif text-white mb-3 sm:mb-4 leading-tight">
+                        <h1 className="text-2xl sm:text-4xl md:text-4xl text-white mb-3 sm:mb-4 leading-tight">
                             {currentProject.title.split(' ').map((word, i) => (
                                 <motion.span key={i} variants={wordVariants} className="inline-block mr-2">
                                     {word}
                                 </motion.span>
                             ))}
                         </h1>
-                        <p className="text-base sm:text-lg md:text-xl text-gray-300 font-light leading-relaxed">
+                        <p className="text-base text-gray-300 font-light leading-relaxed">
                             {currentProject.excerpt.split(' ').map((word, i) => ( // Use excerpt here
                                 <motion.span key={i} variants={wordVariants} className="inline-block mr-1">
                                     {word}

@@ -126,7 +126,7 @@ export default function AboutContent({ about }: AboutPageProps) {
           priority
         />   
       </div>
-      <InfinityPattern isDark className="opacity-20" />
+      {/* <InfinityPattern isDark className="opacity-20" /> */}
 
       <div className="container mx-auto px-4 relative z-10">
         {/* Hero Section (Animated Intro) */}
@@ -140,7 +140,7 @@ export default function AboutContent({ about }: AboutPageProps) {
         >
           <motion.h1
             style={{ y: yText, opacity: opacityText }}
-            className="text-4xl lg:text-7xl md:text-6xl font-bold text-white mb-6 tracking-tighter"
+            className="text-3xl md:text-4xl font-bold text-white mb-6 tracking-tighter"
           >
             <motion.span variants={itemVariants} className="text-[#858585]">
               About
@@ -150,7 +150,7 @@ export default function AboutContent({ about }: AboutPageProps) {
           <motion.p
             style={{ y: yText, opacity: opacityText }}
             variants={itemVariants}
-            className="text-lg md:text-2xl lg:text-3xl text-gray-300 max-w-4xl mx-auto leading-relaxed font-normal"
+            className="text-lg md:text-2xl text-gray-300 max-w-4xl mx-auto leading-relaxed font-normal"
           >
             Deestincts is a cross-disciplinary, privately-owned creative and digital design agency committed to helping
             brands express their uniqueness with clarity, strategy, and emotional depth. We build standout brands and
@@ -217,25 +217,6 @@ export default function AboutContent({ about }: AboutPageProps) {
               </motion.div>
             ))}
           </div>
-          {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-8">
-            {serviceItems.map((item, index) => (
-              <motion.div
-                key={index}
-                variants={itemVariants}
-                className="group relative rounded-xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm transition-all duration-300 hover:border-[#858585]/30 hover:bg-white/10 overflow-hidden"
-              >
-                <div className="flex items-center space-x-4 mb-4">
-                  <item.icon className="h-8 w-8 text-[#858585] group-hover:text-white transition-colors duration-300" />
-                  <h3 className="text-xl font-semibold text-white group-hover:text-[#858585] transition-colors duration-300">
-                    {item.title}
-                  </h3>
-                </div>
-                <p className="text-gray-300 text-sm leading-relaxed opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300">
-                  {item.description}
-                </p>
-              </motion.div>
-            ))}
-          </div> */}
           <motion.p
             variants={itemVariants}
             className="text-lg md:text-4xl text-gray-300 max-w-4xl mx-auto leading-relaxed mt-12 text-center"

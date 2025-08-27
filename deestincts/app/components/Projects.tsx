@@ -11,7 +11,7 @@ interface ProjectsSectionProps {
 
 export default function ProjectsSection({ projects }: ProjectsSectionProps) {
   return (
-    <section className="py-24 bg-white">
+    <section className="py-16 bg-black">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -19,10 +19,10 @@ export default function ProjectsSection({ projects }: ProjectsSectionProps) {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-6xl text-black mb-6">
+          <h2 className="text-4xl md:text-6xl text-white mb-6">
             Selected Works
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="text-lg text-white max-w-2xl mx-auto">
             A curated collection of our most impactful projects, each crafted with precision and purpose.
           </p>
         </motion.div>
@@ -61,13 +61,13 @@ export default function ProjectsSection({ projects }: ProjectsSectionProps) {
                   <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
                 </div>
                 <motion.h3
-                  className="text-xl  text-black mb-2 group-hover:text-gray-600 transition-colors duration-300"
+                  className="text-xl  text-white mb-2 group-hover:text-gray-400 transition-colors duration-300"
                   whileHover={{ x: 10 }}
                   transition={{ duration: 0.3 }}
                 >
                   {project.title}
                 </motion.h3>
-                <p className="text-gray-600 text-sm leading-relaxed">
+                <p className="text-gray-400 text-sm leading-relaxed">
                   {project.excerpt}
                 </p>
               </Link>
