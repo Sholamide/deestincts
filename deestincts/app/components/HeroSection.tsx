@@ -112,10 +112,10 @@ export default function HeroSection({ projects }: HeroSectionProps) {
             </AnimatePresence>
 
             {/* Content Overlay */}
-            <div className="absolute inset-0 flex flex-col justify-between p-8 md:p-16">
+            <div className="absolute inset-0 flex flex-col justify-between px-4 py-6 md:p-16">
                 <div className="flex-1" />
 
-                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-end gap-6 sm:gap-">
+                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-end gap-6 sm:gap-3">
                     {/* Project Info */}
                     <motion.div
                         key={`content-${currentIndex}`} // Key ensures re-animation on slide change
@@ -124,7 +124,7 @@ export default function HeroSection({ projects }: HeroSectionProps) {
                         variants={containerVariants}
                         className="max-w-2xl"
                     >
-                        <h1 className="text-2xl sm:text-4xl md:text-4xl text-white mb-3 sm:mb-4 leading-tight">
+                        <h1 className="text-2xl sm:text-4xl md:text-4xl text-white m leading-tight">
                             {currentProject.title.split(' ').map((word, i) => (
                                 <motion.span key={i} variants={wordVariants} className="inline-block mr-2">
                                     {word}
