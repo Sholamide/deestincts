@@ -12,6 +12,18 @@ export default {
       },
     },
     extend: {
+      fontSize: {
+        xl: ["1.125rem", { lineHeight: "1.5" }],
+        "2xl": ["1.25rem", { lineHeight: "1.45" }],
+        "3xl": ["1.5rem", { lineHeight: "1.35" }],
+        "4xl": ["1.875rem", { lineHeight: "1.25" }],
+        // Moderated large display sizes using clamp for responsive scaling
+        "5xl": ["clamp(2rem, 4vw, 2.5rem)", { lineHeight: "1.15" }],
+        "6xl": ["clamp(2.25rem, 5vw, 3rem)", { lineHeight: "1.12" }],
+        "7xl": ["clamp(2.5rem, 6vw, 3.5rem)", { lineHeight: "1.1" }],
+        "8xl": ["clamp(2.75rem, 7vw, 4rem)", { lineHeight: "1.08" }],
+        "9xl": ["clamp(3rem, 8vw, 4.5rem)", { lineHeight: "1.05" }],
+      },
       boxShadow: {
         layer: "0 35px 60px -15px rgba(0, 0, 0, 0.3)",
       },
