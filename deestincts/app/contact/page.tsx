@@ -1,45 +1,57 @@
-"use client"
+"use client";
 
-import type React from "react"
-
-import { useState } from "react"
-import { useForm } from "react-hook-form"
-import { Mail, Phone, MapPin, Clock, Send } from "lucide-react"
-import { Label } from "../components/ui/label"
-import { Input } from "../components/ui/input"
-import { Textarea } from "../components/ui/textarea"
-import { Button } from "../components/ui/button"
+import type React from "react";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { Mail, Phone, MapPin, Clock, Send } from "lucide-react";
+import { Label } from "../components/ui/label";
+import { Input } from "../components/ui/input";
+import { Textarea } from "../components/ui/textarea";
+import { Button } from "../components/ui/button";
 
 type ContactFormValues = {
-  name: string
-  email: string
-  subject: string
-  message: string
-}
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
+};
 
 export default function ContactPage() {
-  const [isSuccess, setIsSuccess] = useState(false)
-  const { register, handleSubmit, reset, formState: { errors, isSubmitting } } = useForm<ContactFormValues>({
-    defaultValues: { name: "", email: "", subject: "", message: "" }
-  })
+  const [isSuccess, setIsSuccess] = useState(false);
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors, isSubmitting },
+  } = useForm<ContactFormValues>({
+    defaultValues: { name: "", email: "", subject: "", message: "" },
+  });
 
   const onSubmit = async (values: ContactFormValues) => {
-    console.log("values", values)
-    setIsSuccess(false)
+    console.log("Submitting values:", values);
+    setIsSuccess(false);
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(values),
-      })
-      if (!res.ok) throw new Error("Failed to send message")
-      setIsSuccess(true)
-      reset()
-      setTimeout(() => setIsSuccess(false), 5000)
-    } catch (err) {
-      alert("There was an error sending your message. Please try again later.")
+      });
+      const result = await res.json();
+      if (!res.ok) throw new Error(result.error || "Failed to send message");
+
+      console.log("API Response:", result); // Log for debugging
+      setIsSuccess(true);
+      reset();
+      setTimeout(() => setIsSuccess(false), 5000);
+    } catch (err:any) {
+      console.error("Contact form error:", err);
+      alert(
+        `There was an error sending your message: ${
+          err.message || "Please try again later."
+        }`
+      );
     }
-  }
+  };
 
   return (
     <div className="flex min-h-screen flex-col bg-[#161519] text-white">
@@ -55,7 +67,8 @@ export default function ContactPage() {
                 Get in <span className="text-[#c7c4c4]">Touch</span>
               </h1>
               <p className="mb-8 text-xl text-white/70">
-                Have a project in mind? Let&apos;s discuss how we can help transform your brand with exceptional design.
+                Have a project in mind? Let&apos;s discuss how we can help transform your brand with exceptional
+                design.
               </p>
             </div>
           </div>
@@ -213,9 +226,7 @@ export default function ContactPage() {
                           placeholder="Your name"
                           className="border-white/10 bg-white/5 text-white placeholder:text-white/50 focus-visible:ring-[#5b5a5a]"
                         />
-                        {errors.name && (
-                          <p className="text-sm text-red-400">{errors.name.message}</p>
-                        )}
+                        {errors.name && <p className="text-sm text-red-400">{errors.name.message}</p>}
                       </div>
                       <div className="grid gap-2">
                         <Label htmlFor="email">Email</Label>
@@ -224,14 +235,12 @@ export default function ContactPage() {
                           type="email"
                           {...register("email", {
                             required: "Email is required",
-                            pattern: { value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, message: "Enter a valid email" }
+                            pattern: { value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, message: "Enter a valid email" },
                           })}
                           placeholder="Your email"
                           className="border-white/10 bg-white/5 text-white placeholder:text-white/50 focus-visible:ring-[#5b5a5a]"
                         />
-                        {errors.email && (
-                          <p className="text-sm text-red-400">{errors.email.message}</p>
-                        )}
+                        {errors.email && <p className="text-sm text-red-400">{errors.email.message}</p>}
                       </div>
                     </div>
                     <div className="grid gap-2">
@@ -242,34 +251,27 @@ export default function ContactPage() {
                         placeholder="Subject of your message"
                         className="border-white/10 bg-white/5 text-white placeholder:text-white/50 focus-visible:ring-[#5b5a5a]"
                       />
-                      {errors.subject && (
-                        <p className="text-sm text-red-400">{errors.subject.message}</p>
-                      )}
+                      {errors.subject && <p className="text-sm text-red-400">{errors.subject.message}</p>}
                     </div>
                     <div className="grid gap-2">
                       <Label htmlFor="message">Message</Label>
                       <Textarea
                         id="message"
-                        {...register("message", { required: "Message is required", minLength: { value: 10, message: "Message should be at least 10 characters" } })}
+                        {...register("message", {
+                          required: "Message is required",
+                          minLength: { value: 10, message: "Message should be at least 10 characters" },
+                        })}
                         placeholder="Your message"
                         className="min-h-[150px] border-white/10 bg-white/5 text-white placeholder:text-white/50 focus-visible:ring-[#5b5a5a]"
                       />
-                      {errors.message && (
-                        <p className="text-sm text-red-400">{errors.message.message}</p>
-                      )}
+                      {errors.message && <p className="text-sm text-red-400">{errors.message.message}</p>}
                     </div>
                     <Button
                       type="submit"
                       className="w-full bg-[#5b5a5a] hover:bg-[#5b5a5a]/90 text-white"
                       disabled={isSubmitting}
                     >
-                      {isSubmitting ? (
-                        "Sending..."
-                      ) : (
-                        <>
-                          Send Message <Send className="ml-2 h-4 w-4" />
-                        </>
-                      )}
+                      {isSubmitting ? "Sending..." : <>Send Message <Send className="ml-2 h-4 w-4" /></>}
                     </Button>
                     {isSuccess && (
                       <div className="rounded-md bg-green-500/10 p-4 text-center text-green-400">
@@ -341,5 +343,5 @@ export default function ContactPage() {
         </section>
       </main>
     </div>
-  )
+  );
 }
