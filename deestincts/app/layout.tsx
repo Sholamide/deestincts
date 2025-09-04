@@ -59,7 +59,7 @@ export async function generateMetadata(): Promise<Metadata> {
     },
     description: toPlainText(description),
     openGraph: {
-      images: ogImage ? [ogImage] : ['/images/deestincts-logo-only-white.png'],
+      images: ogImage ? [ogImage] : ['/images/deestincts-logo-only-dark.png'],
     },
   };
 }
