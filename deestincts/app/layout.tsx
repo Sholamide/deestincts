@@ -29,13 +29,28 @@ export async function generateMetadata(): Promise<Metadata> {
   const description = settings?.description || demo.description;
   const ogImage = resolveOpenGraphImage(settings?.ogImage);
   let metadataBase: URL | undefined = undefined;
+
+  const defaultMetadataBase = process.env.NEXT_PUBLIC_SITE_URL
+    ? new URL(process.env.NEXT_PUBLIC_SITE_URL)
+    : new URL('https://www.deestincts.com'); 
+
   try {
-    metadataBase = settings?.ogImage?.metadataBase
-      ? new URL(settings.ogImage.metadataBase)
-      : undefined;
-  } catch {
-    // ignore
+    if (settings?.ogImage?.metadataBase) {
+      metadataBase = new URL(settings.ogImage.metadataBase);
+    } else {
+      metadataBase = defaultMetadataBase;
+    }
+  } catch (error) {
+    console.warn('Invalid metadataBase from settings, using default:', defaultMetadataBase.href);
+    metadataBase = defaultMetadataBase;
   }
+  // try {
+  //   metadataBase = settings?.ogImage?.metadataBase
+  //     ? new URL(settings.ogImage.metadataBase)
+  //     : undefined;
+  // } catch {
+  //   // ignore
+  // }
   return {
     metadataBase,
     title: {
@@ -44,7 +59,7 @@ export async function generateMetadata(): Promise<Metadata> {
     },
     description: toPlainText(description),
     openGraph: {
-      images: ogImage ? [ogImage] : [],
+      images: ogImage ? [ogImage] : ['/images/deestincts-logo-only-white.png'],
     },
   };
 }
