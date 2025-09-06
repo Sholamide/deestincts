@@ -128,7 +128,6 @@ export default function AboutContent({ about }: AboutPageProps) {
       <div className="container mx-auto px-4 relative z-10">
         {/* Hero Section (Animated Intro) */}
         <motion.div 
-        
           ref={heroRef}
           variants={sectionVariants}
           initial="hidden"
@@ -184,10 +183,10 @@ export default function AboutContent({ about }: AboutPageProps) {
 
         {/* What We Do Section */}
         <motion.div
-          variants={sectionVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
+          // variants={sectionVariants}
+          // initial="hidden"
+          // whileInView="visible"
+          // viewport={{ once: true, amount: 0.3 }}
           className="mb-24"
         >
           <motion.h2 variants={itemVariants} className="text-3xl md:text-5xl font-bold text-white mb-12 text-center">
@@ -226,10 +225,10 @@ export default function AboutContent({ about }: AboutPageProps) {
 
         {/* Our Philosophy Section */}
         <motion.div
-          variants={sectionVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
+          // variants={sectionVariants}
+          // initial="hidden"
+          // whileInView="visible"
+          // viewport={{ once: true, amount: 0.3 }}
           className="my-24"
         >
           <motion.h2 variants={itemVariants} className="text-3xl md:text-5xl font-bold text-white mb-12 text-center">
@@ -277,10 +276,10 @@ export default function AboutContent({ about }: AboutPageProps) {
         {/* Team Members Section (from previous implementation) */}
         {about?.teamMembers && about.teamMembers.length > 0 && (
           <motion.div
-            variants={sectionVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
+            // variants={sectionVariants}
+            // initial="hidden"
+            // whileInView="visible"
+            // viewport={{ once: true, amount: 0.3 }}
             className="mt-24"
           >
             <motion.h3 variants={itemVariants} className="text-3xl md:text-5xl font-bold text-white mb-12 text-center">
