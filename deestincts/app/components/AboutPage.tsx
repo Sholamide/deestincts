@@ -25,22 +25,19 @@ interface AboutPageProps {
 }
 
 const sectionVariants = {
-  hidden: { opacity: 0, y: 50 },
+  hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    y: 0,
     transition: {
-      duration: 0.8,
+      duration: 0.6,
       ease: easeOut,
-      staggerChildren: 0.1,
-      when: "beforeChildren",
     },
   },
 }
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0 },
+  hidden: { opacity: 0 },
+  visible: { opacity: 1 },
 }
 
 const serviceItems = [
@@ -130,7 +127,8 @@ export default function AboutContent({ about }: AboutPageProps) {
 
       <div className="container mx-auto px-4 relative z-10">
         {/* Hero Section (Animated Intro) */}
-        <motion.div
+        <motion.div 
+        
           ref={heroRef}
           variants={sectionVariants}
           initial="hidden"
