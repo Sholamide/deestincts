@@ -121,13 +121,13 @@ export default function AboutContent({ about }: AboutPageProps) {
           className="object-cover opacity-10 grayscale"
           fill
           priority
-        />   
+        />
       </div>
       {/* <InfinityPattern isDark className="opacity-20" /> */}
 
       <div className="container mx-auto px-4 relative z-10">
         {/* Hero Section (Animated Intro) */}
-        <motion.div 
+        <motion.div
           ref={heroRef}
           variants={sectionVariants}
           initial="hidden"
@@ -197,15 +197,14 @@ export default function AboutContent({ about }: AboutPageProps) {
               <motion.div
                 key={index}
                 variants={itemVariants}
-                className={`group relative p-8 flex flex-col items-start text-left ${
-                  index < serviceItems.length - 1 ? "border-r border-white/10" : ""
-                }`}
+                className={`group relative p-8 flex flex-col items-start text-left ${index < serviceItems.length - 1 ? "border-r border-white/10" : ""
+                  }`}
               >
                 {/* <div className="w-8 h-8 rounded-full bg-[#C3122B] mb-6" /> */}
                 <item.icon className="h-8 w-8 mb-6 text-[#858585] group-hover:text-white transition-colors duration-300" />
                 <h3 className="text-2xl font-bold text-white group-hover:text-[#858585] transition-colors duration-300 mb-4">
-                    {item.title}
-                  </h3>
+                  {item.title}
+                </h3>
                 {/* <h3 className="text-2xl font-bold text-white mb-4">{item.title}</h3> */}
                 {/* <p className="text-gray-300 text-base leading-relaxed">{item.description}</p> */}
                 <p className="text-gray-300 text-sm leading-relaxed opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300">
