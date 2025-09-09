@@ -11,10 +11,6 @@
     font-family: var(--font-playfair), serif;
   }
   
-  * {
-    cursor: none !important;
-  }
-  
   body {
     @apply bg-black text-black;
   }
