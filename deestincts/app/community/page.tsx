@@ -33,7 +33,7 @@ export default function CommunityPage() {
                 publications, and resources to elevate your craft.
               </p>
               <div className="flex flex-col gap-4 sm:flex-row sm:justify-center">
-                <Button className="bg-white text-black hover:bg-white/90">
+                <Button className="text-white bg-[#9a1212] hover:bg-[#9a1212]/90">
                   Join Community
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>

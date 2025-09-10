@@ -55,27 +55,27 @@ export default function Footer() {
             <h3 className="mb-4 text-lg font-medium text-white/70">Services</h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link href="/projects" className="text-white/70 text-base hover:text-white transition-colors">
+                <Link href="/about" className="text-white/70 text-base hover:text-white transition-colors">
                   Web Design
                 </Link>
               </li>
               <li>
-                <Link href="/projects" className="text-white/70 text-base hover:text-white transition-colors">
+                <Link href="/about" className="text-white/70 text-base hover:text-white transition-colors">
                   UI/UX Design
                 </Link>
               </li>
               <li>
-                <Link href="/projects" className="text-white/70 text-base hover:text-white transition-colors">
+                <Link href="/about" className="text-white/70 text-base hover:text-white transition-colors">
                   Branding
                 </Link>
               </li>
               <li>
-                <Link href="/projects" className="text-white/70 text-base hover:text-white transition-colors">
+                <Link href="/about" className="text-white/70 text-base hover:text-white transition-colors">
                   Development
                 </Link>
               </li>
               <li>
-                <Link href="/projects" className="text-white/70 text-base hover:text-white transition-colors">
+                <Link href="/about" className="text-white/70 text-base hover:text-white transition-colors">
                   Strategy
                 </Link>
               </li>

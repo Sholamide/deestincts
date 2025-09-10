@@ -40,13 +40,14 @@ export function ProjectCard({
   const displayCategory = projectType && projectType.length > 0 ? projectType[0] : "Uncategorized"
 
   return (
-    <Link href={`/projects/${slug}`} className="group block">
-      <div className="relative w-full aspect-[4/3] overflow-hidden rounded-xl transition-all duration-300 grid grid-rows-[3fr_1fr]">
-        <div className="relative w-full h-full overflow-hidden">
+    // <Link href={`/projects/${slug}`} className="group block">
+    <Link href={`/projects`} className="group block">
+      <div className="relative w-full aspect-[4/3] overflow-hidden transition-all duration-300 grid grid-rows-[3fr_1fr] rounded-2xl">
+        <div className="relative w-full h-full rounded-2xl overflow-hidden">
           {heroMediaType === "video" && featuredVideo ? (
             <video
               src={featuredVideo}
-              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+              className="w-full h-full object-cover rounded-2xl transition-transform duration-500 group-hover:scale-105"
               autoPlay={true}
               loop={true}
               muted={true}
@@ -62,7 +63,7 @@ export function ProjectCard({
               alt={title}
               fill
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-              className="object-cover transition-transform duration-500 group-hover:scale-105"
+              className="object-cover transition-transform rounded-2xl duration-500 group-hover:scale-105"
               priority
             />
           )}

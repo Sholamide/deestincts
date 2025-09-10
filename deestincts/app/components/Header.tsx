@@ -56,7 +56,7 @@ export default function Navigation() {
             >
               <Link
                 href="/contact"
-                className="ml-4 px-6 py-2 bg-white/95 text-black text-sm font-medium tracking-wide hover:bg-gray-300 transition-colors duration-300 border border-black hover:border-gray-900"
+                className="ml-4 rounded-[5px] px-6 py-2 bg-[#9a1212] hover:bg-[#9a1212]/90 text-white text-sm font-medium tracking-wide transition-colors duration-300"
                 data-cursor-hover
               >
                 Get in Touch
@@ -122,7 +122,7 @@ export default function Navigation() {
                   <Link
                     href="/contact"
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="inline-block px-6 py-2 bg-white/95 text-black text-sm font-medium tracking-wide hover:bg-gray-900 transition-colors duration-300"
+                    className="inline-block px-6 py-2 bg-white/95 text-black text-sm font-medium tracking-wide hover:bg-gray-900 transition-colors rounded-[5px] duration-300"
                   >
                     Get in Touch
                   </Link>

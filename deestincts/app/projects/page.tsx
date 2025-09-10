@@ -9,8 +9,6 @@ export default async function ProjectsPage() {
 
   // Helper to determine col-span for the "two projects, then one big project on the next line" pattern
   const getProjectColSpan = (index: number) => {
-    // Pattern: [1, 1, 2] repeating for a 2-column grid
-    // This means the 3rd item (index 2, 5, 8, ...) will span 2 columns
     if (index % 3 === 2) {
       return "sm:col-span-2"
     }
@@ -64,7 +62,7 @@ export default async function ProjectsPage() {
                 results.
               </p>
               <Link href="/contact">
-                <Button className="bg-[#ffffff] hover:bg-[#f5f5f5]/90 text-black">Get in Touch</Button>
+                <Button className="bg-[#9a1212] hover:bg-[#9a1212]/90 text-white">Get in Touch</Button>
               </Link>
             </div>
           </div>

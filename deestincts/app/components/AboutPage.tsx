@@ -183,10 +183,6 @@ export default function AboutContent({ about }: AboutPageProps) {
 
         {/* What We Do Section */}
         <motion.div
-          // variants={sectionVariants}
-          // initial="hidden"
-          // whileInView="visible"
-          // viewport={{ once: true, amount: 0.3 }}
           className="mb-24"
         >
           <motion.h2 variants={itemVariants} className="text-3xl md:text-5xl font-bold text-white mb-12 text-center">
@@ -218,17 +214,12 @@ export default function AboutContent({ about }: AboutPageProps) {
             className="text-lg md:text-4xl text-gray-300 max-w-4xl mx-auto leading-relaxed mt-12 text-center"
           >
             Whether you’re launching something new or reinventing an existing brand, we partner with you from concept to
-            execution — designing every touchpoint to feel intentional, inspired, and impactful.
+            execution, designing every touchpoint to feel intentional, inspired, and impactful.
           </motion.p>
         </motion.div>
 
         {/* Our Philosophy Section */}
-        <motion.div
-          // variants={sectionVariants}
-          // initial="hidden"
-          // whileInView="visible"
-          // viewport={{ once: true, amount: 0.3 }}
-          className="my-24"
+        <motion.div className="my-24"
         >
           <motion.h2 variants={itemVariants} className="text-3xl md:text-5xl font-bold text-white mb-12 text-center">
             Our <span className="text-[#858585]">Philosophy</span>
@@ -261,7 +252,7 @@ export default function AboutContent({ about }: AboutPageProps) {
             >
               <h3 className="text-2xl font-semibold text-white mb-6">The Results</h3>
               <p className="text-lg text-gray-300 leading-relaxed mb-4">
-                At Deestincts, design isn’t just about looking good — it’s about feeling right and working smart. We
+                At Deestincts, design isn’t just about looking good, it’s about feeling right and working smart. We
                 approach each project with a deep understanding of the brand’s purpose, audience, and potential.
               </p>
               <p className="text-lg text-gray-300 leading-relaxed">
@@ -275,10 +266,6 @@ export default function AboutContent({ about }: AboutPageProps) {
         {/* Team Members Section (from previous implementation) */}
         {about?.teamMembers && about.teamMembers.length > 0 && (
           <motion.div
-            // variants={sectionVariants}
-            // initial="hidden"
-            // whileInView="visible"
-            // viewport={{ once: true, amount: 0.3 }}
             className="mt-24"
           >
             <motion.h3 variants={itemVariants} className="text-3xl md:text-5xl font-bold text-white mb-12 text-center">

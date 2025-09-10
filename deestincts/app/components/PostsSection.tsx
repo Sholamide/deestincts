@@ -81,7 +81,7 @@ export default function PostsSection({ posts }: PostsSectionProps) {
         >
           <Link
             href="/blog"
-            className="inline-block px-8 py-3 border-2 border-black text-black hover:bg-black hover:text-white transition-colors duration-300 font-medium tracking-wide"
+            className="inline-block px-8 py-3 bg-white text-black transition-colors duration-300 font-medium tracking-wide"
           >
             View All Posts
           </Link>

@@ -36,8 +36,9 @@ export default function ProjectsSection({ projects }: ProjectsSectionProps) {
               transition={{ duration: 0.6, delay: index * 0.1 }}
               className="group"
             >
-              <Link href={`/projects/${project.slug}`}>
-                <div className="relative overflow-hidden bg-gray-100 aspect-[4/3] mb-6">
+              {/* <Link href={`/projects/${project.slug}`}> */}
+              <Link href={`/projects/`}>
+                <div className="relative overflow-hidden aspect-[4/3] rounded-xl mb-6">
                   {project.heroMediaType === "video" && project.featuredVideo ? (
                     <video
                       src={project.featuredVideo}
@@ -58,7 +59,7 @@ export default function ProjectsSection({ projects }: ProjectsSectionProps) {
                       className="object-cover transition-transform duration-500 group-hover:scale-105"
                     />
                   )}
-                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
+                  <div className="absolute inset-0 transition-colors duration-300" />
                 </div>
                 <motion.h3
                   className="text-xl  text-white mb-2 group-hover:text-gray-400 transition-colors duration-300"
