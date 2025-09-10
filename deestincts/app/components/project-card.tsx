@@ -41,7 +41,7 @@ export function ProjectCard({
 
   return (
     <Link href={`/projects/${slug}`} className="group block">
-      <div className="relative w-full aspect-[4/3] overflow-hidden rounded-xl border border-white/10 transition-all duration-300 hover:border-[#ffffff]/20 grid grid-rows-[3fr_1fr]">
+      <div className="relative w-full aspect-[4/3] overflow-hidden rounded-xl transition-all duration-300 grid grid-rows-[3fr_1fr]">
         <div className="relative w-full h-full overflow-hidden">
           {heroMediaType === "video" && featuredVideo ? (
             <video
