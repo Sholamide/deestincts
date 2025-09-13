@@ -8,6 +8,7 @@ interface BlogCardProps {
   excerpt: string
   category: string
   author: string
+  coverImage:any
   authorImage?: any
   date: string
   readTime: string
@@ -20,7 +21,8 @@ export function BlogCard({
   excerpt,
   category,
   author,
-  authorImage = "/placeholder.svg?height=100&width=100",
+  coverImage,
+  authorImage,
   date,
   readTime,
   image,
@@ -29,12 +31,12 @@ export function BlogCard({
   return (
     <div className="group rounded-xl border border-white/10 bg-white/5 overflow-hidden transition-all duration-300 hover:border-[#f5f5f5]/50">
       <div className="aspect-[16/9] w-full overflow-hidden">
-        {/* <SanityImage
-          image={image}
-          // alt={title}
+        <SanityImage
+          image={coverImage}
+          alt={title}
           aspectRatio="auto"
           className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-        /> */}
+        />
       </div>
       <div className="p-6">
         <div className="mb-2 inline-block rounded-full bg-[#f5f5f5]/90 px-3 py-1 text-xs font-medium">{category}</div>

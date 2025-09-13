@@ -37,8 +37,9 @@ export default async function BlogPage() {
                     excerpt={post.excerpt}
                     category={post.category}
                     author={post.author.name}
+                    coverImage={post.coverImage}
                     authorImage={post.author.image}
-                    date={new Date(post.publishedAt).toLocaleDateString("en-US", {
+                    date={new Date(post.date).toLocaleDateString("en-US", {
                       year: "numeric",
                       month: "long",
                       day: "numeric",
