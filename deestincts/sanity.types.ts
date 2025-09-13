@@ -556,6 +556,9 @@ export type GetPageQueryResult = {
     }> | null;
   }> | null;
 } | null;
+// Variable: getProjectQuery
+// Query: *[_type == 'project' && slug.current == $slug][0]{    _id,  title,  "slug": slug.current,  excerpt,  featuredImage,  "featuredVideo": featuredVideo.asset->url,  heroMediaType,  projectType,  isFeatured,  client,  "projectImages": projectImages[]{    "url": asset->url,    "alt": alt  },  description,  "projectVideos": projectVideos[]{    title,    "videoUrl": videoFile.asset->url,    description,    videoSettings  },  externalVideos,  }
+export type GetProjectQueryResult = null;
 // Variable: sitemapData
 // Query: *[_type == "page" || _type == "post" && defined(slug.current)] | order(_type asc) {    "slug": slug.current,    _type,    _updatedAt,  }
 export type SitemapDataResult = Array<{
@@ -789,6 +792,7 @@ declare module "@sanity/client" {
   interface SanityQueries {
     "*[_type == \"settings\"][0]": SettingsQueryResult;
     "\n  *[_type == 'page' && slug.current == $slug][0]{\n    _id,\n    _type,\n    name,\n    slug,\n    heading,\n    subheading,\n    \"pageBuilder\": pageBuilder[]{\n      ...,\n      _type == \"callToAction\" => {\n        \n  link {\n      ...,\n      \n  _type == \"link\" => {\n    \"page\": page->slug.current,\n    \"post\": post->slug.current\n  }\n\n      }\n,\n      },\n      _type == \"infoSection\" => {\n        content[]{\n          ...,\n          markDefs[]{\n            ...,\n            \n  _type == \"link\" => {\n    \"page\": page->slug.current,\n    \"post\": post->slug.current\n  }\n\n          }\n        }\n      },\n    },\n  }\n": GetPageQueryResult;
+    "\n  *[_type == 'project' && slug.current == $slug][0]{\n    _id,\n  title,\n  \"slug\": slug.current,\n  excerpt,\n  featuredImage,\n  \"featuredVideo\": featuredVideo.asset->url,\n  heroMediaType,\n  projectType,\n  isFeatured,\n  client,\n  \"projectImages\": projectImages[]{\n    \"url\": asset->url,\n    \"alt\": alt\n  },\n  description,\n  \"projectVideos\": projectVideos[]{\n    title,\n    \"videoUrl\": videoFile.asset->url,\n    description,\n    videoSettings\n  },\n  externalVideos,\n  }\n": GetProjectQueryResult;
     "\n  *[_type == \"page\" || _type == \"post\" && defined(slug.current)] | order(_type asc) {\n    \"slug\": slug.current,\n    _type,\n    _updatedAt,\n  }\n": SitemapDataResult;
     "\n  *[_type == \"post\" && defined(slug.current)] | order(date desc, _updatedAt desc) {\n    \n  _id,\n  \"status\": select(_originalId in path(\"drafts.**\") => \"draft\", \"published\"),\n  \"title\": coalesce(title, \"Untitled\"),\n  \"slug\": slug.current,\n  excerpt,\n  coverImage,\n  \"date\": coalesce(date, _updatedAt),\n  \"author\": author->{firstName, lastName, picture},\n\n  }\n": AllPostsQueryResult;
     "\n  *[_type == \"project\" && defined(slug.current) && isFeatured == true] | order(_updatedAt desc) {\n    \n  _id,\n  title,\n  \"slug\": slug.current,\n  excerpt,\n  featuredImage,\n  \"featuredVideo\": featuredVideo.asset->url,\n  heroMediaType,\n  projectType,\n  isFeatured,\n  client,\n  \"projectImages\": projectImages[]{\n    \"url\": asset->url,\n    \"alt\": alt\n  },\n  description,\n  \"projectVideos\": projectVideos[]{\n    title,\n    \"videoUrl\": videoFile.asset->url,\n    description,\n    videoSettings\n  },\n  externalVideos\n\n  }\n": FeaturedProjectsQueryResult;

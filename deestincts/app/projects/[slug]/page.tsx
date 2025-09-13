@@ -11,6 +11,18 @@ type Props = {
   params: Promise<{ slug: string }>;
 };
 
+type Project = {
+  _id?: string
+  title?: string
+  excerpt?: string
+  featuredImage?: any
+  projectImages?: any[]
+  projectVideos?: any[]
+  description?: any[]
+  client?: string
+  projectType?: string[]
+}
+
 interface MediaItem {
   type: "image" | "video";
   data: any; // Replace with specific Sanity schema types if available
@@ -35,7 +47,7 @@ export async function generateStaticParams() {
  */
 export async function generateMetadata(props: Props): Promise<Metadata> {
   const params = await props.params;
-  const { data: project } = await sanityFetch({
+  const { data: project } = await sanityFetch<any>({
     query: getProjectQuery,
     params,
     stega: false,
@@ -60,7 +72,7 @@ function shuffle<T>(array: T[]): T[] {
 
 export default async function Page(props: Props) {
   const params = await props.params;
-  const { data: project } = await sanityFetch({
+  const { data: project } = await sanityFetch<any>({
     query: getProjectQuery,
     params,
   });
