@@ -96,6 +96,32 @@ export const getPageQuery = defineQuery(`
     },
   }
 `);
+export const getProjectQuery = defineQuery(`
+  *[_type == 'project' && slug.current == $slug][0]{
+    _id,
+  title,
+  "slug": slug.current,
+  excerpt,
+  featuredImage,
+  "featuredVideo": featuredVideo.asset->url,
+  heroMediaType,
+  projectType,
+  isFeatured,
+  client,
+  "projectImages": projectImages[]{
+    "url": asset->url,
+    "alt": alt
+  },
+  description,
+  "projectVideos": projectVideos[]{
+    title,
+    "videoUrl": videoFile.asset->url,
+    description,
+    videoSettings
+  },
+  externalVideos,
+  }
+`);
 
 export const sitemapData = defineQuery(`
   *[_type == "page" || _type == "post" && defined(slug.current)] | order(_type asc) {
@@ -118,7 +144,7 @@ export const featuredProjectsQuery = defineQuery(`
   }
 `);
 
-export const projectQuery = defineQuery(`
+export const AllProjectsQuery = defineQuery(`
   *[_type == "project" && defined(slug.current)] | order(_updatedAt desc) {
     ${projectFields}
   }

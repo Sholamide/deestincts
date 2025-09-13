@@ -266,9 +266,9 @@ export default function HeroSection({ projects }: HeroSectionProps) {
     const handleDragEnd = (event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
         const swipeThreshold = 50 // Minimum distance for a swipe
         const swipeVelocityThreshold = 500 // Minimum velocity for a swipe
-        
+
         setIsDragging(false)
-        
+
         // Check if it's a significant swipe
         if (Math.abs(info.offset.x) > swipeThreshold || Math.abs(info.velocity.x) > swipeVelocityThreshold) {
             if (info.offset.x > 0) {

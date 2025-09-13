@@ -36,8 +36,7 @@ export default function ProjectsSection({ projects }: ProjectsSectionProps) {
               transition={{ duration: 0.6, delay: index * 0.1 }}
               className="group"
             >
-              {/* <Link href={`/projects/${project.slug}`}> */}
-              <Link href={`/projects/`}>
+              <Link href={`/projects/${project.slug}`}>
                 <div className="relative overflow-hidden aspect-[4/3] rounded-xl mb-6">
                   {project.heroMediaType === "video" && project.featuredVideo ? (
                     <video

@@ -6,7 +6,6 @@ import { Button } from "../components/ui/button"
 export default async function ProjectsPage() {
   // Fetch all projects
   const allProjects = await getProjects()
-
   // Helper to determine col-span for the "two projects, then one big project on the next line" pattern
   const getProjectColSpan = (index: number) => {
     if (index % 3 === 2) {
@@ -43,7 +42,7 @@ export default async function ProjectsPage() {
                     client={project.client}
                     projectType={project.projectType}
                     featuredImage={project.featuredImage}
-                    slug={project.slug.current}
+                    slug={project.slug}
                     heroMediaType={project.heroMediaType}
                     featuredVideo={project.featuredVideo}
                   />

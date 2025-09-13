@@ -28,7 +28,6 @@ export default function ContactPage() {
   });
 
   const onSubmit = async (values: ContactFormValues) => {
-    console.log("Submitting values:", values);
     setIsSuccess(false);
     try {
       const res = await fetch("/api/contact", {
@@ -39,7 +38,6 @@ export default function ContactPage() {
       const result = await res.json();
       if (!res.ok) throw new Error(result.error || "Failed to send message");
 
-      console.log("API Response:", result); // Log for debugging
       setIsSuccess(true);
       reset();
       setTimeout(() => setIsSuccess(false), 5000);
