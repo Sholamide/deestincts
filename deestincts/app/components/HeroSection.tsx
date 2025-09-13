@@ -415,9 +415,8 @@ export default function HeroSection({ projects }: HeroSectionProps) {
                     />
                 ))}
             </div>
-
             {/* Swipe hint indicator (optional) */}
-            <motion.div
+            {/* <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 0.6 }}
                 transition={{ delay: 2, duration: 1 }}
@@ -428,10 +427,9 @@ export default function HeroSection({ projects }: HeroSectionProps) {
                     transition={{ repeat: 3, duration: 1.5, delay: 2 }}
                     className="flex items-center gap-2"
                 >
-                    <span>Swipe to navigate</span>
                     <div className="w-6 h-0.5 bg-white/50 rounded" />
                 </motion.div>
-            </motion.div>
+            </motion.div> */}
         </section>
     )
 }
