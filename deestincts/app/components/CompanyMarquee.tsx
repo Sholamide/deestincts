@@ -19,8 +19,8 @@ export default function CompanyMarquee() {
 
         <div className="overflow-hidden">
           <Marquee>
-            <Image src="/marquee/spitch.svg" alt="spitch" width={200} height={64} className="h-16 md:h-20 w-auto object-contain filter grayscale opacity-70 hover:opacity-100 transition-opacity duration-300 mx-6 md:mx-8" />
-            <Image src="/marquee/florence.png" alt="florence" width={280} height={96} className="h-24 md:h-28 w-auto object-contain filter grayscale opacity-70 hover:opacity-100 transition-opacity duration-300 mx-6 md:mx-8" />
+            <Image src="/marquee/spitch.svg" alt="spitch" width={200} height={64} className="h-12 md:h-16 w-auto object-contain filter grayscale opacity-70 hover:opacity-100 transition-opacity duration-300 mx-6 md:mx-8" />
+            <Image src="/marquee/florence.png" alt="florence" width={280} height={96} className="h-40 md:h-40 w-auto object-contain filter grayscale opacity-70 hover:opacity-100 transition-opacity duration-300 mx-6 md:mx-8" />
             <Image src="/marquee/kelvin.svg" alt="kelvin" width={200} height={64} className="h-16 md:h-20 w-auto object-contain filter grayscale opacity-70 hover:opacity-100 transition-opacity duration-300 mx-6 md:mx-8" />
             <Image src="/marquee/oosha.svg" alt="oosha" width={240} height={80} className="h-20 md:h-24 w-auto object-contain filter grayscale opacity-70 hover:opacity-100 transition-opacity duration-300 mx-6 md:mx-8" />
             <Image src="/marquee/outside.svg" alt="outside" width={200} height={64} className="h-16 md:h-20 w-auto object-contain filter grayscale opacity-70 hover:opacity-100 transition-opacity duration-300 mx-6 md:mx-8" />
@@ -28,7 +28,7 @@ export default function CompanyMarquee() {
             <Image src="/marquee/chop.svg" alt="chop" width={200} height={64} className="h-16 md:h-20 w-auto object-contain filter grayscale opacity-70 hover:opacity-100 transition-opacity duration-300 mx-6 md:mx-8" />
             <Image src="/marquee/delani.png" alt="delani" width={200} height={64} className="h-16 md:h-20 w-auto object-contain filter grayscale opacity-70 hover:opacity-100 transition-opacity duration-300 mx-6 md:mx-8" />
             <Image src="/marquee/figo.svg" alt="figo" width={200} height={64} className="h-16 md:h-20 w-auto object-contain filter grayscale opacity-70 hover:opacity-100 transition-opacity duration-300 mx-6 md:mx-8" />
-            <Image src="/marquee/formular.svg" alt="formular" width={200} height={64} className="h-16 md:h-20 w-auto object-contain filter grayscale opacity-70 hover:opacity-100 transition-opacity duration-300" />
+            <Image src="/marquee/formular.svg" alt="formular" width={200} height={64} className="h-16 md:h-20 w-auto object-contain filter grayscale opacity-70 hover:opacity-100 transition-opacity duration-300 mx-6 md:mx-8" />
           </Marquee>
         </div>
       </div>

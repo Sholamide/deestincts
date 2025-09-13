@@ -266,9 +266,9 @@ export default function HeroSection({ projects }: HeroSectionProps) {
     const handleDragEnd = (event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
         const swipeThreshold = 50 // Minimum distance for a swipe
         const swipeVelocityThreshold = 500 // Minimum velocity for a swipe
-        
+
         setIsDragging(false)
-        
+
         // Check if it's a significant swipe
         if (Math.abs(info.offset.x) > swipeThreshold || Math.abs(info.velocity.x) > swipeVelocityThreshold) {
             if (info.offset.x > 0) {
@@ -415,9 +415,8 @@ export default function HeroSection({ projects }: HeroSectionProps) {
                     />
                 ))}
             </div>
-
             {/* Swipe hint indicator (optional) */}
-            <motion.div
+            {/* <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 0.6 }}
                 transition={{ delay: 2, duration: 1 }}
@@ -428,10 +427,9 @@ export default function HeroSection({ projects }: HeroSectionProps) {
                     transition={{ repeat: 3, duration: 1.5, delay: 2 }}
                     className="flex items-center gap-2"
                 >
-                    <span>Swipe to navigate</span>
                     <div className="w-6 h-0.5 bg-white/50 rounded" />
                 </motion.div>
-            </motion.div>
+            </motion.div> */}
         </section>
     )
 }

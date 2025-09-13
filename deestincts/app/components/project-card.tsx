@@ -24,7 +24,7 @@ export function ProjectCard({
   client,
   projectType,
   featuredImage,
-  slug = "#",
+  slug,
   heroMediaType = "image",
   featuredVideo,
 }: ProjectCardProps) {
@@ -40,8 +40,7 @@ export function ProjectCard({
   const displayCategory = projectType && projectType.length > 0 ? projectType[0] : "Uncategorized"
 
   return (
-    // <Link href={`/projects/${slug}`} className="group block">
-    <Link href={`/projects`} className="group block">
+    <Link href={`/projects/${slug}`} className="group block">
       <div className="relative w-full aspect-[4/3] overflow-hidden transition-all duration-300 grid grid-rows-[3fr_1fr] rounded-2xl">
         <div className="relative w-full h-full rounded-2xl overflow-hidden">
           {heroMediaType === "video" && featuredVideo ? (
