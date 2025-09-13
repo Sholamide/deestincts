@@ -189,20 +189,20 @@ export default async function Page(props: Props) {
 
               return (
                 <div key={index} className="relative group">
-                  <div className="overflow-hidden rounded-2xl shadow-xl bg-white p-2">
+                  <div className="overflow-hidden rounded-md shadow-xl">
                     {isImage ? (
                       <Image
                         src={mediaUrl}
                         alt={media.data.alt || title}
                         width={1200}
                         height={800}
-                        className="w-full h-auto object-cover rounded-2xl group-hover:scale-105 transition-all duration-700"
+                        className="w-full h-auto object-cover rounded-md  transition-all duration-700"
                         priority={index < 3}
                       />
                     ) : (
                       <video
                         src={mediaUrl}
-                        className="w-full h-auto object-cover rounded-2xl transition-transform duration-500 group-hover:scale-105"
+                        className="w-full h-auto object-cover rounded-md transition-transform duration-500"
                         autoPlay
                         loop
                         muted
@@ -211,10 +211,6 @@ export default async function Page(props: Props) {
                         preload="auto"
                       />
                     )}
-                  </div>
-
-                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent p-6 rounded-b-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <p className="text-white text-sm font-medium truncate">{title}</p>
                   </div>
                 </div>
               );
@@ -249,7 +245,7 @@ export default async function Page(props: Props) {
                       ${isLarge ? 'lg:mb-12' : isMedium ? 'lg:mb-10' : 'lg:mb-8'}
                     `}
                   >
-                    <div className="relative overflow-hidden rounded-3xl shadow-2xl bg-white p-3 hover:shadow-3xl transition-all duration-500 hover:-translate-y-2">
+                    <div className="relative overflow-hidden rounded-2xl shadow-2xl hover:shadow-3xl transition-all duration-500 hover:-translate-y-1">
                       {isImage ? (
                         <Image
                           src={mediaUrl}
@@ -257,8 +253,7 @@ export default async function Page(props: Props) {
                           width={1200}
                           height={800}
                           className={`
-                            w-full h-auto object-cover rounded-2xl 
-                            group-hover:scale-105 transition-all duration-700
+                            w-full h-auto object-cover rounded-2xl  transition-all duration-700
                             ${isLarge ? 'filter contrast-110 saturate-110' : ''}
                           `}
                           priority={index < 3}
@@ -268,7 +263,7 @@ export default async function Page(props: Props) {
                           src={mediaUrl}
                           className={`
                             w-full h-auto object-cover rounded-2xl 
-                            transition-transform duration-500 group-hover:scale-110
+                            transition-transform duration-500
                             ${isLarge ? 'filter contrast-110 saturate-110' : ''}
                           `}
                           autoPlay
@@ -279,9 +274,7 @@ export default async function Page(props: Props) {
                           preload="auto"
                         />
                       )}
-                      <div className="absolute inset-3 rounded-2xl bg-gradient-to-t from-black/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                     </div>
-                    <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-gray-900/10 rounded-tl-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   </div>
                 );
               })}
