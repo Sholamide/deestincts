@@ -8,6 +8,8 @@ import Image from "next/image";
 import Head from "next/head";
 import Link from "next/link";
 import ExpandableText from "@/app/components/ExpandableText";
+import CustomPortableText from "@/app/components/PortableText";
+import { type PortableTextBlock } from "next-sanity";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -120,10 +122,13 @@ export default async function Page(props: Props) {
             <div className="max-w-4xl mx-auto">
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
                 <div className="lg:col-span-2">
-                  <div className="prose prose-lg text-gray-700 leading-relaxed">
-                    {project.description?.map((block: any, index: number) => (
-                      <ExpandableText key={index} text={block.children?.[0]?.text || ""} />
-                    ))}
+                  <div className="leading-relaxed">
+                    {project.description?.length && (
+                      <CustomPortableText
+                      className="prose-p:text-gray-800"
+                        value={project.description as PortableTextBlock[]}
+                      />
+                    )}
                   </div>
                 </div>
 

@@ -7,20 +7,17 @@ import { calculateReadTime, getSmartDateFormat } from "@/lib/utils"
 interface BlogCardProps {
   title: string
   excerpt: string
-  category: string
   author: any
   content: any
   coverImage: any
   authorImage?: any
   date: string
-  image: any
   slug?: string
 }
 
 export function BlogCard({
   title,
   excerpt,
-  category,
   author,
   coverImage,
   content,
@@ -29,7 +26,7 @@ export function BlogCard({
   slug,
 }: BlogCardProps) {
   return (
-    <div className="group rounded-xl border border-white/10 bg-white/5 overflow-hidden transition-all duration-300 hover:border-[#f5f5f5]/50">
+    <div className="group rounded-xl border border-gray-800 overflow-hidden transition-all duration-300">
       <div className="aspect-[16/9] w-full overflow-hidden">
         <SanityImage
           image={coverImage}
@@ -39,8 +36,9 @@ export function BlogCard({
         />
       </div>
       <div className="p-6">
-        <div className="mb-2 inline-block rounded-full bg-[#f5f5f5]/90 px-3 py-1 text-xs font-medium">{category}</div>
-        <h3 className="mb-2 text-xl font-bold">{title}</h3>
+        <h3 className="text-xl text-white mb-3 group-hover:text-gray-600 transition-colors duration-300 line-clamp-2">
+          {title}
+        </h3>
         <p className="mb-4 text-sm text-white/70">{excerpt}</p>
         <div className="mb-4 flex items-center gap-2">
           <div className="h-8 w-8 overflow-hidden rounded-full">
@@ -54,15 +52,18 @@ export function BlogCard({
           <div>
             <p className="text-sm text-white font-medium">{author}</p>
             <p className="text-xs text-white/50">
-              {getSmartDateFormat(date)} · {calculateReadTime(content[0].children.text || '')}
+              {getSmartDateFormat(date)} · {calculateReadTime(content || '')}
             </p>
           </div>
         </div>
         <Link
           href={`/blog/${slug}`}
-          className="inline-flex items-center gap-1 text-sm font-medium text-[#8c8c8c] hover:text-[#8c8c8c]/80 transition-colors"
+          className="inline-flex items-center gap-1 text-sm font-medium text-[#8c8c8c] group-hover:translate-x-2 transition-transform duration-300 hover:text-[#8c8c8c]/80 transition-colors"
         >
-          Read Article <ArrowRight className="h-4 w-4" />
+          Read Article
+          <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+          </svg>
         </Link>
       </div>
     </div>

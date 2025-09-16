@@ -4,7 +4,7 @@ import React, { useState } from "react";
 
 interface ExpandableTextProps {
     text: string;
-    maxLength?: number; // Default: 150 characters
+    maxLength?: number; // Default: 300 characters
 }
 
 const ExpandableText: React.FC<ExpandableTextProps> = ({

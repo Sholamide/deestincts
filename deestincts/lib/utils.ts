@@ -5,23 +5,58 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-export function calculateReadTime(text: string, wordsPerMinute: number = 200): string {
+export function calculateReadTime(content: string | any[], wordsPerMinute: number = 200): string {
+  let text = '';
+
+  // Check if content is an array of blocks or a string
+  if (Array.isArray(content)) {
+    for (const block of content) {
+      if (block.children && Array.isArray(block.children)) {
+        for (const child of block.children) {
+          if (child.text && typeof child.text === 'string') {
+            text += child.text + ' ';
+          }
+        }
+      }
+    }
+  } else {
+    text = content;
+  }
+
   if (!text || text.trim().length === 0) {
-    return '1 min read'
+    return '1 min read';
   }
 
   // Remove HTML tags and normalize whitespace
-  const cleanText = text.replace(/<[^>]*>/g, '').replace(/\s+/g, ' ').trim()
+  const cleanText = text.replace(/<[^>]*>/g, '').replace(/\s+/g, ' ').trim();
   
   // Count words (split by whitespace and filter empty strings)
-  const wordCount = cleanText.split(/\s+/).filter((word:any) => word.length > 0).length
+  const wordCount = cleanText.split(/\s+/).filter((word: any) => word.length > 0).length;
   
   // Calculate read time in minutes
-  const readTimeMinutes = Math.ceil(wordCount / wordsPerMinute)
+  const readTimeMinutes = Math.ceil(wordCount / wordsPerMinute);
   
   // Return formatted string
-  return readTimeMinutes === 1 ? '1 min read' : `${readTimeMinutes} min read`
+  return readTimeMinutes === 1 ? '1 min read' : `${readTimeMinutes} min read`;
 }
+
+// export function calculateReadTime(text: string, wordsPerMinute: number = 200): string {
+//   if (!text || text.trim().length === 0) {
+//     return '1 min read'
+//   }
+
+//   // Remove HTML tags and normalize whitespace
+//   const cleanText = text.replace(/<[^>]*>/g, '').replace(/\s+/g, ' ').trim()
+  
+//   // Count words (split by whitespace and filter empty strings)
+//   const wordCount = cleanText.split(/\s+/).filter((word:any) => word.length > 0).length
+  
+//   // Calculate read time in minutes
+//   const readTimeMinutes = Math.ceil(wordCount / wordsPerMinute)
+  
+//   // Return formatted string
+//   return readTimeMinutes === 1 ? '1 min read' : `${readTimeMinutes} min read`
+// }
 
 export function formatRelativeTime(date: string | Date): string {
   const now = new Date()

@@ -42,12 +42,12 @@
   .prose h2,
   .prose h3,
   .prose h4 {
-    @apply font-serif text-black;
+    @apply font-serif text-gray-400;
   }
   
-  .prose p {
-    @apply text-gray-700 leading-relaxed;
-  }
+  /* .prose p {
+    @apply text-gray-400 leading-relaxed;
+  } */
   
   .prose a {
     @apply text-black underline hover:text-gray-600 transition-colors duration-300;

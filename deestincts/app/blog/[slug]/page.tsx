@@ -6,6 +6,8 @@ import { Calendar, Clock } from "lucide-react";
 import Head from "next/head";
 import { calculateReadTime, getSmartDateFormat } from "@/lib/utils";
 import SanityImage from "@/app/components/sanity-image";
+import CustomPortableText from "@/app/components/PortableText";
+import { type PortableTextBlock } from "next-sanity";
 
 type Props = {
     params: Promise<{ slug: string }>;
@@ -38,6 +40,8 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
         stega: false,
     });
 
+    console.log("Post", post);
+
     return {
         title: post?.title || "Post",
         description: post?.excerpt || "Post description",
@@ -59,9 +63,7 @@ export default async function Page(props: Props) {
                 <PageOnboarding />
             </div>
         );
-    }  
-
-    const contentText = post.content[0]?.children[0]?.text || post.excerpt;
+    }
 
 
     return (
@@ -82,7 +84,7 @@ export default async function Page(props: Props) {
                     </div>
                     <div className="flex items-center text-gray-400 gap-2">
                         <Clock className="w-4 h-4" />
-                        <span>{calculateReadTime(contentText || '')}</span>
+                        <span>{calculateReadTime(post.content || '')}</span>
                     </div>
                 </div>
 
@@ -114,7 +116,7 @@ export default async function Page(props: Props) {
                     />
                 </div>
             </div>
-            <div className="prose prose-lg prose-gray max-w-none">
+            <div className="max-w-none">
                 <div className="bg-black rounded-2xl shadow-sm p-4 md:p-12">
                     <div className="text-gray-400 leading-relaxed space-y-6">
                         <p className="text-xl text-white mb-8 font-medium italic border-l-4 border-gray-700 pl-6">
@@ -122,7 +124,12 @@ export default async function Page(props: Props) {
                         </p>
 
                         <div className="text-base leading-8">
-                            {contentText}
+                            {post.content?.length && (
+                                <CustomPortableText
+                                    className="text-gray-400"
+                                    value={post.content as PortableTextBlock[]}
+                                />
+                            )}
                         </div>
                         {/* 
                         <div className="mt-12 pt-8 border-t border-gray-700">

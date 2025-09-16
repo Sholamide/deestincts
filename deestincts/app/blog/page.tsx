@@ -35,17 +35,16 @@ export default async function BlogPage() {
                   <BlogCard
                     title={post.title}
                     excerpt={post.excerpt}
-                    category={post.category}
                     author={`${post.author.firstName} ${post.author.lastName}`}
                     content={post.content}
                     coverImage={post.coverImage}
                     authorImage={post.author.picture}
-                    date={new Date(post.date).toLocaleDateString("en-US", {
-                      year: "numeric",
-                      month: "long",
-                      day: "numeric",
-                    })}
-                    image={post.mainImage}
+                    date={post.date}
+                    // date={new Date(post.date).toLocaleDateString("en-US", {
+                    //   year: "numeric",
+                    //   month: "long",
+                    //   day: "numeric",
+                    // })}
                     slug={post.slug}
                   />
                 </div>
