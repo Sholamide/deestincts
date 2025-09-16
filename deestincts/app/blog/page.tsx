@@ -6,8 +6,6 @@ import { Button } from "../components/ui/button"
 export default async function BlogPage() {
   const allPosts = await getPosts() // Fetch all blog posts
 
-  console.log("All Posts", allPosts);
-
   return (
     <div className="flex min-h-screen flex-col bg-black text-white">
       <main className="flex-1">
@@ -48,7 +46,7 @@ export default async function BlogPage() {
                       day: "numeric",
                     })}
                     image={post.mainImage}
-                    slug={post.slug.current}
+                    slug={post.slug}
                   />
                 </div>
               ))}

@@ -14,17 +14,6 @@ type Props = {
   maxLength?: number;
 };
 
-type Project = {
-  _id?: string
-  title?: string
-  excerpt?: string
-  featuredImage?: any
-  projectImages?: any[]
-  projectVideos?: any[]
-  description?: any[]
-  client?: string
-  projectType?: string[]
-}
 
 interface MediaItem {
   type: "image" | "video";
@@ -134,10 +123,9 @@ export default async function Page(props: Props) {
                 <div className="lg:col-span-2">
                   <div className="prose prose-lg text-gray-700 leading-relaxed">
                     {project.description?.map((block: any, index: number) => (
-                      <ExpandableText key={index} text={block.children?.[0]?.text || ""} />
-                      // <p key={index} className="whitespace-pre-line">
-                      //   {block.children?.[0]?.text || ""}
-                      // </p>
+                      <p key={index} className="whitespace-pre-line">
+                        {block.children?.[0]?.text || ""}
+                      </p>
                     ))}
                   </div>
                 </div>

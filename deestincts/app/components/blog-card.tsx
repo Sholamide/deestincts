@@ -26,7 +26,7 @@ export function BlogCard({
   content,
   authorImage,
   date,
-  slug = "#",
+  slug,
 }: BlogCardProps) {
   return (
     <div className="group rounded-xl border border-white/10 bg-white/5 overflow-hidden transition-all duration-300 hover:border-[#f5f5f5]/50">
@@ -35,7 +35,7 @@ export function BlogCard({
           image={coverImage}
           alt={title}
           aspectRatio="auto"
-          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+          className="h-40 w-40 object-cover transition-transform duration-500 group-hover:scale-105"
         />
       </div>
       <div className="p-6">

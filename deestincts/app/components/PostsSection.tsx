@@ -143,7 +143,7 @@ export default function PostsSection({ posts }: PostsSectionProps) {
               transition={{ duration: 0.6, delay: index * 0.1 }}
               className="group border border-gray-800 overflow-hidden hover:shadow-lg transition-shadow duration-300"
             >
-              <Link href={`/blog`}>
+              <Link href={`/blog/${post.slug}`}>
                 <div className="relative overflow-hidden aspect-[4/3]">
                   <SanityImage
                     image={post.coverImage}
