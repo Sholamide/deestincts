@@ -11,7 +11,6 @@ import ExpandableText from "@/app/components/ExpandableText";
 
 type Props = {
   params: Promise<{ slug: string }>;
-  maxLength?: number;
 };
 
 
@@ -123,9 +122,7 @@ export default async function Page(props: Props) {
                 <div className="lg:col-span-2">
                   <div className="prose prose-lg text-gray-700 leading-relaxed">
                     {project.description?.map((block: any, index: number) => (
-                      <p key={index} className="whitespace-pre-line">
-                        {block.children?.[0]?.text || ""}
-                      </p>
+                      <ExpandableText key={index} text={block.children?.[0]?.text || ""} />
                     ))}
                   </div>
                 </div>

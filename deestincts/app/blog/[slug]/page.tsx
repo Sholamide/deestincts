@@ -3,7 +3,6 @@ import { sanityFetch } from "@/sanity/lib/live";
 import { postPagesSlugs, postQuery } from "@/sanity/lib/queries";
 import { PageOnboarding } from "@/app/components/Onboarding";
 import { Calendar, Clock } from "lucide-react";
-import { urlForImage } from "@/sanity/lib/utils";
 import Head from "next/head";
 import { calculateReadTime, getSmartDateFormat } from "@/lib/utils";
 import SanityImage from "@/app/components/sanity-image";
@@ -12,11 +11,6 @@ type Props = {
     params: Promise<{ slug: string }>;
 };
 
-
-interface MediaItem {
-    type: "image" | "video";
-    data: any; // Replace with specific Sanity schema types if available
-}
 
 
 /**
@@ -65,18 +59,7 @@ export default async function Page(props: Props) {
                 <PageOnboarding />
             </div>
         );
-    }
-
-    // Compute imageUrl without useMemo
-    let imageUrl = "/placeholder.svg?height=600&width=800";
-    if (post.coverImage) {
-        if (typeof post.coverImage === "string") {
-            imageUrl = post.coverImage;
-        } else {
-            const builder = urlForImage(post.coverImage);
-            if (builder) imageUrl = builder.url();
-        }
-    }
+    }  
 
     const contentText = post.content[0]?.children[0]?.text || post.excerpt;
 
