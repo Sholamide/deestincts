@@ -137,7 +137,7 @@ export default function PostsSection({ posts }: PostsSectionProps) {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
           {posts.slice(0, 6).map((post, index) => (
-            <BlogCard
+            <BlogCard key={index}
             title={post.title}
             excerpt={post.excerpt}
             author={`${post.author.firstName} ${post.author.lastName}`}
