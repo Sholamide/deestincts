@@ -65,11 +65,11 @@ export default async function Page(props: Props) {
 
 
     return (
-        <article className="min-h-screen max-w-5xl mx-auto py-20 md:py-28 bg-black">
+        <article className="min-h-screen max-w-5xl mx-auto py-32 bg-black">
             <Head>
                 <title>{post.title}</title>
             </Head>
-            <header className="mb-12">
+            <header className="mb-12 px-4">
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-8 leading-tight">
                     {post.title}
                 </h1>
@@ -87,7 +87,7 @@ export default async function Page(props: Props) {
                 </div>
 
                 {/* Author Information */}
-                <div className="flex items-center gap-4 p-6 rounded-2xl">
+                <div className="flex items-center gap-4 rounded-2xl">
                     <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-semibold text-lg overflow-hidden">
                         <SanityImage
                             image={post.author.picture}
@@ -105,7 +105,7 @@ export default async function Page(props: Props) {
                 </div>
             </header>
             <div className="mb-12">
-                <div className="relative w-full max-w-2xl mx-auto aspect-square rounded-3xl overflow-hidden shadow-lg bg-gradient-to-br from-gray-200 to-gray-300">
+                <div className="relative w-full p-4 max-w-2xl mx-auto aspect-square rounded-2xl overflow-hidden shadow-lg">
                     <SanityImage
                         image={post.coverImage}
                         alt={post.title}
@@ -115,7 +115,7 @@ export default async function Page(props: Props) {
                 </div>
             </div>
             <div className="prose prose-lg prose-gray max-w-none">
-                <div className="bg-black rounded-2xl shadow-sm p-8 md:p-12">
+                <div className="bg-black rounded-2xl shadow-sm p-4 md:p-12">
                     <div className="text-gray-400 leading-relaxed space-y-6">
                         <p className="text-xl text-white mb-8 font-medium italic border-l-4 border-gray-700 pl-6">
                             {post.excerpt}
@@ -136,7 +136,7 @@ export default async function Page(props: Props) {
                     </div>
                 </div>
             </div>
-            <footer className="mt-16 pt-8">
+            <footer className="mt-16 pt-8 px-4">
                 <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                     <div className="flex items-center gap-3">
                         <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-semibold overflow-hidden">
