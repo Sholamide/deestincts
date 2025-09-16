@@ -41,11 +41,10 @@ export default function ContactPage() {
       setIsSuccess(true);
       reset();
       setTimeout(() => setIsSuccess(false), 5000);
-    } catch (err:any) {
+    } catch (err: any) {
       console.error("Contact form error:", err);
       alert(
-        `There was an error sending your message: ${
-          err.message || "Please try again later."
+        `There was an error sending your message: ${err.message || "Please try again later."
         }`
       );
     }
@@ -124,8 +123,8 @@ export default function ContactPage() {
                 <div className="mt-12">
                   <h3 className="mb-4 text-lg font-medium">Connect With Us</h3>
                   <div className="flex space-x-4">
-                    <a
-                      href="#"
+                    <a target="_blank"
+                      href="https://www.facebook.com/share/1FSHbzwvxD/?mibextid=LQQJ4d"
                       className="rounded-full bg-white/5 p-3 text-white/70 hover:bg-[#C3122B]/10 hover:text-white transition-colors"
                     >
                       <svg
@@ -144,8 +143,8 @@ export default function ContactPage() {
                       </svg>
                       <span className="sr-only">Facebook</span>
                     </a>
-                    <a
-                      href="#"
+                    <a target="_blank"
+                      href="https://twitter.com/Deestincts_"
                       className="rounded-full bg-white/5 p-3 text-white/70 hover:bg-[#C3122B]/10 hover:text-white transition-colors"
                     >
                       <svg
@@ -164,8 +163,8 @@ export default function ContactPage() {
                       </svg>
                       <span className="sr-only">Twitter</span>
                     </a>
-                    <a
-                      href="#"
+                    <a target="_blank"
+                      href="https://www.instagram.com/deestincts?igsh=MTZiMzdicGU3NTlwbw%3D%3D&utm_source=qr"
                       className="rounded-full bg-white/5 p-3 text-white/70 hover:bg-[#C3122B]/10 hover:text-white transition-colors"
                     >
                       <svg
@@ -186,8 +185,8 @@ export default function ContactPage() {
                       </svg>
                       <span className="sr-only">Instagram</span>
                     </a>
-                    <a
-                      href="#"
+                    <a target="_blank"
+                      href="https://www.linkedin.com/company/deestincts/"
                       className="rounded-full bg-white/5 p-3 text-white/70 hover:bg-[#C3122B]/10 hover:text-white transition-colors"
                     >
                       <svg
