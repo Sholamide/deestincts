@@ -33,7 +33,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       | "yearly"
       | "never"
       | undefined;
-    let url: string;
+    let url: string = `${domain}`;
 
     for (const p of allPostsAndPages.data) {
       switch (p._type) {
