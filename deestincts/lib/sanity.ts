@@ -1,5 +1,5 @@
 import { client } from "@/sanity/lib/client";
-import { AboutQuery, AllPostsQuery, AllProjectsQuery } from "@/sanity/lib/queries";
+import { AboutQuery, AllPostsQuery, AllProjectsQuery, AllTeamMembersQuery } from "@/sanity/lib/queries";
 
 
 export const getProjects = async () => {
@@ -19,3 +19,9 @@ export const getAboutInfo = async () => {
   const about = await client.fetch(AboutQuery);
   return about;
 }
+
+export const getMembers = async () => {
+  const members = await client.fetch(AllTeamMembersQuery);
+  return members;
+}
+

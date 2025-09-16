@@ -608,6 +608,12 @@ export type AllPostsQueryResult = Array<{
     };
   } | null;
 }>;
+// Variable: AllTeamMembersQuery
+// Query: *[_type == "teamMember"]{   _id, name, slug, role, bio, image }
+export type AllTeamMembersQueryResult = Array<never>;
+// Variable: getTeammemberQuery
+// Query: *[_type == 'teamMember' && slug.current == $slug][0]{ _id, name, slug, role, bio, image  }
+export type GetTeammemberQueryResult = null;
 // Variable: featuredProjectsQuery
 // Query: *[_type == "project" && defined(slug.current) && isFeatured == true] | order(_updatedAt desc) {      _id,  title,  "slug": slug.current,  excerpt,  featuredImage,  "featuredVideo": featuredVideo.asset->url,  heroMediaType,  projectType,  isFeatured,  client,  "projectImages": projectImages[]{    "url": asset->url,    "alt": alt  },  description,  "projectVideos": projectVideos[]{    title,    "videoUrl": videoFile.asset->url,    description,    videoSettings  },  externalVideos  }
 export type FeaturedProjectsQueryResult = Array<never>;
@@ -785,6 +791,9 @@ export type PostPagesSlugsResult = Array<{
 export type PagesSlugsResult = Array<{
   slug: string;
 }>;
+// Variable: teammemberSlugs
+// Query: *[_type == "teamMember" && defined(slug.current)]  {"slug": slug.current}
+export type TeammemberSlugsResult = Array<never>;
 
 // Query TypeMap
 import "@sanity/client";
@@ -795,6 +804,8 @@ declare module "@sanity/client" {
     "\n  *[_type == 'project' && slug.current == $slug][0]{\n    _id,\n  title,\n  \"slug\": slug.current,\n  excerpt,\n  featuredImage,\n  \"featuredVideo\": featuredVideo.asset->url,\n  heroMediaType,\n  projectType,\n  isFeatured,\n  client,\n  \"projectImages\": projectImages[]{\n    \"url\": asset->url,\n    \"alt\": alt\n  },\n  description,\n  \"projectVideos\": projectVideos[]{\n    title,\n    \"videoUrl\": videoFile.asset->url,\n    description,\n    videoSettings\n  },\n  externalVideos,\n  }\n": GetProjectQueryResult;
     "\n  *[_type == \"page\" || _type == \"post\" && defined(slug.current)] | order(_type asc) {\n    \"slug\": slug.current,\n    _type,\n    _updatedAt,\n  }\n": SitemapDataResult;
     "\n  *[_type == \"post\" && defined(slug.current)] | order(date desc, _updatedAt desc) {\n    \n  _id,\n  \"status\": select(_originalId in path(\"drafts.**\") => \"draft\", \"published\"),\n  \"title\": coalesce(title, \"Untitled\"),\n  \"slug\": slug.current,\n  excerpt,\n  coverImage,\n  \"date\": coalesce(date, _updatedAt),\n  \"author\": author->{firstName, lastName, picture},\n\n  }\n": AllPostsQueryResult;
+    "\n  *[_type == \"teamMember\"]{\n  \n _id,\n name,\n slug,\n role,\n bio,\n image\n \n}": AllTeamMembersQueryResult;
+    "\n  *[_type == 'teamMember' && slug.current == $slug][0]{\n _id,\n name,\n slug,\n role,\n bio,\n image\n  }\n": GetTeammemberQueryResult;
     "\n  *[_type == \"project\" && defined(slug.current) && isFeatured == true] | order(_updatedAt desc) {\n    \n  _id,\n  title,\n  \"slug\": slug.current,\n  excerpt,\n  featuredImage,\n  \"featuredVideo\": featuredVideo.asset->url,\n  heroMediaType,\n  projectType,\n  isFeatured,\n  client,\n  \"projectImages\": projectImages[]{\n    \"url\": asset->url,\n    \"alt\": alt\n  },\n  description,\n  \"projectVideos\": projectVideos[]{\n    title,\n    \"videoUrl\": videoFile.asset->url,\n    description,\n    videoSettings\n  },\n  externalVideos\n\n  }\n": FeaturedProjectsQueryResult;
     "\n  *[_type == \"project\" && defined(slug.current)] | order(_updatedAt desc) {\n    \n  _id,\n  title,\n  \"slug\": slug.current,\n  excerpt,\n  featuredImage,\n  \"featuredVideo\": featuredVideo.asset->url,\n  heroMediaType,\n  projectType,\n  isFeatured,\n  client,\n  \"projectImages\": projectImages[]{\n    \"url\": asset->url,\n    \"alt\": alt\n  },\n  description,\n  \"projectVideos\": projectVideos[]{\n    title,\n    \"videoUrl\": videoFile.asset->url,\n    description,\n    videoSettings\n  },\n  externalVideos\n\n  }\n": AllProjectsQueryResult;
     "\n  *[_type == \"post\" && _id != $skip && defined(slug.current)] | order(date desc, _updatedAt desc) [0...$limit] {\n    \n  _id,\n  \"status\": select(_originalId in path(\"drafts.**\") => \"draft\", \"published\"),\n  \"title\": coalesce(title, \"Untitled\"),\n  \"slug\": slug.current,\n  excerpt,\n  coverImage,\n  \"date\": coalesce(date, _updatedAt),\n  \"author\": author->{firstName, lastName, picture},\n\n  }\n": MorePostsQueryResult;
@@ -803,5 +814,6 @@ declare module "@sanity/client" {
     "\n  *[_type == \"post\" && slug.current == $slug] [0] {\n    content[]{\n    ...,\n    markDefs[]{\n      ...,\n      \n  _type == \"link\" => {\n    \"page\": page->slug.current,\n    \"post\": post->slug.current\n  }\n\n    }\n  },\n    \n  _id,\n  \"status\": select(_originalId in path(\"drafts.**\") => \"draft\", \"published\"),\n  \"title\": coalesce(title, \"Untitled\"),\n  \"slug\": slug.current,\n  excerpt,\n  coverImage,\n  \"date\": coalesce(date, _updatedAt),\n  \"author\": author->{firstName, lastName, picture},\n\n  }\n": PostQueryResult;
     "\n  *[_type == \"post\" && defined(slug.current)]\n  {\"slug\": slug.current}\n": PostPagesSlugsResult;
     "\n  *[_type == \"page\" && defined(slug.current)]\n  {\"slug\": slug.current}\n": PagesSlugsResult;
+    "\n  *[_type == \"teamMember\" && defined(slug.current)]\n  {\"slug\": slug.current}\n": TeammemberSlugsResult;
   }
 }

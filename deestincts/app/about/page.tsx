@@ -1,4 +1,4 @@
-import { getAboutInfo } from "@/lib/sanity"
+import { getAboutInfo, getMembers } from "@/lib/sanity"
 import type { Metadata } from "next"
 import AboutContent from "../components/AboutPage"
 
@@ -10,12 +10,16 @@ export const metadata: Metadata = {
 
 export default async function AboutPage() {
   const aboutData = await getAboutInfo()
+  const teamMembers = await getMembers();
+
+  console.log("About Data", aboutData);
+  console.log("Team", teamMembers);
 
   return (
     <main className="pt-24 bg-[#000000]">
       {" "}
       {/* Ensure consistent background */}
-      <AboutContent about={aboutData} />
+      <AboutContent about={aboutData} team={teamMembers}/>
     </main>
   )
 }

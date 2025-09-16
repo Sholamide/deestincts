@@ -10,6 +10,7 @@ import {link} from './objects/link'
 import {blockContent} from './objects/blockContent'
 import {caseStudy} from './documents/casestudy'
 import { about } from './documents/about'
+import { teamMember } from './documents/team'
 
 // Export an array of all the schema types.  This is used in the Sanity Studio configuration. https://www.sanity.io/docs/schema-types
 
@@ -19,7 +20,7 @@ export const schemaTypes = [
   project,
   caseStudy,
   about,
-  // Documents
+  teamMember,
   page,
   post,
   person,

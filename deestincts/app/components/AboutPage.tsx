@@ -2,7 +2,6 @@
 
 import { easeOut, motion, useScroll, useTransform } from "framer-motion"
 import { useRef } from "react"
-import InfinityPattern from "./InfinityPattern"
 import type { About } from "@/lib/types"
 import {
   Lightbulb,
@@ -19,9 +18,12 @@ import {
 } from "lucide-react"
 import SanityImage from "./sanity-image"
 import Image from "next/image"
+import Link from "next/link"
+import { TeamMemberCard } from "./member-card"
 
 interface AboutPageProps {
   about: About | null
+  team: any
 }
 
 const sectionVariants = {
@@ -101,7 +103,7 @@ const philosophyBlends = [
   "Technical excellence",
 ]
 
-export default function AboutContent({ about }: AboutPageProps) {
+export default function AboutContent({ about, team }: AboutPageProps) {
   const heroRef = useRef(null)
   const { scrollYProgress } = useScroll({
     target: heroRef,
@@ -196,13 +198,11 @@ export default function AboutContent({ about }: AboutPageProps) {
                 className={`group relative p-8 flex flex-col items-start text-left ${index < serviceItems.length - 1 ? "border-r border-white/10" : ""
                   }`}
               >
-                {/* <div className="w-8 h-8 rounded-full bg-[#C3122B] mb-6" /> */}
+
                 <item.icon className="h-8 w-8 mb-6 text-[#858585] group-hover:text-white transition-colors duration-300" />
                 <h3 className="text-2xl font-bold text-white group-hover:text-[#858585] transition-colors duration-300 mb-4">
                   {item.title}
                 </h3>
-                {/* <h3 className="text-2xl font-bold text-white mb-4">{item.title}</h3> */}
-                {/* <p className="text-gray-300 text-base leading-relaxed">{item.description}</p> */}
                 <p className="text-gray-300 text-sm leading-relaxed opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300">
                   {item.description}
                 </p>
@@ -264,7 +264,7 @@ export default function AboutContent({ about }: AboutPageProps) {
         </motion.div>
 
         {/* Team Members Section (from previous implementation) */}
-        {about?.teamMembers && about.teamMembers.length > 0 && (
+        {team && team.length > 0 && (
           <motion.div
             className="mt-24"
           >
@@ -272,26 +272,8 @@ export default function AboutContent({ about }: AboutPageProps) {
               Meet Our <span className="text-[#858585]">Team</span>
             </motion.h3>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {about.teamMembers.map((member, index) => (
-                <motion.div
-                  key={member.name}
-                  variants={itemVariants}
-                  className="text-center group rounded-xl overflow-hidden border border-white/10 bg-white/5 transition-all duration-300 hover:border-[#858585]"
-                >
-                  <div className="relative aspect-square mb-6 overflow-hidden">
-                    <SanityImage
-                      image={member.image}
-                      alt={member.name}
-                      aspectRatio="auto"
-                      className={`object-cover group-hover:scale-105 group-hover:rotate-y-3 transition-transform duration-700`}
-                    />
-                  </div>
-                  <div className="p-6">
-                    <h4 className="text-xl font-bold text-white mb-2">{member.name}</h4>
-                    <p className="text-gray-400 text-sm uppercase tracking-wider mb-3">{member.role}</p>
-                    <p className="text-gray-300 text-sm leading-relaxed">{member.bio}</p>
-                  </div>
-                </motion.div>
+              {team.map((member: any, index:number) => (
+                <TeamMemberCard slug={member.slug} key={index} name={member.name} image={member.image} role={member.role} />
               ))}
             </div>
           </motion.div>

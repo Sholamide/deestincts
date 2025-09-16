@@ -32,6 +32,15 @@ const aboutFields = `
  }
 `
 
+const teammembersFields = `
+ _id,
+ name,
+ slug,
+ role,
+ bio,
+ image
+ `
+
 const projectFields = /* groq */ `
   _id,
   title,
@@ -137,6 +146,22 @@ export const allPostsQuery = defineQuery(`
   }
 `);
 
+export const AllTeamMembersQuery = defineQuery(`
+  *[_type == "teamMember"]{
+  ${teammembersFields}
+}`)
+
+export const getTeammemberQuery = defineQuery(`
+  *[_type == 'teamMember' && slug.current == $slug][0]{
+ _id,
+ name,
+ slug,
+ role,
+ bio,
+ image
+  }
+`);
+
 // Then update the featured projects query
 export const featuredProjectsQuery = defineQuery(`
   *[_type == "project" && defined(slug.current) && isFeatured == true] | order(_updatedAt desc) {
@@ -205,3 +230,10 @@ export const pagesSlugs = defineQuery(`
   *[_type == "page" && defined(slug.current)]
   {"slug": slug.current}
 `);
+
+export const teammemberSlugs = defineQuery(`
+  *[_type == "teamMember" && defined(slug.current)]
+  {"slug": slug.current}
+`);
+
+
