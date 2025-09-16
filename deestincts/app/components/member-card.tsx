@@ -1,50 +1,3 @@
-// import Link from "next/link";
-// import SanityImage from "./sanity-image";
-// import { calculateReadTime, getSmartDateFormat } from "@/lib/utils";
-
-// interface MemberCardProps {
-//   bio: any;
-//   image: string;
-//   name: any;
-//   role: string;
-//   slug?: string;
-// }
-
-// export function MemberCard({
-//   bio,
-//   image,
-//   name,
-//   role,
-//   slug
-// }: MemberCardProps) {
-//   return (
-//     <Link href={`/team/${slug}`}>
-//       <div
-//         className="group rounded-xl border border-gray-800 overflow-hidden transition-all duration-300"
-//         style={{ height: "450px" }} // Fixed total height
-//       >
-//         <div
-//           className="relative aspect-[4/5] overflow-hidden"
-//         >
-//           <SanityImage
-//             image={image}
-//             alt={name}
-//             aspectRatio="auto"
-//             className={`object-cover group-hover:scale-105 group-hover:rotate-y-3 transition-transform duration-700`}
-//           />
-//         </div>
-//         <div className="flex-1">
-//           <h3 className="font-semibold text-white group-hover:underline transition-all duration-300 decoration-2 decoration-indigo-500 underline-offset-2">
-//             {name}
-//           </h3>
-//           <p className="text-sm text-white group-hover:underline transition-all duration-300 decoration-2 decoration-purple-500 underline-offset-2">
-//             {role}
-//           </p>
-//         </div>
-//       </div>
-//     </Link>
-//   );
-// }
 import Link from 'next/link';
 import SanityImage from './sanity-image'; // Adjust import path as needed
 
@@ -69,7 +22,7 @@ export const TeamMemberCard = ({ name, role, image, slug }: TeamMemberCardProps)
             image={image}
             alt={name}
             aspectRatio="auto"
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+            className="w-full h-full object-top group-hover:scale-105 transition-transform duration-700"
           />
         </div>
 

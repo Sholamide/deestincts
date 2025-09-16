@@ -6,7 +6,7 @@ import InfinityPattern from './InfinityPattern'
 import CompanyMarquee from './CompanyMarquee'
 
 interface AboutSectionProps {
-  about: About | null
+  about: any
 }
 
 export default function AboutSection({ about }: AboutSectionProps) {

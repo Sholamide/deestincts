@@ -56,7 +56,6 @@ export default async function Page(props: Props) {
         query: getTeammemberQuery,
         params,
     });
-    console.log("Member", member)
     if (!member?._id) {
         return (
             <div className="py-40">

@@ -22,7 +22,7 @@ import Link from "next/link"
 import { TeamMemberCard } from "./member-card"
 
 interface AboutPageProps {
-  about: About | null
+  about: any
   team: any
 }
 

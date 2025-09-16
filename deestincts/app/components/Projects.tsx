@@ -6,7 +6,7 @@ import { Project } from '@/lib/types'
 import SanityImage from './sanity-image'
 
 interface ProjectsSectionProps {
-  projects: Project[]
+  projects: any[]
 }
 
 export default function ProjectsSection({ projects }: ProjectsSectionProps) {

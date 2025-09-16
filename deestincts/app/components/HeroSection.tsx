@@ -202,7 +202,7 @@ import { Project } from '@/lib/types'
 import SanityImage from './sanity-image'
 
 interface HeroSectionProps {
-    projects: Project[]
+    projects: any[]
 }
 
 export default function HeroSection({ projects }: HeroSectionProps) {

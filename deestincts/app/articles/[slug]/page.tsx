@@ -40,7 +40,6 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
         stega: false,
     });
 
-    console.log("Post", post);
 
     return {
         title: post?.title || "Post",
@@ -56,7 +55,6 @@ export default async function Page(props: Props) {
         query: postQuery,
         params,
     });
-    console.log("Post", post)
     if (!post?._id) {
         return (
             <div className="py-40">
