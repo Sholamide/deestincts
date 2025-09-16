@@ -125,7 +125,22 @@ export const project = defineType({
     defineField({
       name: 'client',
       title: 'Client',
-      type: 'string',
+      type: 'document',
+       fields:[
+        defineField({
+         name: 'name',
+         title: 'Client Name',
+         type: 'string',
+          validation: (rule) => rule.required(),
+        }),
+        defineField({
+          name: 'url',
+          title: 'Client URL',
+          type: 'url',
+          description: 'YouTube, Instagram, website, or any URL that showcases work done for them',
+          validation: (rule) => rule.required(),
+        }),
+       ]
     }),
     defineField({
       name: 'description',

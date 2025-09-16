@@ -6,6 +6,8 @@ import { Button } from "../components/ui/button"
 export default async function BlogPage() {
   const allPosts = await getPosts() // Fetch all blog posts
 
+  console.log("All Posts", allPosts);
+
   return (
     <div className="flex min-h-screen flex-col bg-black text-white">
       <main className="flex-1">
@@ -36,15 +38,15 @@ export default async function BlogPage() {
                     title={post.title}
                     excerpt={post.excerpt}
                     category={post.category}
-                    author={post.author.name}
+                    author={`${post.author.firstName} ${post.author.lastName}`}
+                    content={post.content}
                     coverImage={post.coverImage}
-                    authorImage={post.author.image}
+                    authorImage={post.author.picture}
                     date={new Date(post.date).toLocaleDateString("en-US", {
                       year: "numeric",
                       month: "long",
                       day: "numeric",
                     })}
-                    readTime={post.readTime}
                     image={post.mainImage}
                     slug={post.slug.current}
                   />

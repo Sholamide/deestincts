@@ -2,16 +2,17 @@
 import Link from "next/link"
 import { ArrowRight } from "lucide-react"
 import SanityImage from "./sanity-image"
+import { calculateReadTime, getSmartDateFormat } from "@/lib/utils"
 
 interface BlogCardProps {
   title: string
   excerpt: string
   category: string
-  author: string
-  coverImage:any
+  author: any
+  content: any
+  coverImage: any
   authorImage?: any
   date: string
-  readTime: string
   image: any
   slug?: string
 }
@@ -22,10 +23,9 @@ export function BlogCard({
   category,
   author,
   coverImage,
+  content,
   authorImage,
   date,
-  readTime,
-  image,
   slug = "#",
 }: BlogCardProps) {
   return (
@@ -44,17 +44,17 @@ export function BlogCard({
         <p className="mb-4 text-sm text-white/70">{excerpt}</p>
         <div className="mb-4 flex items-center gap-2">
           <div className="h-8 w-8 overflow-hidden rounded-full">
-            {/* <SanityImage
+            <SanityImage
               image={authorImage}
-              // alt={author}
+              alt={author}
               aspectRatio="auto"
               className="h-full w-full object-cover"
-            /> */}
+            />
           </div>
           <div>
-            <p className="text-sm font-medium">{author}</p>
+            <p className="text-sm text-white font-medium">{author}</p>
             <p className="text-xs text-white/50">
-              {date} · {readTime}
+              {getSmartDateFormat(date)} · {calculateReadTime(content[0].children.text || '')}
             </p>
           </div>
         </div>

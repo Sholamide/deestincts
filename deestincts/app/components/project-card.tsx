@@ -10,7 +10,7 @@ import { useMemo } from "react"
 interface ProjectCardProps {
   title: string
   excerpt: string
-  client?: string
+  client?: any
   projectType: string[]
   featuredImage: string | SanityImage
   slug?: string
@@ -74,7 +74,9 @@ export function ProjectCard({
           </div>
           <h3 className="mb-1 text-xl font-bold text-white">{title}</h3>
           <p className="mb-2 text-sm text-white/90 line-clamp-2">{excerpt}</p> {/* line-clamp for consistent height */}
-          {client && <p className="mb-4 text-xs text-white/70">Client: {client}</p>}
+          {client && <p className="mb-4 text-xs text-white/70 block">
+            {client.name}
+          </p>}
           <span className="inline-flex items-center gap-1 text-sm font-medium text-white hover:text-[#C3122B] transition-colors">
             View Project <ArrowUpRight className="h-4 w-4" />
           </span>

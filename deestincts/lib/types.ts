@@ -8,7 +8,7 @@ export interface Project {
   heroMediaType: 'image' | 'video'
   projectType: string[];
   isFeatured?: boolean // Updated from 'featured' to match schema
-  client?: string
+  client?: any
   description?: any[]
   projectImages?: any[]
   projectVideos?: any[]
