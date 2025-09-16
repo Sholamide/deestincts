@@ -1,10 +1,60 @@
-import { getPosts } from "@/lib/sanity"
-import { Input } from "../components/ui/input"
-import { BlogCard } from "../components/blog-card"
-import { Button } from "../components/ui/button"
+"use client"
 
-export default async function BlogPage() {
-  const allPosts = await getPosts() // Fetch all blog posts
+import { useState, useEffect } from 'react';
+import { getPosts } from "@/lib/sanity";
+import { ArticleCard } from "../components/article-card";
+import { Button } from "../components/ui/button";
+
+interface Post {
+  _id: string;
+  title: string;
+  excerpt: string;
+  author: {
+    firstName: string;
+    lastName: string;
+    picture: string;
+  };
+  content: any;
+  coverImage: string;
+  date: string;
+  slug: string;
+}
+
+export default function ArticlesPage() {
+  const [posts, setPosts] = useState<Post[]>([]);
+  const [page, setPage] = useState(1);
+  const [hasMore, setHasMore] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
+  const postsPerPage = 6; // Adjust as needed
+
+  const fetchPosts = async (pageNum: number) => {
+    setIsLoading(true);
+    try {
+      const newPosts = await getPosts({ limit: postsPerPage, offset: (pageNum - 1) * postsPerPage });
+      if (newPosts.length < postsPerPage) {
+        setHasMore(false);
+      }
+      setPosts((prevPosts:any) =>
+        pageNum === 1 ? newPosts : [...prevPosts, ...newPosts]
+      );
+    } catch (error) {
+      console.error('Error fetching posts:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  // Fetch initial posts on mount
+  useEffect(() => {
+    fetchPosts(1);
+  }, []);
+
+  // Handle load more button click
+  const handleLoadMore = () => {
+    const nextPage = page + 1;
+    setPage(nextPage);
+    fetchPosts(nextPage);
+  };
 
   return (
     <div className="flex min-h-screen flex-col bg-black text-white">
@@ -30,9 +80,9 @@ export default async function BlogPage() {
             </div>
             {/* Masonry Grid Implementation */}
             <div className="columns-1 sm:columns-2 lg:columns-3 gap-8">
-              {allPosts.map((post: any) => (
+              {posts.map((post: Post) => (
                 <div key={post._id} className="mb-8 break-inside-avoid-column">
-                  <BlogCard
+                  <ArticleCard
                     title={post.title}
                     excerpt={post.excerpt}
                     author={`${post.author.firstName} ${post.author.lastName}`}
@@ -40,25 +90,30 @@ export default async function BlogPage() {
                     coverImage={post.coverImage}
                     authorImage={post.author.picture}
                     date={post.date}
-                    // date={new Date(post.date).toLocaleDateString("en-US", {
-                    //   year: "numeric",
-                    //   month: "long",
-                    //   day: "numeric",
-                    // })}
                     slug={post.slug}
                   />
                 </div>
               ))}
             </div>
-            <div className="mt-12 flex justify-center">
-              <Button className="bg-transparent border border-[#ffffff] text-white hover:bg-[#f5f5f5] hover:text-[#1d1b1b]">
-                Load More Articles
-              </Button>
-            </div>
+            {hasMore && (
+              <div className="mt-12 flex justify-center">
+                <Button
+                  onClick={handleLoadMore}
+                  disabled={isLoading}
+                  className="bg-transparent border border-[#ffffff] text-white hover:bg-[#f5f5f5] hover:text-[#1d1b1b]"
+                >
+                  {isLoading ? 'Loading...' : 'Load More Blog Posts'}
+                </Button>
+              </div>
+            )}
           </div>
         </section>
+      </main>
+    </div>
+  );
+}
 
-        <section className="py-16 md:py-24">
+{/* <section className="py-16 md:py-24">
           <div className="container px-4 md:px-6">
             <div className="mx-auto max-w-4xl rounded-xl border border-white/10 bg-white/5 p-8 backdrop-blur-sm">
               <div className="text-center">
@@ -77,8 +132,4 @@ export default async function BlogPage() {
               </div>
             </div>
           </div>
-        </section>
-      </main>
-    </div>
-  )
-}
+        </section> */}

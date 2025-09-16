@@ -7,8 +7,10 @@ export const getProjects = async () => {
   return projects;
 }
 
-export const getPosts = async () => {
-  const posts = await client.fetch(AllPostsQuery);
+export async function getPosts({ limit = 6, offset = 0 }: { limit?: number; offset?: number } = {}) {
+  const start = offset;
+  const end = offset + limit;
+  const posts = await client.fetch(AllPostsQuery, { start, end });
   return posts;
 }
 

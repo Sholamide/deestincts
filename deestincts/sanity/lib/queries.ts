@@ -171,7 +171,7 @@ export const AboutQuery = defineQuery(`
 `);
 
 export const AllPostsQuery = defineQuery(`
-  *[_type == "post"] {
+  *[_type == "post"] | order(date desc) [$start...$end] {
     content[]{
     ...,
     markDefs[]{
