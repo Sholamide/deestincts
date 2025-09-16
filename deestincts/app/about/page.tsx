@@ -12,7 +12,6 @@ export default async function AboutPage() {
   const aboutData = await getAboutInfo()
   const teamMembers = await getMembers();
 
-
   return (
     <main className="pt-24 bg-[#000000]">
       {" "}

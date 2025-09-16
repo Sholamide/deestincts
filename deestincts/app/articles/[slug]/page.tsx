@@ -40,7 +40,6 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
         stega: false,
     });
 
-
     return {
         title: post?.title || "Post",
         description: post?.excerpt || "Post description",
