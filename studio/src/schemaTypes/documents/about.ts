@@ -30,68 +30,6 @@ export const about = defineType({
       // or change to 'text' for simple text content
     }),
     defineField({
-      name: 'teamMembers',
-      title: 'Team Members',
-      type: 'array',
-      of: [
-        {
-          type: 'object',
-          fields: [
-            defineField({
-              name: 'name',
-              title: 'Name',
-              type: 'string',
-              validation: (rule) => rule.required(),
-            }),
-            defineField({
-              name: 'slug',
-              title: 'Slug',
-              type: 'slug',
-              options: {
-                source: 'title',
-                maxLength: 96,
-              },
-            }),
-            defineField({
-              name: 'role',
-              title: 'Role',
-              type: 'string',
-              validation: (rule) => rule.required(),
-            }),
-            defineField({
-              name: 'bio',
-              title: 'Bio',
-              type: 'text',
-              rows: 3,
-            }),
-            defineField({
-              name: 'image',
-              title: 'Profile Image',
-              type: 'image',
-              options: {
-                hotspot: true,
-              },
-              fields: [
-                {
-                  name: 'alt',
-                  type: 'string',
-                  title: 'Alternative text',
-                  validation: (rule) => rule.required(),
-                },
-              ],
-            }),
-          ],
-          preview: {
-            select: {
-              title: 'name',
-              subtitle: 'role',
-              media: 'image',
-            },
-          },
-        },
-      ],
-    }),
-    defineField({
       name: 'publishedAt',
       title: 'Published at',
       type: 'datetime',

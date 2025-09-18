@@ -1,4 +1,5 @@
 import {defineType, defineField} from 'sanity'
+import {orderRankField, orderRankOrdering} from '@sanity/orderable-document-list'
 
 export const teamMember = defineType({
   name: 'teamMember',
@@ -46,5 +47,7 @@ export const teamMember = defineType({
         },
       ],
     }),
+    orderRankField({ type: 'teamMember' }),
   ],
+  orderings: [orderRankOrdering],
 })

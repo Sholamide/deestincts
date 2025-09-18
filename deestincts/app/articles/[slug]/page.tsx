@@ -128,15 +128,6 @@ export default async function Page(props: Props) {
                                 />
                             )}
                         </div>
-                        {/* 
-                        <div className="mt-12 pt-8 border-t border-gray-700">
-                            <h2 className="text-2xl font-bold text-white mb-4">Key Design Principles</h2>
-                            <div className="rounded-xl p-6 border-l-4 border-gray-800">
-                                <p className="text-gray-700">
-                                    Visual design patterns transcend mediums and eras. Whether you're designing a website, crafting a poster, or planning an interior space, these fundamental patterns provide the structure and harmony that make designs both beautiful and functional.
-                                </p>
-                            </div>
-                        </div> */}
                     </div>
                 </div>
             </div>

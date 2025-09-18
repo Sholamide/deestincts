@@ -1,14 +1,11 @@
 import type { Metadata } from "next";
 import { sanityFetch } from "@/sanity/lib/live";
-import { getTeammemberQuery, postPagesSlugs, postQuery, teammemberSlugs } from "@/sanity/lib/queries";
+import { getTeammemberQuery, teammemberSlugs } from "@/sanity/lib/queries";
 import { PageOnboarding } from "@/app/components/Onboarding";
-import { Calendar, Clock, X } from "lucide-react";
 import Head from "next/head";
-import { calculateReadTime, getSmartDateFormat } from "@/lib/utils";
 import SanityImage from "@/app/components/sanity-image";
 import CustomPortableText from "@/app/components/PortableText";
 import { type PortableTextBlock } from "next-sanity";
-import { Button } from "@/app/components/ui/button";
 import BackButton from "@/app/components/back";
 
 type Props = {

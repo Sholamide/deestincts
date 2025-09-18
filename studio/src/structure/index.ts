@@ -1,6 +1,7 @@
 import {CogIcon} from '@sanity/icons'
 import type {StructureBuilder, StructureResolver} from 'sanity/structure'
 import pluralize from 'pluralize-esm'
+import {orderableDocumentListDeskItem} from '@sanity/orderable-document-list'
 
 /**
  * Structure builder is useful whenever you want to control how documents are grouped and
@@ -10,7 +11,7 @@ import pluralize from 'pluralize-esm'
 
 const DISABLED_TYPES = ['settings', 'assist.instruction.context']
 
-export const structure: StructureResolver = (S: StructureBuilder) =>
+export const structure: StructureResolver = (S: StructureBuilder, context) =>
   S.list()
     .title('Website Content')
     .items([
@@ -21,6 +22,8 @@ export const structure: StructureResolver = (S: StructureBuilder) =>
         .map((listItem) => {
           return listItem.title(pluralize(listItem.getTitle() as string))
         }),
+        orderableDocumentListDeskItem({ type: 'teamMember', S, context }),
+
       // Settings Singleton in order to view/edit the one particular document for Settings.  Learn more about Singletons: https://www.sanity.io/docs/create-a-link-to-a-single-edit-page-in-your-main-document-type-list
       S.listItem()
         .title('Site Settings')

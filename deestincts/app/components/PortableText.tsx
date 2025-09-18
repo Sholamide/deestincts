@@ -7,22 +7,29 @@
  * https://portabletext.org/
  *
  */
+"use client"
 
 import {
   PortableText,
   type PortableTextComponents,
   type PortableTextBlock,
 } from "next-sanity";
+import { useState } from "react";
 
 import ResolvedLink from "@/app/components/ResolvedLink";
 
 export default function CustomPortableText({
   className,
   value,
+  maxLength = 300,
+  enableExpandable = false,
 }: {
   className?: string;
   value: PortableTextBlock[];
+  maxLength?: number;
+  enableExpandable?: boolean;
 }) {
+  const [expanded, setExpanded] = useState(false);
   const components: PortableTextComponents = {
     block: {
       h1: ({ children, value }) => (
@@ -85,13 +92,76 @@ export default function CustomPortableText({
     },
   };
 
+  const extractTextFromBlock = (block: any): string => {
+    if (block._type === "block" && block.children) {
+      return block.children
+        .map((child: any) => child.text || "")
+        .join("");
+    }
+    return "";
+  };
+
+  const textContent = value
+    .map(extractTextFromBlock)
+    .join(" ");
+
+  const isLongText = enableExpandable && textContent.length > maxLength;
+
+  const truncateValue = (blocks: any[], maxLength: number) => {
+    let currentLength = 0;
+    const truncatedBlocks = [];
+
+    for (const block of blocks) {
+      if (block._type === "block" && block.children) {
+        const blockText = extractTextFromBlock(block);
+
+        if (currentLength + blockText.length <= maxLength) {
+          // Include the entire block
+          truncatedBlocks.push(block);
+          currentLength += blockText.length;
+        } else {
+          // Truncate this block
+          const remainingLength = maxLength - currentLength;
+          if (remainingLength > 0) {
+            const truncatedBlock = {
+              ...block,
+              children: [{
+                ...block.children[0],
+                text: blockText.substring(0, remainingLength) + "..."
+              }]
+            };
+            truncatedBlocks.push(truncatedBlock);
+          }
+          break;
+        }
+      } else {
+        // Include non-text blocks as-is
+        truncatedBlocks.push(block);
+      }
+    }
+
+    return truncatedBlocks;
+  };
+
+  const displayValue = enableExpandable && isLongText && !expanded
+    ? truncateValue(value, maxLength)
+    : value;
+
   return (
     <div
       className={["prose prose-a:text-red-500", className]
         .filter(Boolean)
         .join(" ")}
     >
-      <PortableText components={components} value={value} />
+      <PortableText components={components} value={displayValue} />
+      {isLongText && (
+        <button
+          onClick={() => setExpanded(!expanded)}
+          className="mt-4 p-2 rounded-[5px] bg-gray-500 text-black uppercase hover:underline text-sm"
+        >
+          {expanded ? "Collapse" : "Read more"}
+        </button>
+      )}
     </div>
   );
 }

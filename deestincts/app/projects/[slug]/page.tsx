@@ -7,7 +7,6 @@ import { urlForImage } from "@/sanity/lib/utils";
 import Image from "next/image";
 import Head from "next/head";
 import Link from "next/link";
-import ExpandableText from "@/app/components/ExpandableText";
 import CustomPortableText from "@/app/components/PortableText";
 import { type PortableTextBlock } from "next-sanity";
 
@@ -125,8 +124,10 @@ export default async function Page(props: Props) {
                   <div className="leading-relaxed">
                     {project.description?.length && (
                       <CustomPortableText
-                      className="prose-p:text-gray-800"
+                        className="prose-p:text-gray-800"
                         value={project.description as PortableTextBlock[]}
+                        enableExpandable={true}
+                        maxLength={300}
                       />
                     )}
                   </div>
@@ -187,26 +188,27 @@ export default async function Page(props: Props) {
 
                 return (
                   <div key={index} className="relative group">
-                    <div className="overflow-hidden rounded-md shadow-xl">
+                    <div className="overflow-hidden rounded-2xl shadow-xl">
                       {isImage ? (
                         <Image
                           src={mediaUrl}
                           alt={media.data.alt || title}
                           width={1200}
                           height={800}
-                          className="w-full h-auto object-cover rounded-md  transition-all duration-700"
+                          className="w-full h-auto object-cover rounded-md transition-all duration-700"
                           priority={index < 3}
                         />
                       ) : (
                         <video
                           src={mediaUrl}
-                          className="w-full h-auto object-cover rounded-md transition-transform duration-500"
+                          className="w-full h-full object-cover rounded-md transition-transform duration-500"
                           autoPlay
                           loop
                           muted
                           playsInline
                           controls={false}
                           preload="auto"
+                          style={{ aspectRatio: '16/9' }}
                         />
                       )}
                     </div>
@@ -243,7 +245,7 @@ export default async function Page(props: Props) {
                       ${isLarge ? 'lg:mb-12' : isMedium ? 'lg:mb-10' : 'lg:mb-8'}
                     `}
                     >
-                      <div className="relative overflow-hidden rounded-2xl shadow-2xl hover:shadow-3xl transition-all duration-500 hover:-translate-y-1">
+                      <div className="relative overflow-hidden rounded-2xl shadow-2xl transition-all duration-500 hover:-translate-y-1">
                         {isImage ? (
                           <Image
                             src={mediaUrl}

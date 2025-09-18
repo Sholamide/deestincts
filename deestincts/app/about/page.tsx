@@ -14,7 +14,6 @@ export default async function AboutPage() {
 
   return (
     <main className="pt-24 bg-[#000000]">
-      {" "}
       {/* Ensure consistent background */}
       <AboutContent about={aboutData} team={teamMembers}/>
     </main>

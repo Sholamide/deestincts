@@ -18,18 +18,12 @@ const aboutFields = `
  title,
  slug,
  content,
- teamMembers[] {
- name,
- role,
- bio,
- image,
  "projectVideos": projectVideos[]{
     title,
     "videoUrl": videoFile.asset->url,
     description,
     videoSettings
   },
- }
 `
 
 const teammembersFields = `
@@ -40,6 +34,14 @@ const teammembersFields = `
  bio,
  image
  `
+// const teammembersFields = `
+//  _id,
+//  name,
+//  slug,
+//  role,
+//  bio,
+//  image
+//  `
 
 const projectFields = /* groq */ `
   _id,
@@ -147,9 +149,22 @@ export const allPostsQuery = defineQuery(`
 `);
 
 export const AllTeamMembersQuery = defineQuery(`
-  *[_type == "teamMember"]{
-  ${teammembersFields}
-}`)
+  *[_type == "teamMember"] | order(
+    select(
+      role == "Creative Director" => 0,
+      role == "Chief Operating Officer" => 1,
+      role == "Software Engineer" => 2,
+      role == "Admin" => 3,
+      role == "Brand Designer" => 4,
+      defined(role) == false => 99,
+      99
+    ) asc,
+    string::lower(name) asc
+  ) {
+    ${teammembersFields}
+  }
+`);
+
 
 export const getTeammemberQuery = defineQuery(`
   *[_type == 'teamMember' && slug.current == $slug][0]{

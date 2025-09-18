@@ -159,6 +159,7 @@ export type TeamMember = {
     alt: string;
     _type: "image";
   };
+  orderRank?: string;
 };
 
 export type About = {
@@ -507,6 +508,127 @@ export type Settings = {
   };
 };
 
+export type SanityAssistInstructionTask = {
+  _type: "sanity.assist.instructionTask";
+  path?: string;
+  instructionKey?: string;
+  started?: string;
+  updated?: string;
+  info?: string;
+};
+
+export type SanityAssistTaskStatus = {
+  _type: "sanity.assist.task.status";
+  tasks?: Array<{
+    _key: string;
+  } & SanityAssistInstructionTask>;
+};
+
+export type SanityAssistSchemaTypeAnnotations = {
+  _type: "sanity.assist.schemaType.annotations";
+  title?: string;
+  fields?: Array<{
+    _key: string;
+  } & SanityAssistSchemaTypeField>;
+};
+
+export type SanityAssistOutputType = {
+  _type: "sanity.assist.output.type";
+  type?: string;
+};
+
+export type SanityAssistOutputField = {
+  _type: "sanity.assist.output.field";
+  path?: string;
+};
+
+export type SanityAssistInstructionContext = {
+  _type: "sanity.assist.instruction.context";
+  reference: {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: "assist.instruction.context";
+  };
+};
+
+export type AssistInstructionContext = {
+  _id: string;
+  _type: "assist.instruction.context";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  context?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal";
+    listItem?: never;
+    markDefs?: null;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
+};
+
+export type SanityAssistInstructionUserInput = {
+  _type: "sanity.assist.instruction.userInput";
+  message: string;
+  description?: string;
+};
+
+export type SanityAssistInstructionPrompt = Array<{
+  children?: Array<{
+    marks?: Array<string>;
+    text?: string;
+    _type: "span";
+    _key: string;
+  } | {
+    _key: string;
+  } & SanityAssistInstructionFieldRef | {
+    _key: string;
+  } & SanityAssistInstructionContext | {
+    _key: string;
+  } & SanityAssistInstructionUserInput>;
+  style?: "normal";
+  listItem?: never;
+  markDefs?: null;
+  level?: number;
+  _type: "block";
+  _key: string;
+}>;
+
+export type SanityAssistInstructionFieldRef = {
+  _type: "sanity.assist.instruction.fieldRef";
+  path?: string;
+};
+
+export type SanityAssistInstruction = {
+  _type: "sanity.assist.instruction";
+  prompt?: SanityAssistInstructionPrompt;
+  icon?: string;
+  title?: string;
+  userId?: string;
+  createdById?: string;
+  output?: Array<{
+    _key: string;
+  } & SanityAssistOutputField | {
+    _key: string;
+  } & SanityAssistOutputType>;
+};
+
+export type SanityAssistSchemaTypeField = {
+  _type: "sanity.assist.schemaType.field";
+  path?: string;
+  instructions?: Array<{
+    _key: string;
+  } & SanityAssistInstruction>;
+};
+
 export type SanityImagePaletteSwatch = {
   _type: "sanity.imagePaletteSwatch";
   background?: string;
@@ -625,7 +747,7 @@ export type SanityAssetSourceData = {
   url?: string;
 };
 
-export type AllSanitySchemaTypes = CallToAction | Link | InfoSection | BlockContent | Hero | TeamMember | About | CaseStudy | Project | Page | Post | Person | Settings | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageHotspot | SanityImageCrop | SanityFileAsset | SanityImageAsset | SanityImageMetadata | Geopoint | Slug | SanityAssetSourceData;
+export type AllSanitySchemaTypes = CallToAction | Link | InfoSection | BlockContent | Hero | TeamMember | About | CaseStudy | Project | Page | Post | Person | Settings | SanityAssistInstructionTask | SanityAssistTaskStatus | SanityAssistSchemaTypeAnnotations | SanityAssistOutputType | SanityAssistOutputField | SanityAssistInstructionContext | AssistInstructionContext | SanityAssistInstructionUserInput | SanityAssistInstructionPrompt | SanityAssistInstructionFieldRef | SanityAssistInstruction | SanityAssistSchemaTypeField | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageHotspot | SanityImageCrop | SanityFileAsset | SanityImageAsset | SanityImageMetadata | Geopoint | Slug | SanityAssetSourceData;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./sanity/lib/queries.ts
 // Variable: settingsQuery
@@ -842,7 +964,7 @@ export type AllPostsQueryResult = Array<{
   } | null;
 }>;
 // Variable: AllTeamMembersQuery
-// Query: *[_type == "teamMember"]{   _id, name, slug, role, bio, image }
+// Query: *[_type == "teamMember"] | order(    select(      role == "Creative Director" => 0,      role == "Chief Operating Officer" => 1,      role == "Software Engineer" => 2,      role == "Admin" => 3,      role == "Brand Designer" => 4,      defined(role) == false => 99,      99    ) asc,    string::lower(name) asc  ) {     _id, name, slug, role, bio, image   }
 export type AllTeamMembersQueryResult = Array<{
   _id: string;
   name: string;
@@ -1062,13 +1184,23 @@ export type MorePostsQueryResult = Array<{
   } | null;
 }>;
 // Variable: AboutQuery
-// Query: *[_type == "about"][0] {    content[]{    ...,    markDefs[]{      ...,        _type == "link" => {    "page": page->slug.current,    "post": post->slug.current  }    }  },     _id, title, slug, content, teamMembers[] { name, role, bio, image, "projectVideos": projectVideos[]{    title,    "videoUrl": videoFile.asset->url,    description,    videoSettings  }, }  }
+// Query: *[_type == "about"][0] {    content[]{    ...,    markDefs[]{      ...,        _type == "link" => {    "page": page->slug.current,    "post": post->slug.current  }    }  },     _id, title, slug, content, "projectVideos": projectVideos[]{    title,    "videoUrl": videoFile.asset->url,    description,    videoSettings  },  }
 export type AboutQueryResult = {
   content: BlockContent | null;
   _id: string;
   title: string;
   slug: Slug | null;
-  teamMembers: null;
+  projectVideos: Array<{
+    title: null;
+    videoUrl: string | null;
+    description: null;
+    videoSettings: {
+      autoplay?: boolean;
+      loop?: boolean;
+      muted?: boolean;
+      controls?: boolean;
+    } | null;
+  }> | null;
 } | null;
 // Variable: AllPostsQuery
 // Query: *[_type == "post"] | order(date desc) [$start...$end] {    content[]{    ...,    markDefs[]{      ...,        _type == "link" => {    "page": page->slug.current,    "post": post->slug.current  }    }  },      _id,  "status": select(_originalId in path("drafts.**") => "draft", "published"),  "title": coalesce(title, "Untitled"),  "slug": slug.current,  excerpt,  coverImage,  "date": coalesce(date, _updatedAt),  "author": author->{firstName, lastName, picture},  }
@@ -1219,12 +1351,12 @@ declare module "@sanity/client" {
     "\n  *[_type == 'project' && slug.current == $slug][0]{\n    _id,\n  title,\n  \"slug\": slug.current,\n  excerpt,\n  featuredImage,\n  \"featuredVideo\": featuredVideo.asset->url,\n  heroMediaType,\n  projectType,\n  isFeatured,\n  client,\n  \"projectImages\": projectImages[]{\n    \"url\": asset->url,\n    \"alt\": alt\n  },\n  description,\n  \"projectVideos\": projectVideos[]{\n    title,\n    \"videoUrl\": videoFile.asset->url,\n    description,\n    videoSettings\n  },\n  externalVideos,\n  }\n": GetProjectQueryResult;
     "\n  *[_type == \"page\" || _type == \"post\" && defined(slug.current)] | order(_type asc) {\n    \"slug\": slug.current,\n    _type,\n    _updatedAt,\n  }\n": SitemapDataResult;
     "\n  *[_type == \"post\" && defined(slug.current)] | order(date desc, _updatedAt desc) {\n    \n  _id,\n  \"status\": select(_originalId in path(\"drafts.**\") => \"draft\", \"published\"),\n  \"title\": coalesce(title, \"Untitled\"),\n  \"slug\": slug.current,\n  excerpt,\n  coverImage,\n  \"date\": coalesce(date, _updatedAt),\n  \"author\": author->{firstName, lastName, picture},\n\n  }\n": AllPostsQueryResult;
-    "\n  *[_type == \"teamMember\"]{\n  \n _id,\n name,\n slug,\n role,\n bio,\n image\n \n}": AllTeamMembersQueryResult;
+    "\n  *[_type == \"teamMember\"] | order(\n    select(\n      role == \"Creative Director\" => 0,\n      role == \"Chief Operating Officer\" => 1,\n      role == \"Software Engineer\" => 2,\n      role == \"Admin\" => 3,\n      role == \"Brand Designer\" => 4,\n      defined(role) == false => 99,\n      99\n    ) asc,\n    string::lower(name) asc\n  ) {\n    \n _id,\n name,\n slug,\n role,\n bio,\n image\n \n  }\n": AllTeamMembersQueryResult;
     "\n  *[_type == 'teamMember' && slug.current == $slug][0]{\n _id,\n name,\n slug,\n role,\n bio,\n image\n  }\n": GetTeammemberQueryResult;
     "\n  *[_type == \"project\" && defined(slug.current) && isFeatured == true] | order(_updatedAt desc) {\n    \n  _id,\n  title,\n  \"slug\": slug.current,\n  excerpt,\n  featuredImage,\n  \"featuredVideo\": featuredVideo.asset->url,\n  heroMediaType,\n  projectType,\n  isFeatured,\n  client,\n  \"projectImages\": projectImages[]{\n    \"url\": asset->url,\n    \"alt\": alt\n  },\n  description,\n  \"projectVideos\": projectVideos[]{\n    title,\n    \"videoUrl\": videoFile.asset->url,\n    description,\n    videoSettings\n  },\n  externalVideos\n\n  }\n": FeaturedProjectsQueryResult;
     "\n  *[_type == \"project\" && defined(slug.current)] | order(_updatedAt desc) {\n    \n  _id,\n  title,\n  \"slug\": slug.current,\n  excerpt,\n  featuredImage,\n  \"featuredVideo\": featuredVideo.asset->url,\n  heroMediaType,\n  projectType,\n  isFeatured,\n  client,\n  \"projectImages\": projectImages[]{\n    \"url\": asset->url,\n    \"alt\": alt\n  },\n  description,\n  \"projectVideos\": projectVideos[]{\n    title,\n    \"videoUrl\": videoFile.asset->url,\n    description,\n    videoSettings\n  },\n  externalVideos\n\n  }\n": AllProjectsQueryResult;
     "\n  *[_type == \"post\" && _id != $skip && defined(slug.current)] | order(date desc, _updatedAt desc) [0...$limit] {\n    \n  _id,\n  \"status\": select(_originalId in path(\"drafts.**\") => \"draft\", \"published\"),\n  \"title\": coalesce(title, \"Untitled\"),\n  \"slug\": slug.current,\n  excerpt,\n  coverImage,\n  \"date\": coalesce(date, _updatedAt),\n  \"author\": author->{firstName, lastName, picture},\n\n  }\n": MorePostsQueryResult;
-    "\n  *[_type == \"about\"][0] {\n    content[]{\n    ...,\n    markDefs[]{\n      ...,\n      \n  _type == \"link\" => {\n    \"page\": page->slug.current,\n    \"post\": post->slug.current\n  }\n\n    }\n  },\n    \n _id,\n title,\n slug,\n content,\n teamMembers[] {\n name,\n role,\n bio,\n image,\n \"projectVideos\": projectVideos[]{\n    title,\n    \"videoUrl\": videoFile.asset->url,\n    description,\n    videoSettings\n  },\n }\n\n  }\n": AboutQueryResult;
+    "\n  *[_type == \"about\"][0] {\n    content[]{\n    ...,\n    markDefs[]{\n      ...,\n      \n  _type == \"link\" => {\n    \"page\": page->slug.current,\n    \"post\": post->slug.current\n  }\n\n    }\n  },\n    \n _id,\n title,\n slug,\n content,\n \"projectVideos\": projectVideos[]{\n    title,\n    \"videoUrl\": videoFile.asset->url,\n    description,\n    videoSettings\n  },\n\n  }\n": AboutQueryResult;
     "\n  *[_type == \"post\"] | order(date desc) [$start...$end] {\n    content[]{\n    ...,\n    markDefs[]{\n      ...,\n      \n  _type == \"link\" => {\n    \"page\": page->slug.current,\n    \"post\": post->slug.current\n  }\n\n    }\n  },\n    \n  _id,\n  \"status\": select(_originalId in path(\"drafts.**\") => \"draft\", \"published\"),\n  \"title\": coalesce(title, \"Untitled\"),\n  \"slug\": slug.current,\n  excerpt,\n  coverImage,\n  \"date\": coalesce(date, _updatedAt),\n  \"author\": author->{firstName, lastName, picture},\n\n  }\n": AllPostsQueryResult_2;
     "\n  *[_type == \"post\" && slug.current == $slug] [0] {\n    content[]{\n    ...,\n    markDefs[]{\n      ...,\n      \n  _type == \"link\" => {\n    \"page\": page->slug.current,\n    \"post\": post->slug.current\n  }\n\n    }\n  },\n    \n  _id,\n  \"status\": select(_originalId in path(\"drafts.**\") => \"draft\", \"published\"),\n  \"title\": coalesce(title, \"Untitled\"),\n  \"slug\": slug.current,\n  excerpt,\n  coverImage,\n  \"date\": coalesce(date, _updatedAt),\n  \"author\": author->{firstName, lastName, picture},\n\n  }\n": PostQueryResult;
     "\n  *[_type == \"post\" && defined(slug.current)]\n  {\"slug\": slug.current}\n": PostPagesSlugsResult;
