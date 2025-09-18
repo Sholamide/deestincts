@@ -125,7 +125,6 @@ export default function ContactPage() {
                   <div className="flex space-x-4">
                     <a target="_blank"
                       href="https://www.facebook.com/share/1FSHbzwvxD/?mibextid=LQQJ4d"
-                      className="rounded-full bg-white/5 p-3 text-white/70 hover:bg-[#C3122B]/10 hover:text-white transition-colors"
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -144,9 +143,7 @@ export default function ContactPage() {
                       <span className="sr-only">Facebook</span>
                     </a>
                     <a target="_blank"
-                      href="https://twitter.com/Deestincts_"
-                      className="rounded-full bg-white/5 p-3 text-white/70 hover:bg-[#C3122B]/10 hover:text-white transition-colors"
-                    >
+                      href="https://twitter.com/Deestincts_">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="24"
@@ -165,7 +162,6 @@ export default function ContactPage() {
                     </a>
                     <a target="_blank"
                       href="https://www.instagram.com/deestincts?igsh=MTZiMzdicGU3NTlwbw%3D%3D&utm_source=qr"
-                      className="rounded-full bg-white/5 p-3 text-white/70 hover:bg-[#C3122B]/10 hover:text-white transition-colors"
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -187,7 +183,6 @@ export default function ContactPage() {
                     </a>
                     <a target="_blank"
                       href="https://www.linkedin.com/company/deestincts/"
-                      className="rounded-full bg-white/5 p-3 text-white/70 hover:bg-[#C3122B]/10 hover:text-white transition-colors"
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"

@@ -1,21 +1,199 @@
-"use client"
+// // "use client";
 
-import Image from "next/image"
-import Link from "next/link"
-import { ArrowUpRight } from "lucide-react"
-import { urlForImage } from "@/sanity/lib/utils"
-import type { Image as SanityImage } from "@sanity/types"
-import { useMemo } from "react"
+// // import Image from "next/image";
+// // import Link from "next/link";
+// // import { ArrowUpRight } from "lucide-react";
+// // import { urlForImage } from "@/sanity/lib/utils";
+// // import type { Image as SanityImage } from "@sanity/types";
+// // import { useMemo } from "react";
+
+// // interface ProjectCardProps {
+// //   title: string;
+// //   excerpt: string;
+// //   client?: { name: string };
+// //   projectType: string[];
+// //   featuredImage: string | SanityImage;
+// //   slug?: string;
+// //   heroMediaType?: "image" | "video";
+// //   featuredVideo?: string;
+// // }
+
+// // export function ProjectCard({
+// //   title,
+// //   excerpt,
+// //   client,
+// //   projectType,
+// //   featuredImage,
+// //   slug,
+// //   heroMediaType = "image",
+// //   featuredVideo,
+// // }: ProjectCardProps) {
+// //   const imageUrl = useMemo(() => {
+// //     if (typeof featuredImage === "string") return featuredImage;
+// //     return urlForImage(featuredImage)?.url() ?? "/placeholder.svg?height=600&width=800";
+// //   }, [featuredImage]);
+
+// //   const displayCategory =
+// //     projectType && projectType.length > 0 ? projectType[0] : "Uncategorized";
+
+// //   return (
+// //     <Link href={`/projects/${slug ?? ""}`} className="group block">
+// //       <div className="relative w-full rounded-2xl overflow-hidden bg-zinc-900 shadow-md transition-all duration-300">
+// //         {/* Media Section */}
+// //         <div className="relative w-full h-[220px] sm:h-[280px] md:aspect-[4/3]">
+// //           {heroMediaType === "video" && featuredVideo ? (
+// //             <video
+// //               src={featuredVideo}
+// //               className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 rounded-t-2xl"
+// //               autoPlay
+// //               loop
+// //               muted
+// //               playsInline
+// //               preload="auto"
+// //             />
+// //           ) : (
+// //             <Image
+// //               src={imageUrl}
+// //               alt={title}
+// //               fill
+// //               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+// //               className="object-cover transition-transform duration-500 group-hover:scale-105 rounded-t-2xl"
+// //               priority
+// //             />
+// //           )}
+// //         </div>
+
+// //         {/* Content Section */}
+// //         <div className="p-4 flex flex-col bg-zinc-950 text-white gap-1 sm:gap-2">
+// //           <span className="inline-block rounded-full bg-white/10 px-3 py-1 text-xs font-medium w-fit">
+// //             {displayCategory}
+// //           </span>
+
+// //           <h3 className="text-lg sm:text-xl font-semibold leading-tight">
+// //             {title}
+// //           </h3>
+
+// //           <p className="text-sm text-white/80 line-clamp-2">{excerpt}</p>
+
+// //           {client?.name && (
+// //             <p className="text-xs text-white/60">Client: {client.name}</p>
+// //           )}
+
+// //           <span className="inline-flex items-center gap-1 text-sm font-medium text-white hover:text-[#C3122B] transition-colors mt-1">
+// //             View Project <ArrowUpRight className="w-4 h-4" />
+// //           </span>
+// //         </div>
+// //       </div>
+// //     </Link>
+// //   );
+// // }
+// "use client";
+
+// import Image from "next/image";
+// import Link from "next/link";
+// import { ArrowUpRight } from "lucide-react";
+// import { urlForImage } from "@/sanity/lib/utils";
+// import type { Image as SanityImage } from "@sanity/types";
+// import { useMemo } from "react";
+
+// interface ProjectCardProps {
+//   title: string;
+//   excerpt: string;
+//   client?: { name: string };
+//   projectType: string[];
+//   featuredImage: string | SanityImage;
+//   slug?: string;
+//   heroMediaType?: "image" | "video";
+//   featuredVideo?: string;
+// }
+
+// export function ProjectCard({
+//   title,
+//   excerpt,
+//   client,
+//   projectType,
+//   featuredImage,
+//   slug,
+//   heroMediaType = "image",
+//   featuredVideo,
+// }: ProjectCardProps) {
+//   const imageUrl = useMemo(() => {
+//     if (typeof featuredImage === "string") return featuredImage;
+//     return urlForImage(featuredImage)?.url() ?? "/placeholder.svg?height=600&width=800";
+//   }, [featuredImage]);
+
+//   const displayCategory =
+//     projectType && projectType.length > 0 ? projectType[0] : "Uncategorized";
+
+//   return (
+//     <Link href={`/projects/${slug ?? ""}`} className="group block">
+//       <div className="relative w-full rounded-2xl overflow-hidden bg-zinc-900 shadow-md transition-all duration-300">
+//         {/* Media Section */}
+//         <div className="relative w-full h-[220px] sm:h-[280px] md:aspect-[4/3]">
+//           {heroMediaType === "video" && featuredVideo ? (
+//             <video
+//               src={featuredVideo}
+//               className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 rounded-t-2xl"
+//               autoPlay
+//               loop
+//               muted
+//               playsInline
+//               preload="auto"
+//             />
+//           ) : (
+//             <Image
+//               src={imageUrl}
+//               alt={title}
+//               fill
+//               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+//               className="object-cover transition-transform duration-500 group-hover:scale-105 rounded-t-2xl"
+//               priority
+//             />
+//           )}
+//         </div>
+
+//         {/* Content Section */}
+//         <div className="p-4 flex flex-col bg-zinc-950 text-white gap-1 sm:gap-2">
+//           <span className="inline-block rounded-full bg-white/10 px-3 py-1 text-xs font-medium w-fit">
+//             {displayCategory}
+//           </span>
+
+//           <h3 className="text-lg sm:text-xl font-semibold leading-tight">
+//             {title}
+//           </h3>
+
+//           <p className="text-sm text-white/80 line-clamp-2">{excerpt}</p>
+
+//           {client?.name && (
+//             <p className="text-xs text-white/60">Client: {client.name}</p>
+//           )}
+
+//           <span className="inline-flex items-center gap-1 text-sm font-medium text-white hover:text-[#C3122B] transition-colors mt-1">
+//             View Project <ArrowUpRight className="w-4 h-4" />
+//           </span>
+//         </div>
+//       </div>
+//     </Link>
+//   );
+// }
+"use client";
+
+import Image from "next/image";
+import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
+import { urlForImage } from "@/sanity/lib/utils";
+import type { Image as SanityImage } from "@sanity/types";
+import { useMemo } from "react";
 
 interface ProjectCardProps {
-  title: string
-  excerpt: string
-  client?: any
-  projectType: string[]
-  featuredImage: string | SanityImage
-  slug?: string
-  heroMediaType?: "image" | "video"
-  featuredVideo?: any
+  title: string;
+  excerpt: string;
+  client?: { name: string };
+  projectType: string[];
+  featuredImage: string | SanityImage;
+  slug?: string;
+  heroMediaType?: "image" | "video";
+  featuredVideo?: string;
 }
 
 export function ProjectCard({
@@ -29,59 +207,63 @@ export function ProjectCard({
   featuredVideo,
 }: ProjectCardProps) {
   const imageUrl = useMemo(() => {
-    if (typeof featuredImage === "string") {
-      return featuredImage
-    }
+    if (typeof featuredImage === "string") return featuredImage;
+    return urlForImage(featuredImage)?.url() ?? "/placeholder.svg?height=600&width=800";
+  }, [featuredImage]);
 
-    const builder = urlForImage(featuredImage)
-    return builder?.url() ?? "/placeholder.svg?height=600&width=800" // Fallback placeholder
-  }, [featuredImage])
-
-  const displayCategory = projectType && projectType.length > 0 ? projectType[0] : "Uncategorized"
+  const displayCategory =
+    projectType && projectType.length > 0 ? projectType[0] : "Uncategorized";
 
   return (
-    <Link href={`/projects/${slug}`} className="group block">
-      <div className="relative w-full aspect-[4/3] overflow-hidden transition-all duration-300 grid grid-rows-[3fr_1fr] rounded-2xl">
-        <div className="relative w-full h-full rounded-2xl overflow-hidden">
+    <Link href={`/projects/${slug ?? ""}`} className="group block w-full">
+      <div className="relative w-full rounded-2xl overflow-hidden bg-zinc-900 shadow-sm transition-all duration-300 flex flex-col">
+        {/* Media Section */}
+        <div className="relative w-full h-[220px] sm:h-[280px] md:aspect-[4/3]">
           {heroMediaType === "video" && featuredVideo ? (
-            <video
-              src={featuredVideo}
-              className="w-full h-full object-cover rounded-2xl transition-transform duration-500 group-hover:scale-105"
-              autoPlay={true}
-              loop={true}
-              muted={true}
-              playsInline
-              controls={false}
-              preload="auto"
-            >
-              Your browser does not support the video tag.
-            </video>
+            <div className="w-full h-full overflow-hidden rounded-t-2xl">
+              <video
+                src={featuredVideo}
+                className="w-full h-full object-cover rounded-t-2xl transition-transform duration-500 group-hover:scale-105"
+                autoPlay
+                loop
+                muted
+                playsInline
+                preload="auto"
+              />
+            </div>
           ) : (
             <Image
               src={imageUrl}
               alt={title}
               fill
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-              className="object-cover transition-transform rounded-2xl duration-500 group-hover:scale-105"
+              className="object-cover rounded-t-2xl transition-transform duration-500 group-hover:scale-105"
               priority
             />
           )}
         </div>
 
-        <div className="p-4 flex flex-col justify-center">
-          <div className="mb-2 inline-block rounded-full  px-3 py-1 text-xs font-medium">
+        {/* Content Section */}
+        <div className="p-4 flex flex-col gap-2 bg-zinc-950 text-white">
+          <span className="inline-block rounded-full bg-white/10 px-3 py-1 text-xs font-medium w-fit">
             {displayCategory}
-          </div>
-          <h3 className="mb-1 text-xl font-bold text-white">{title}</h3>
-          <p className="mb-2 text-sm text-white/90 line-clamp-2">{excerpt}</p> {/* line-clamp for consistent height */}
-          {client && <p className="mb-4 text-xs text-white/70 block">
-            {client.name}
-          </p>}
+          </span>
+
+          <h3 className="text-lg sm:text-xl font-semibold leading-tight">
+            {title}
+          </h3>
+
+          <p className="text-sm text-white/80 line-clamp-2">{excerpt}</p>
+
+          {client?.name && (
+            <p className="text-xs text-white/60">Client: {client.name}</p>
+          )}
+
           <span className="inline-flex items-center gap-1 text-sm font-medium text-white hover:text-[#C3122B] transition-colors">
-            View Project <ArrowUpRight className="h-4 w-4" />
+            View Project <ArrowUpRight className="w-4 h-4" />
           </span>
         </div>
       </div>
     </Link>
-  )
+  );
 }
