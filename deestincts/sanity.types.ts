@@ -1008,7 +1008,7 @@ export type GetTeammemberQueryResult = {
   } | null;
 } | null;
 // Variable: featuredProjectsQuery
-// Query: *[_type == "project" && defined(slug.current) && isFeatured == true] | order(_updatedAt desc) {      _id,  title,  "slug": slug.current,  excerpt,  featuredImage,  "featuredVideo": featuredVideo.asset->url,  heroMediaType,  projectType,  isFeatured,  client,  "projectImages": projectImages[]{    "url": asset->url,    "alt": alt  },  description,  "projectVideos": projectVideos[]{    title,    "videoUrl": videoFile.asset->url,    description,    videoSettings  },  externalVideos  }
+// Query: *[_type == "project" && defined(slug.current) && isFeatured == true] | order(_updatedAt desc) {      _id,  title,  "slug": slug.current,  excerpt,  featuredImage,  "featuredVideo": featuredVideo.asset->url,  heroMediaType,  projectType,  isFeatured,  client,  "projectImages": projectImages[]{},  description,  "projectVideos": projectVideos[]{    title,    "videoUrl": videoFile.asset->url,    description,    videoSettings  },  externalVideos  }
 export type FeaturedProjectsQueryResult = Array<{
   _id: string;
   title: string;
@@ -1035,10 +1035,7 @@ export type FeaturedProjectsQueryResult = Array<{
     name: string;
     url: string;
   } | null;
-  projectImages: Array<{
-    url: string | null;
-    alt: string;
-  }> | null;
+  projectImages: Array<{}> | null;
   description: Array<{
     children?: Array<{
       marks?: Array<string>;
@@ -1076,7 +1073,7 @@ export type FeaturedProjectsQueryResult = Array<{
   }> | null;
 }>;
 // Variable: AllProjectsQuery
-// Query: *[_type == "project" && defined(slug.current)] | order(_updatedAt desc) {      _id,  title,  "slug": slug.current,  excerpt,  featuredImage,  "featuredVideo": featuredVideo.asset->url,  heroMediaType,  projectType,  isFeatured,  client,  "projectImages": projectImages[]{    "url": asset->url,    "alt": alt  },  description,  "projectVideos": projectVideos[]{    title,    "videoUrl": videoFile.asset->url,    description,    videoSettings  },  externalVideos  }
+// Query: *[_type == "project" && defined(slug.current)] | order(_updatedAt desc) {      _id,  title,  "slug": slug.current,  excerpt,  featuredImage,  "featuredVideo": featuredVideo.asset->url,  heroMediaType,  projectType,  isFeatured,  client,  "projectImages": projectImages[]{},  description,  "projectVideos": projectVideos[]{    title,    "videoUrl": videoFile.asset->url,    description,    videoSettings  },  externalVideos  }
 export type AllProjectsQueryResult = Array<{
   _id: string;
   title: string;
@@ -1103,10 +1100,7 @@ export type AllProjectsQueryResult = Array<{
     name: string;
     url: string;
   } | null;
-  projectImages: Array<{
-    url: string | null;
-    alt: string;
-  }> | null;
+  projectImages: Array<{}> | null;
   description: Array<{
     children?: Array<{
       marks?: Array<string>;
@@ -1353,8 +1347,8 @@ declare module "@sanity/client" {
     "\n  *[_type == \"post\" && defined(slug.current)] | order(date desc, _updatedAt desc) {\n    \n  _id,\n  \"status\": select(_originalId in path(\"drafts.**\") => \"draft\", \"published\"),\n  \"title\": coalesce(title, \"Untitled\"),\n  \"slug\": slug.current,\n  excerpt,\n  coverImage,\n  \"date\": coalesce(date, _updatedAt),\n  \"author\": author->{firstName, lastName, picture},\n\n  }\n": AllPostsQueryResult;
     "\n  *[_type == \"teamMember\"] | order(\n    select(\n      role == \"Creative Director\" => 0,\n      role == \"Chief Operating Officer\" => 1,\n      role == \"Software Engineer\" => 2,\n      role == \"Admin\" => 3,\n      role == \"Brand Designer\" => 4,\n      defined(role) == false => 99,\n      99\n    ) asc,\n    string::lower(name) asc\n  ) {\n    \n _id,\n name,\n slug,\n role,\n bio,\n image\n \n  }\n": AllTeamMembersQueryResult;
     "\n  *[_type == 'teamMember' && slug.current == $slug][0]{\n _id,\n name,\n slug,\n role,\n bio,\n image\n  }\n": GetTeammemberQueryResult;
-    "\n  *[_type == \"project\" && defined(slug.current) && isFeatured == true] | order(_updatedAt desc) {\n    \n  _id,\n  title,\n  \"slug\": slug.current,\n  excerpt,\n  featuredImage,\n  \"featuredVideo\": featuredVideo.asset->url,\n  heroMediaType,\n  projectType,\n  isFeatured,\n  client,\n  \"projectImages\": projectImages[]{\n    \"url\": asset->url,\n    \"alt\": alt\n  },\n  description,\n  \"projectVideos\": projectVideos[]{\n    title,\n    \"videoUrl\": videoFile.asset->url,\n    description,\n    videoSettings\n  },\n  externalVideos\n\n  }\n": FeaturedProjectsQueryResult;
-    "\n  *[_type == \"project\" && defined(slug.current)] | order(_updatedAt desc) {\n    \n  _id,\n  title,\n  \"slug\": slug.current,\n  excerpt,\n  featuredImage,\n  \"featuredVideo\": featuredVideo.asset->url,\n  heroMediaType,\n  projectType,\n  isFeatured,\n  client,\n  \"projectImages\": projectImages[]{\n    \"url\": asset->url,\n    \"alt\": alt\n  },\n  description,\n  \"projectVideos\": projectVideos[]{\n    title,\n    \"videoUrl\": videoFile.asset->url,\n    description,\n    videoSettings\n  },\n  externalVideos\n\n  }\n": AllProjectsQueryResult;
+    "\n  *[_type == \"project\" && defined(slug.current) && isFeatured == true] | order(_updatedAt desc) {\n    \n  _id,\n  title,\n  \"slug\": slug.current,\n  excerpt,\n  featuredImage,\n  \"featuredVideo\": featuredVideo.asset->url,\n  heroMediaType,\n  projectType,\n  isFeatured,\n  client,\n  \"projectImages\": projectImages[]{},\n  description,\n  \"projectVideos\": projectVideos[]{\n    title,\n    \"videoUrl\": videoFile.asset->url,\n    description,\n    videoSettings\n  },\n  externalVideos\n\n  }\n": FeaturedProjectsQueryResult;
+    "\n  *[_type == \"project\" && defined(slug.current)] | order(_updatedAt desc) {\n    \n  _id,\n  title,\n  \"slug\": slug.current,\n  excerpt,\n  featuredImage,\n  \"featuredVideo\": featuredVideo.asset->url,\n  heroMediaType,\n  projectType,\n  isFeatured,\n  client,\n  \"projectImages\": projectImages[]{},\n  description,\n  \"projectVideos\": projectVideos[]{\n    title,\n    \"videoUrl\": videoFile.asset->url,\n    description,\n    videoSettings\n  },\n  externalVideos\n\n  }\n": AllProjectsQueryResult;
     "\n  *[_type == \"post\" && _id != $skip && defined(slug.current)] | order(date desc, _updatedAt desc) [0...$limit] {\n    \n  _id,\n  \"status\": select(_originalId in path(\"drafts.**\") => \"draft\", \"published\"),\n  \"title\": coalesce(title, \"Untitled\"),\n  \"slug\": slug.current,\n  excerpt,\n  coverImage,\n  \"date\": coalesce(date, _updatedAt),\n  \"author\": author->{firstName, lastName, picture},\n\n  }\n": MorePostsQueryResult;
     "\n  *[_type == \"about\"][0] {\n    content[]{\n    ...,\n    markDefs[]{\n      ...,\n      \n  _type == \"link\" => {\n    \"page\": page->slug.current,\n    \"post\": post->slug.current\n  }\n\n    }\n  },\n    \n _id,\n title,\n slug,\n content,\n \"projectVideos\": projectVideos[]{\n    title,\n    \"videoUrl\": videoFile.asset->url,\n    description,\n    videoSettings\n  },\n\n  }\n": AboutQueryResult;
     "\n  *[_type == \"post\"] | order(date desc) [$start...$end] {\n    content[]{\n    ...,\n    markDefs[]{\n      ...,\n      \n  _type == \"link\" => {\n    \"page\": page->slug.current,\n    \"post\": post->slug.current\n  }\n\n    }\n  },\n    \n  _id,\n  \"status\": select(_originalId in path(\"drafts.**\") => \"draft\", \"published\"),\n  \"title\": coalesce(title, \"Untitled\"),\n  \"slug\": slug.current,\n  excerpt,\n  coverImage,\n  \"date\": coalesce(date, _updatedAt),\n  \"author\": author->{firstName, lastName, picture},\n\n  }\n": AllPostsQueryResult_2;

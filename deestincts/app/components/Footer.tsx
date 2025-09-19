@@ -7,16 +7,6 @@ export default function Footer() {
       <div className="container px-4 py-16 md:px-6">
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
           <div>
-            {/* <Link href="/" className="mb-4 flex items-center gap-2">
-              <Image
-                src="/images/deestincts.png"
-                alt="Deestincts Logo"
-                width={300}
-                height={100}
-                className="h-10 w-auto"
-                priority
-              />
-            </Link> */}
             <p className="text-sm text-white/70">
               Crafting exceptional digital experiences that inspire and drive results.
             </p>

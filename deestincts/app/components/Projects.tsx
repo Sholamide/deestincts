@@ -2,7 +2,6 @@
 
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import { Project } from '@/lib/types'
 import SanityImage from './sanity-image'
 
 interface ProjectsSectionProps {

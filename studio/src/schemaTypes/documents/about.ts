@@ -49,7 +49,7 @@ export const about = defineType({
               title: 'Video File',
               type: 'file',
               options: {
-                accept: 'video/mp4,video/webm,image/gif',
+                accept: 'video/mp4,video/webm,video/quicktime,image/gif',
               },
               validation: (rule) => rule.required(),
             }),

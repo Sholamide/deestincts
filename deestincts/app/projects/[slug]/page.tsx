@@ -9,6 +9,7 @@ import Head from "next/head";
 import Link from "next/link";
 import CustomPortableText from "@/app/components/PortableText";
 import { type PortableTextBlock } from "next-sanity";
+import SanityImage from "@/app/components/sanity-image";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -104,7 +105,6 @@ export default async function Page(props: Props) {
       <div className="">
         {/* Hero Section */}
         <section className="relative h-screen flex items-center justify-center overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-800 to-black opacity-60" />
           <Image
             src={imageUrl}
             alt={project.title || "Featured image"}
@@ -168,111 +168,38 @@ export default async function Page(props: Props) {
         </section>
 
         {/* Media Gallery */}
-        <section className="py-10 bg-gradient-to-b from-white to-gray-50">
+        <section className="py-10">
           <div className="container mx-auto px-4">
-            {/* Mobile: Single Column */}
-            <div className="block lg:hidden space-y-6">
-              {allMedia.map((media, index) => {
-                const isImage = media.type === "image";
-                const title = isImage
-                  ? media.data.alt?.split(".")[0] || `Image ${index + 1}`
-                  : `Video ${index + 1}`;
-                let mediaUrl = isImage ? media.data.url : media.data.videoUrl;
-
-                if (isImage && !mediaUrl) {
-                  const builder = urlForImage(media.data);
-                  mediaUrl = builder?.url();
-                }
-
-                if (!mediaUrl) return null;
-
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {project.projectVideos &&
+                project.projectVideos.map((video: any, index: number) => {
+                  return (
+                    <video key={index}
+                      src={video.videoUrl}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 rounded-xl"
+                      autoPlay={true}
+                      loop={true}
+                      muted={true}
+                      playsInline
+                      controls={false}
+                      preload="auto"
+                    >
+                      Your browser does not support the video tag.
+                    </video>
+                  )
+                })}
+              {project.projectImages && project.projectImages.map((image: any, index: number) => {
                 return (
-                  <div key={index} className="relative rounded-2xl overflow-hidden shadow-md">
-                    {isImage ? (
-                      <Image
-                        src={mediaUrl}
-                        alt={media.data.alt || title}
-                        width={1200}
-                        height={800}
-                        className="w-full h-auto object-cover rounded-2xl transition-all duration-700"
-                        priority={index < 3}
-                      />
-                    ) : (
-                      <div className="relative w-full aspect-video rounded-2xl overflow-hidden">
-                        <video
-                          src={mediaUrl}
-                          className="w-full h-full object-cover rounded-2xl"
-                          autoPlay
-                          loop
-                          muted
-                          playsInline
-                          controls={false}
-                          preload="auto"
-                        />
-                      </div>
-                    )}
+                  <div key={index}>
+                    <Image
+                      src={image.url}
+                      alt={image.alt} width={1200} height={800}
+                      className="rounded-xl"
+                    />
                   </div>
-                );
+                )
               })}
             </div>
-
-            {/* Desktop: Masonry Grid */}
-            <div className="hidden lg:block">
-              <div className="columns-1 lg:columns-2 xl:columns-3 gap-4 space-y-4">
-                {allMedia.map((media, index) => {
-                  const isImage = media.type === "image";
-                  const title = isImage
-                    ? media.data.alt?.split(".")[0] || `Image ${index + 1}`
-                    : `Video ${index + 1}`;
-                  let mediaUrl = isImage ? media.data.url : media.data.videoUrl;
-
-                  if (isImage && !mediaUrl) {
-                    const builder = urlForImage(media.data);
-                    mediaUrl = builder?.url();
-                  }
-
-                  if (!mediaUrl) return null;
-
-                  const isLarge = index % 5 === 0;
-                  const isMedium = index % 3 === 0;
-
-                  return (
-                    <div
-                      key={index}
-                      className={`break-inside-avoid relative group rounded-2xl overflow-hidden shadow-xl transition-all duration-300 hover:-translate-y-1`}
-                    >
-                      {isImage ? (
-                        <Image
-                          src={mediaUrl}
-                          alt={media.data.alt || title}
-                          width={1200}
-                          height={800}
-                          className={`w-full h-auto object-cover rounded-2xl transition duration-700 ${isLarge ? "filter contrast-110 saturate-110" : ""
-                            }`}
-                          priority={index < 3}
-                        />
-                      ) : (
-                        <div className="w-full aspect-video rounded-2xl overflow-hidden">
-                          <video
-                            src={mediaUrl}
-                            className={`w-full h-full object-cover rounded-2xl transition-transform duration-500 ${isLarge ? "filter contrast-110 saturate-110" : ""
-                              }`}
-                            autoPlay
-                            loop
-                            muted
-                            playsInline
-                            controls={false}
-                            preload="auto"
-                          />
-                        </div>
-                      )}
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-
-            {/* No media fallback */}
             {allMedia.length === 0 && (
               <div className="text-center py-16">
                 <div className="w-24 h-24 mx-auto mb-6 rounded-full bg-gray-100 flex items-center justify-center">
@@ -286,7 +213,7 @@ export default async function Page(props: Props) {
                       strokeLinecap="round"
                       strokeLinejoin="round"
                       strokeWidth={2}
-                      d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+                      d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2 2v12a2 2 0 002 2z"
                     />
                   </svg>
                 </div>
@@ -300,129 +227,6 @@ export default async function Page(props: Props) {
             )}
           </div>
         </section>
-        {/* <section className="py-10 bg-gradient-to-b from-white to-gray-50">
-          <div className="container mx-auto px-4">
-            <div className="block lg:hidden space-y-2">
-              {allMedia.map((media, index) => {
-                const isImage = media.type === "image";
-                const title = isImage
-                  ? media.data.alt?.split(".")[0] || `Image ${index + 1}`
-                  : `Video ${index + 1}`;
-                let mediaUrl = isImage ? media.data.url : media.data.videoUrl;
-
-                if (isImage && !mediaUrl) {
-                  const builder = urlForImage(media.data);
-                  mediaUrl = builder?.url();
-                }
-
-                if (!mediaUrl) return null;
-
-                return (
-                  <div key={index} className="relative group">
-                    <div className="overflow-hidden rounded-2xl shadow-xl">
-                      {isImage ? (
-                        <Image
-                          src={mediaUrl}
-                          alt={media.data.alt || title}
-                          width={1200}
-                          height={800}
-                          className="w-full h-auto object-cover rounded-md transition-all duration-700"
-                          priority={index < 3}
-                        />
-                      ) : (
-                        <video
-                          src={mediaUrl}
-                          className="w-full h-full object-cover rounded-md transition-transform duration-500"
-                          autoPlay
-                          loop
-                          muted
-                          playsInline
-                          controls={false}
-                          preload="auto"
-                          style={{ aspectRatio: '16/9' }}
-                        />
-                      )}
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-            <div className="hidden lg:block">
-              <div className="columns-1 lg:columns-2 xl:columns-3 gap-4 space-y-2">
-                {allMedia.map((media, index) => {
-                  const isImage = media.type === "image";
-                  const title = isImage
-                    ? media.data.alt?.split(".")[0] || `Image ${index + 1}`
-                    : `Video ${index + 1}`;
-                  let mediaUrl = isImage ? media.data.url : media.data.videoUrl;
-
-                  if (isImage && !mediaUrl) {
-                    const builder = urlForImage(media.data);
-                    mediaUrl = builder?.url();
-                  }
-
-                  if (!mediaUrl) return null;
-
-                  const isLarge = index % 5 === 0;
-                  const isMedium = index % 3 === 0;
-
-                  return (
-                    <div
-                      key={index}
-                      className={`
-                      relative group break-inside-avoid mb-8
-                      ${isLarge ? 'lg:mb-12' : isMedium ? 'lg:mb-10' : 'lg:mb-8'}
-                    `}
-                    >
-                      <div className="relative overflow-hidden rounded-2xl shadow-2xl transition-all duration-500 hover:-translate-y-1">
-                        {isImage ? (
-                          <Image
-                            src={mediaUrl}
-                            alt={media.data.alt || title}
-                            width={1200}
-                            height={800}
-                            className={`
-                            w-full h-auto object-cover rounded-2xl  transition-all duration-700
-                            ${isLarge ? 'filter contrast-110 saturate-110' : ''}
-                          `}
-                            priority={index < 3}
-                          />
-                        ) : (
-                          <video
-                            src={mediaUrl}
-                            className={`
-                            w-full h-auto object-cover rounded-2xl 
-                            transition-transform duration-500
-                            ${isLarge ? 'filter contrast-110 saturate-110' : ''}
-                          `}
-                            autoPlay
-                            loop
-                            muted
-                            playsInline
-                            controls={false}
-                            preload="auto"
-                          />
-                        )}
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-
-            {allMedia.length === 0 && (
-              <div className="text-center py-16">
-                <div className="w-24 h-24 mx-auto mb-6 rounded-full bg-gray-100 flex items-center justify-center">
-                  <svg className="w-12 h-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                  </svg>
-                </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">No media found</h3>
-                <p className="text-gray-600">Project images and videos will appear here once uploaded.</p>
-              </div>
-            )}
-          </div>
-        </section> */}
       </div>
     </div>
   );

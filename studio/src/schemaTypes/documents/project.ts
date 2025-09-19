@@ -1,5 +1,5 @@
-import {DocumentIcon} from '@sanity/icons'
-import {defineField, defineType} from 'sanity'
+import { DocumentIcon } from '@sanity/icons'
+import { defineField, defineType } from 'sanity'
 
 export const project = defineType({
   name: 'project',
@@ -53,7 +53,7 @@ export const project = defineType({
       type: 'file',
       description: 'Upload MP4, WebM, or GIF files for animations',
       options: {
-        accept: 'video/mp4,video/webm,image/gif',
+        accept: 'video/mp4,video/webm,video/quicktime,image/gif',
       },
       fields: [
         {
@@ -93,8 +93,8 @@ export const project = defineType({
       description: 'Choose whether to display image or video as the main hero media',
       options: {
         list: [
-          {title: 'Image', value: 'image'},
-          {title: 'Video/Animation', value: 'video'},
+          { title: 'Image', value: 'image' },
+          { title: 'Video/Animation', value: 'video' },
         ],
         layout: 'radio',
       },
@@ -105,13 +105,13 @@ export const project = defineType({
       name: 'projectType',
       title: 'Project Type',
       type: 'array',
-      of: [{type: 'string'}],
+      of: [{ type: 'string' }],
       options: {
         list: [
-          {title: 'Web Design', value: 'Web Design'},
-          {title: 'Branding', value: 'Branding'},
-          {title: 'UI/UX Design', value: 'UI/UX Design'},
-          {title: 'Animation', value: 'Animation'}, // Added Animation type
+          { title: 'Web Design', value: 'Web Design' },
+          { title: 'Branding', value: 'Branding' },
+          { title: 'UI/UX Design', value: 'UI/UX Design' },
+          { title: 'Animation', value: 'Animation' }, // Added Animation type
         ],
       },
       validation: (rule) => rule.required(),
@@ -126,11 +126,11 @@ export const project = defineType({
       name: 'client',
       title: 'Client',
       type: 'document',
-       fields:[
+      fields: [
         defineField({
-         name: 'name',
-         title: 'Client Name',
-         type: 'string',
+          name: 'name',
+          title: 'Client Name',
+          type: 'string',
           validation: (rule) => rule.required(),
         }),
         defineField({
@@ -140,13 +140,13 @@ export const project = defineType({
           description: 'YouTube, Instagram, website, or any URL that showcases work done for them',
           validation: (rule) => rule.required(),
         }),
-       ]
+      ]
     }),
     defineField({
       name: 'description',
       title: 'Description',
       type: 'array',
-      of: [{type: 'block'}],
+      of: [{ type: 'block' }],
     }),
     defineField({
       name: 'projectImages',
@@ -190,7 +190,7 @@ export const project = defineType({
               title: 'Video File',
               type: 'file',
               options: {
-                accept: 'video/mp4,video/webm,image/gif',
+                accept: 'video/mp4,video/webm,video/quicktime,image/gif',
               },
               validation: (rule) => rule.required(),
             }),
@@ -237,7 +237,7 @@ export const project = defineType({
               title: 'title',
               subtitle: 'description',
             },
-            prepare({title, subtitle}) {
+            prepare({ title, subtitle }) {
               return {
                 title: title || 'Untitled Video',
                 subtitle: subtitle || 'No description',
@@ -276,9 +276,9 @@ export const project = defineType({
               type: 'string',
               options: {
                 list: [
-                  {title: 'YouTube', value: 'youtube'},
-                  {title: 'Vimeo', value: 'vimeo'},
-                  {title: 'Other', value: 'other'},
+                  { title: 'YouTube', value: 'youtube' },
+                  { title: 'Vimeo', value: 'vimeo' },
+                  { title: 'Other', value: 'other' },
                 ],
               },
             }),
@@ -288,7 +288,7 @@ export const project = defineType({
               title: 'title',
               subtitle: 'platform',
             },
-            prepare({title, subtitle}) {
+            prepare({ title, subtitle }) {
               return {
                 title,
                 subtitle: `${subtitle || 'External'} video`,
@@ -302,7 +302,7 @@ export const project = defineType({
       name: 'projectBuilder',
       title: 'Project builder',
       type: 'array',
-      of: [{type: 'callToAction'}, {type: 'infoSection'}],
+      of: [{ type: 'callToAction' }, { type: 'infoSection' }],
       options: {
         insertMenu: {
           // Configure the "Add Item" menu to display a thumbnail preview of the content type. https://www.sanity.io/docs/array-type#efb1fe03459d
@@ -325,7 +325,7 @@ export const project = defineType({
       excerpt: 'excerpt',
       heroMediaType: 'heroMediaType',
     },
-    prepare({title, client, media, excerpt, heroMediaType}) {
+    prepare({ title, client, media, excerpt, heroMediaType }) {
       return {
         title,
         subtitle: `${excerpt || client || ''} ${heroMediaType === 'video' ? '🎬' : ''}`,

@@ -157,7 +157,7 @@ export default function CustomPortableText({
       {isLongText && (
         <button
           onClick={() => setExpanded(!expanded)}
-          className="mt-4 p-2 rounded-[5px] bg-gray-500 text-black uppercase hover:underline text-sm"
+          className="mt-4 p-2 rounded-[5px] bg-black text-white uppercase hover:underline text-sm"
         >
           {expanded ? "Collapse" : "Read more"}
         </button>

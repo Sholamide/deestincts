@@ -54,10 +54,7 @@ const projectFields = /* groq */ `
   projectType,
   isFeatured,
   client,
-  "projectImages": projectImages[]{
-    "url": asset->url,
-    "alt": alt
-  },
+  "projectImages": projectImages[]{},
   description,
   "projectVideos": projectVideos[]{
     title,
