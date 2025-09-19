@@ -6,13 +6,6 @@ import { Button } from "../components/ui/button"
 export default async function ProjectsPage() {
   // Fetch all projects
   const allProjects = await getProjects()
-  // Helper to determine col-span for the "two projects, then one big project on the next line" pattern
-  const getProjectColSpan = (index: number) => {
-    if (index % 3 === 2) {
-      return "sm:col-span-2"
-    }
-    return "sm:col-span-1"
-  }
 
   return (
     <div className="flex min-h-screen flex-col bg-[#161519] text-white">
