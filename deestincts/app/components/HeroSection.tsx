@@ -129,14 +129,14 @@ export default function HeroSection({ projects }: HeroSectionProps) {
                                 </video>
                             ) : (
                                 <SanityImage
-                                aspectRatio="auto"
+                                // aspectRatio="auto"
+                                //     image={currentProject.featuredImage}
+                                //     className="pointer-events-none"
+                                //     priority={true}
+                                //     alt={currentProject.title}
+                                    aspectRatio="auto"
                                     image={currentProject.featuredImage}
-                                    className="pointer-events-none"
-                                    priority={true}
-                                    alt={currentProject.title}
-                                    // aspectRatio="auto"
-                                    // image={currentProject.featuredImage}
-                                    // className="object-contain transition-transform duration-500 group-hover:scale-105 pointer-events-none"
+                                    className="object-contain transition-transform duration-500 group-hover:scale-105 pointer-events-none"
                                 />
                             )}
                         </div>
