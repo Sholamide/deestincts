@@ -170,7 +170,7 @@ export default async function Page(props: Props) {
         {/* Media Gallery */}
         <section className="py-10">
           <div className="container mx-auto px-4">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {project.projectVideos &&
                 project.projectVideos.map((video: any, index: number) => {
                   return (
@@ -190,6 +190,19 @@ export default async function Page(props: Props) {
                 })}
               {project.projectImages && project.projectImages.map((image: any, index: number) => {
                 return (
+                  <div key={index} className="relative aspect-[4/3] overflow-hidden rounded-xl bg-gray-100 shadow-md hover:shadow-lg transition-all duration-300 group">
+                    <Image
+                      src={image.url}
+                      alt={image.alt || `Project image ${index + 1}`}
+                      fill
+                      className="object-cover transition-transform duration-300 group-hover:scale-105"
+                      sizes="(min-width: 768px) 50vw, (min-width: 1024px) 33vw, 100vw"
+                    />
+                  </div>
+                )
+              })}
+              {/* {project.projectImages && project.projectImages.map((image: any, index: number) => {
+                return (
                   <div key={index}>
                     <Image
                       src={image.url}
@@ -198,7 +211,7 @@ export default async function Page(props: Props) {
                     />
                   </div>
                 )
-              })}
+              })} */}
             </div>
             {allMedia.length === 0 && (
               <div className="text-center py-16">

@@ -162,7 +162,6 @@ export const AllTeamMembersQuery = defineQuery(`
   }
 `);
 
-
 export const getTeammemberQuery = defineQuery(`
   *[_type == 'teamMember' && slug.current == $slug][0]{
  _id,

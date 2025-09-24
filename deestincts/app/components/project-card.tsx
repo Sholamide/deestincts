@@ -33,24 +33,21 @@ export function ProjectCard({
     return urlForImage(featuredImage)?.url() ?? "/placeholder.svg?height=600&width=800";
   }, [featuredImage]);
 
-  const displayCategory =
-    projectType && projectType.length > 0 ? projectType[0] : "Uncategorized";
-
   return (
     <Link href={`/projects/${slug ?? ""}`} className="group block w-full">
       <div className="relative w-full rounded-2xl overflow-hidden bg-zinc-900 shadow-sm transition-all duration-300 flex flex-col">
         {/* Media Section */}
         <div className="relative overflow-hidden  aspect-[4/3]">
           {heroMediaType === "video" && featuredVideo ? (
-              <video
-                src={featuredVideo}
-                className="w-full h-full object-cover rounded-t-2xl transition-transform duration-500 group-hover:scale-105"
-                autoPlay
-                loop
-                muted
-                playsInline
-                preload="auto"
-              />
+            <video
+              src={featuredVideo}
+              className="w-full h-full object-cover rounded-t-2xl transition-transform duration-500 group-hover:scale-105"
+              autoPlay
+              loop
+              muted
+              playsInline
+              preload="auto"
+            />
           ) : (
             <Image
               src={imageUrl}
@@ -65,9 +62,11 @@ export function ProjectCard({
 
         {/* Content Section */}
         <div className="p-4 flex flex-col gap-2 bg-zinc-950 text-white">
-          <span className="inline-block rounded-full bg-white/10 px-3 py-1 text-xs font-medium w-fit">
-            {displayCategory}
-          </span>
+          <div className="flex flex-wrap gap-2">
+            {projectType.map((type: any, index: number) => (
+              <span key={index} className="inline-block rounded-full bg-white/10 px-3 py-1 text-xs font-medium w-fit">{type}</span>
+            ))}
+          </div>
 
           <h3 className="text-lg sm:text-xl font-semibold leading-tight">
             {title}
