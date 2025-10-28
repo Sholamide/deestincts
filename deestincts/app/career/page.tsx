@@ -141,7 +141,7 @@ export default function CommunityPage() {
                       </p>
                     </div>
                     <Button 
-                      className="bg-gradient-to-r from-[#B98AFA] to-[#3FDB82] hover:from-[#B98AFA]/90 hover:to-[#3FDB82]/90 text-black font-semibold px-6 py-3 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300"
+                      className="bg-gradient-to-r from-[#B98AFA] to-[#3FDB82] hover:from-[#B98AFA]/90 hover:to-[#3FDB82]/90 text-black font-semibold px-6 py-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
                       onClick={() => {
                         router.push('/skillup50')
                       }}
