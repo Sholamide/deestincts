@@ -338,7 +338,7 @@ export default function SkillUpRegistrationPage() {
                         <div className="mb-12 relative flex justify-center">
                             <div className="relative inline-flex items-center justify-center w-48 h-48 rounded-3xl overflow-hidden shadow-2xl group">
                                 <Image
-                                    src="/skilluplogo.png"
+                                    src="/skilluplogo.PNG"
                                     alt="SkillUp50 Logo"
                                     fill
                                     className="object-cover transition-transform duration-500 group-hover:scale-105"

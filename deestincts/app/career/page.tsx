@@ -96,7 +96,7 @@ export default function CommunityPage() {
                 <div className="absolute top-6 left-6">
                   <div className="inline-flex items-center justify-center w-16 h-16 rounded-xl overflow-hidden shadow-lg bg-white/10 backdrop-blur-sm">
                     <Image
-                      src="/skilluplogo.png"
+                      src="/skilluplogo.PNG"
                       alt="SkillUp50 Logo"
                       width={64}
                       height={64}
@@ -123,31 +123,32 @@ export default function CommunityPage() {
                   </div>
                 </div>
 
-                {/* Video CTA overlay */}
-                <div className="absolute bottom-6 left-6 right-6">
-                  <div className="bg-black/60 backdrop-blur-sm rounded-xl p-6 border border-[#B98AFA]/30">
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <div className="mb-2 inline-block rounded-full bg-gradient-to-r from-[#B98AFA] to-[#C7F507] px-4 py-1 text-xs font-semibold">
-                          <span className="text-black">🎯 Limited Time</span>
-                        </div>
-                        <h2 className="text-2xl md:text-3xl font-bold text-white mb-2">
-                          SkillUp<span className="text-[#C7F507]">50</span>
-                        </h2>
-                        <p className="text-white/80 text-sm md:text-base">
-                          Exclusive design bootcamp in Lagos, Nigeria
-                        </p>
+              </div>
+
+              {/* Standalone CTA Section */}
+              <div className="mt-8">
+                <div className="bg-black/60 backdrop-blur-sm rounded-xl p-6 border border-[#B98AFA]/30 shadow-lg">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <div className="mb-2 inline-block rounded-full bg-gradient-to-r from-[#B98AFA] to-[#C7F507] px-4 py-1 text-xs font-semibold">
+                        <span className="text-black">🎯 Limited Time</span>
                       </div>
-                      <Button 
-                        className="bg-gradient-to-r from-[#B98AFA] to-[#3FDB82] hover:from-[#B98AFA]/90 hover:to-[#3FDB82]/90 text-black font-semibold px-6 py-3 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300"
-                        onClick={() => {
-                          router.push('/skillup50')
-                        }}
-                      >
-                        Join Now
-                        <ArrowRight className="ml-2 h-4 w-4" />
-                      </Button>
+                      <h2 className="text-2xl md:text-3xl font-bold text-white mb-2">
+                        SkillUp<span className="text-[#C7F507]">50</span>
+                      </h2>
+                      <p className="text-white/80 text-sm md:text-base">
+                        Exclusive design bootcamp in Lagos, Nigeria
+                      </p>
                     </div>
+                    <Button 
+                      className="bg-gradient-to-r from-[#B98AFA] to-[#3FDB82] hover:from-[#B98AFA]/90 hover:to-[#3FDB82]/90 text-black font-semibold px-6 py-3 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300"
+                      onClick={() => {
+                        router.push('/skillup50')
+                      }}
+                    >
+                      Join Now
+                      <ArrowRight className="ml-2 h-4 w-4" />
+                    </Button>
                   </div>
                 </div>
               </div>
