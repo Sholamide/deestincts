@@ -336,7 +336,7 @@ export default function SkillUpRegistrationPage() {
                         {/* Logo with glow effect */}
 
                         <div className="mb-12 relative flex justify-center">
-                            <div className="relative inline-flex items-center justify-center w-48 h-48 rounded-3xl overflow-hidden shadow-2xl group">
+                            <div className="relative inline-flex items-center justify-center w-48 h-48 rounded-3xl overflow-hidden shadow-2xl group bg-[#B98AFA]/10 backdrop-blur-sm border-0  border-[#B98AFA]/20">
                                 <Image
                                     src="/skilluplogo.PNG"
                                     alt="SkillUp50 Logo"
@@ -344,10 +344,12 @@ export default function SkillUpRegistrationPage() {
                                     className="object-cover transition-transform duration-500 group-hover:scale-105"
                                     priority
                                 />
-                                <div className="absolute inset-0 bg-gradient-to-r from-[#B98AFA]/40 via-[#C7F507]/40 to-[#3FDB82]/40 opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-500" />
+
+
+                                <div className="absolute inset-0 bg-gradient-to-r from-[#B98AFA]/20 via-[#C7F507]/20 to-[#3FDB82]/20 opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-500" />
                             </div>
                         </div>
-                        
+
 
                         {/* Main Heading with text gradient animation */}
                         <h1 className="text-5xl md:text-8xl font-black mb-8 bg-gradient-to-r from-[#B98AFA] via-[#C7F507] to-[#3FDB82] bg-clip-text text-transparent animate-in slide-in-from-bottom duration-700 delay-100 leading-tight">
