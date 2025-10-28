@@ -356,13 +356,13 @@ export default function SkillUpRegistrationPage() {
                             Transform Your
                             <br />
                             <span className="bg-gradient-to-r from-[#3FDB82] via-[#C7F507] to-[#B98AFA] bg-clip-text text-transparent">
-                                Design Career
+                                Tech Career
                             </span>
                         </h1>
 
                         {/* Subtitle with stagger animation */}
                         <p className="text-xl md:text-3xl text-[#FFFFF2]/80 mb-12 max-w-4xl mx-auto leading-relaxed animate-in slide-in-from-bottom duration-700 delay-200">
-                            Join Nigeria&apos;s most <span className="text-transparent bg-gradient-to-r from-[#B98AFA] to-[#C7F507] bg-clip-text font-semibold">exclusive</span> design bootcamp.
+                            Join Nigeria&apos;s most <span className="text-transparent bg-gradient-to-r from-[#B98AFA] to-[#C7F507] bg-clip-text font-semibold">exclusive</span> tech bootcamp.
                             <br />
                             <span className="text-2xl text-[#FFFFF2]/60">Unlimited potential. Infinite possibilities.</span>
                         </p>
@@ -545,27 +545,27 @@ export default function SkillUpRegistrationPage() {
                                     </div>
                                 </div>
 
-                                {/* Design Information Section */}
-                                <div className="space-y-8 relative">
-                                    <div className="flex items-center gap-4 mb-8 group">
-                                        <div className="w-12 h-12 bg-gradient-to-r from-[#C7F507] to-[#3FDB82] rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
-                                            <Palette className="h-6 w-6 text-[#FFFFF2]" />
-                                        </div>
-                                        <div>
-                                            <h3 className="text-2xl font-bold text-[#FFFFF2]">Design Information</h3>
-                                            <p className="text-sm text-[#FFFFF2]/60">Choose your path to greatness</p>
-                                        </div>
-                                    </div>
+                        {/* Tech Information Section */}
+                        <div className="space-y-8 relative">
+                            <div className="flex items-center gap-4 mb-8 group">
+                                <div className="w-12 h-12 bg-gradient-to-r from-[#C7F507] to-[#3FDB82] rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                                    <Code className="h-6 w-6 text-[#FFFFF2]" />
+                                </div>
+                                <div>
+                                    <h3 className="text-2xl font-bold text-[#FFFFF2]">Tech Information</h3>
+                                    <p className="text-sm text-[#FFFFF2]/60">Choose your path to greatness</p>
+                                </div>
+                            </div>
 
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                         <div className="space-y-3">
                                             <Label htmlFor="designPath" className="text-[#FFFFF2] font-semibold flex items-center gap-2">
-                                                Preferred Design Path *
+                                                Preferred Tech Path *
                                                 <Zap className="w-4 h-4 text-yellow-400" />
                                             </Label>
                                             <Select onValueChange={(value) => setValue('designPath', value)}>
                                                 <SelectTrigger className={`bg-white/5 border-white/20 text-white focus:border-purple-400 transition-all duration-300 rounded-xl h-12 hover:border-white/30 ${errors.designPath ? 'border-red-400 animate-shake' : ''}`}>
-                                                    <SelectValue placeholder="Select your superpower 🎨" />
+                                                    <SelectValue placeholder="Select your tech superpower 🚀" />
                                                 </SelectTrigger>
                                                 <SelectContent className="bg-slate-900/95 backdrop-blur-xl border-white/20 rounded-xl">
                                                     {designPaths.map((path) => (

@@ -137,7 +137,7 @@ export default function CommunityPage() {
                         SkillUp<span className="text-[#C7F507]">50</span>
                       </h2>
                       <p className="text-white/80 text-sm md:text-base">
-                        Exclusive design bootcamp in Lagos, Nigeria
+                        Exclusive tech bootcamp in Lagos, Nigeria
                       </p>
                     </div>
                     <Button 
@@ -156,10 +156,10 @@ export default function CommunityPage() {
               {/* Below Video Content */}
               <div className="text-center">
                 <h1 className="mb-6 text-3xl md:text-4xl font-bold text-white">
-                  Transform Your Design Career
+                  Transform Your Tech Career
                 </h1>
                 <p className="mb-8 text-lg text-white/80 max-w-3xl mx-auto">
-                  Join Nigeria&apos;s most exclusive design bootcamp. Only 50 spots available for this intensive program in Lagos.
+                  Join Nigeria&apos;s most exclusive tech bootcamp. Only 50 spots available for this intensive program in Lagos.
                 </p>
                 
                 {/* Quick Stats */}
