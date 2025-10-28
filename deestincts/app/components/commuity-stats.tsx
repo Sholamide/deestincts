@@ -66,12 +66,6 @@ export function CommunityStats({ stats }: CommunityStatsProps) {
       value: animatedStats.activeTrainings.toString(),
       color: "text-green-400",
     },
-    // {
-    //   icon: Award,
-    //   label: "Publications",
-    //   value: animatedStats.totalPublications.toString(),
-    //   color: "text-purple-400",
-    // },
     {
       icon: Star,
       label: "Average Rating",
