@@ -79,7 +79,7 @@ export default function CommunityPage() {
               {/* Video Container - Hero Focus */}
               <div className="relative rounded-2xl overflow-hidden shadow-2xl mb-12">
                 <video
-                  className="w-full h-auto min-h-[400px] md:min-h-[500px] lg:min-h-[600px] object-cover"
+                  className="w-full h-auto min-h-[400px] md:min-h-[500px] lg:min-h-[600px] object-contain"
                   autoPlay
                   muted
                   loop

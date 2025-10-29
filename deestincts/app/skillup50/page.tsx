@@ -397,9 +397,15 @@ export default function SkillUpRegistrationPage() {
                                     </div>
                                     <span className="font-bold text-[#FFFFF2] text-xl">Program Location</span>
                                 </div>
+
                                 <p className="text-[#FFFFF2]/90 text-lg leading-relaxed">
                                     This intensive program takes place in <span className="font-bold text-[#C7F507]">Lagos, Nigeria</span>.
                                     <br />Physical attendance is required for the full experience.
+                                    <br />Only applicants available to attend physically will be considered.
+                                </p>
+
+                                <p className="mt-4 text-[#C7F507] text-base font-medium italic">
+                                    ⚠️ Applicants must have access to a laptop or personal computer to participate in the training.
                                 </p>
                             </div>
                         </div>
@@ -545,17 +551,17 @@ export default function SkillUpRegistrationPage() {
                                     </div>
                                 </div>
 
-                        {/* Tech Information Section */}
-                        <div className="space-y-8 relative">
-                            <div className="flex items-center gap-4 mb-8 group">
-                                <div className="w-12 h-12 bg-gradient-to-r from-[#C7F507] to-[#3FDB82] rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
-                                    <Code className="h-6 w-6 text-[#FFFFF2]" />
-                                </div>
-                                <div>
-                                    <h3 className="text-2xl font-bold text-[#FFFFF2]">Tech Information</h3>
-                                    <p className="text-sm text-[#FFFFF2]/60">Choose your path to greatness</p>
-                                </div>
-                            </div>
+                                {/* Tech Information Section */}
+                                <div className="space-y-8 relative">
+                                    <div className="flex items-center gap-4 mb-8 group">
+                                        <div className="w-12 h-12 bg-gradient-to-r from-[#C7F507] to-[#3FDB82] rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                                            <Code className="h-6 w-6 text-[#FFFFF2]" />
+                                        </div>
+                                        <div>
+                                            <h3 className="text-2xl font-bold text-[#FFFFF2]">Tech Information</h3>
+                                            <p className="text-sm text-[#FFFFF2]/60">Choose your path to greatness</p>
+                                        </div>
+                                    </div>
 
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                         <div className="space-y-3">
