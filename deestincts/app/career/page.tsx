@@ -73,7 +73,7 @@ export default function CommunityPage() {
         </section> */}
 
         {/* SkillUp50 Promotion Video Section */}
-        <section className="relative overflow-hidden py-20 md:py-32">
+        <section className="relative overflow-hidden py-24 md:py-32">
           <div className="container px-4 md:px-6">
             <div className="mx-auto max-w-6xl">
               {/* Video Container - Hero Focus */}
@@ -108,7 +108,7 @@ export default function CommunityPage() {
 
                 {/* Registration Counter - Top Right */}
                 <div className="absolute top-6 right-6">
-                  <div className="bg-black/60 backdrop-blur-sm rounded-xl p-4 border border-[#B98AFA]/30 shadow-lg">
+                  <div className="bg-black/60 backdrop-blur-sm rounded-xl p-2 lg:p-4 border border-[#B98AFA]/30 shadow-lg">
                     <div className="text-center">
                       <div className="text-2xl md:text-3xl font-bold text-[#C7F507] mb-1">
                         {count}+

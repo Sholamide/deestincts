@@ -30,7 +30,8 @@ import {
     Shield,
     Coffee,
     Code,
-    Heart
+    Heart,
+    AlertTriangle
 } from 'lucide-react'
 import { toast } from 'sonner'
 import { useRouter } from 'next/navigation'
@@ -393,6 +394,28 @@ export default function SkillUpRegistrationPage() {
                             <div className="relative z-10">
                                 <div className="flex items-center justify-center mb-4 gap-3">
                                     <div className="w-12 h-12 bg-gradient-to-r from-[#C7F507] to-[#3FDB82] rounded-full flex items-center justify-center">
+                                        <AlertTriangle className="h-6 w-6 text-black" />
+                                    </div>
+                                    <span className="font-bold text-[#FFFFF2] text-xl uppercase tracking-wide">
+                                        Eligibility Notice
+                                    </span>
+                                </div>
+
+                                <p className="text-[#FFFFF2]/90 text-lg leading-relaxed">
+                                    This intensive program takes place in <span className="font-bold text-[#C7F507]">Lagos, Nigeria</span>.
+                                    <br />Physical attendance is required for the full experience.
+                                    <br />Only applicants available to attend physically will be considered.
+                                </p>
+
+                                <div className="mt-5 border border-[#C7F507]/40 rounded-lg bg-[#C7F507]/10 p-4">
+                                    <p className="text-[#C7F507] font-medium text-base leading-relaxed">
+                                        ⚠️ Applicants must have access to a laptop or personal computer to participate in the training.
+                                    </p>
+                                </div>
+                            </div>
+                            {/* <div className="relative z-10">
+                                <div className="flex items-center justify-center mb-4 gap-3">
+                                    <div className="w-12 h-12 bg-gradient-to-r from-[#C7F507] to-[#3FDB82] rounded-full flex items-center justify-center">
                                         <Target className="h-6 w-6 text-black" />
                                     </div>
                                     <span className="font-bold text-[#FFFFF2] text-xl">Program Location</span>
@@ -407,7 +430,7 @@ export default function SkillUpRegistrationPage() {
                                 <p className="mt-4 text-[#C7F507] text-base font-medium italic">
                                     ⚠️ Applicants must have access to a laptop or personal computer to participate in the training.
                                 </p>
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                 </div>
