@@ -116,7 +116,7 @@ export default function AboutContent({ about, team }: AboutPageProps) {
   return (
     <section className="relative py-24 bg-[#000000] text-white overflow-hidden">
       {/* Abstract background pattern */}
-      <div className="absolute inset-0 z-0">
+      {/* <div className="absolute inset-0 z-0">
         <Image
           src="/images/abstract-pattern1.jpg"
           alt="Abstract background pattern"
@@ -124,7 +124,7 @@ export default function AboutContent({ about, team }: AboutPageProps) {
           fill
           priority
         />
-      </div>
+      </div> */}
       {/* <InfinityPattern isDark className="opacity-20" /> */}
 
       <div className="container mx-auto px-4 relative z-10">
