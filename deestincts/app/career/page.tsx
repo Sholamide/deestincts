@@ -1,4 +1,5 @@
 'use client'
+
 import { trainings, getCommunityStats } from "@/lib/community-data"
 import { Search, ArrowRight, Users, BookOpen, Target, Sparkles } from "lucide-react"
 import { ShaderBackground } from "../components/shader-background"
@@ -19,9 +20,28 @@ export default function CommunityPage() {
 
   // Counter animation state
   const [count, setCount] = useState(0)
-  const targetCount = 53
+  const [targetCount, setTargetCount] = useState(0)
 
+  // Fetch registration count from API
   useEffect(() => {
+    const fetchRegistrationCount = async () => {
+      try {
+        const response = await fetch('/api/skillup-registration/count')
+        const data = await response.json()
+        setTargetCount(data.count || 0)
+      } catch (error) {
+        console.error('Error fetching registration count:', error)
+        setTargetCount(0)
+      }
+    }
+
+    fetchRegistrationCount()
+  }, [])
+
+  // Animate counter when targetCount changes
+  useEffect(() => {
+    if (targetCount === 0) return
+
     const duration = 2000 // 2 seconds
     const increment = targetCount / (duration / 16) // 60fps
     let current = 0
@@ -37,7 +57,7 @@ export default function CommunityPage() {
     }, 16)
 
     return () => clearInterval(timer)
-  }, [])
+  }, [targetCount])
 
   return (
     <div className="flex min-h-screen flex-col bg-black text-white">
