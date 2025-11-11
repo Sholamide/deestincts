@@ -87,14 +87,12 @@ export default async function Page(props: Props) {
 
                         {/* Bio Content */}
                         <div className="text-gray-300 leading-relaxed text-base md:text-lg">
-                            <p>
-                                {member.bio && (
-                                   <CustomPortableText
-                                   className="text-gray-400"
-                                   value={member.bio as PortableTextBlock[]}
-                               />
-                                )}
-                            </p>
+                            {member.bio && (
+                                <CustomPortableText
+                                    className="text-gray-400"
+                                    value={member.bio as PortableTextBlock[]}
+                                />
+                            )}
                         </div>
                     </div>
 
