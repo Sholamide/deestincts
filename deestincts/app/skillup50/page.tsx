@@ -86,6 +86,9 @@ const experienceLevels = [
     { value: 'Advanced', label: 'Advanced', subtitle: 'Ready to level up', icon: '⚡' }
 ]
 
+// Registration status
+const REGISTRATION_CLOSED = true
+
 // Floating particles component
 const FloatingParticles = () => {
     return (
@@ -439,30 +442,84 @@ export default function SkillUpRegistrationPage() {
             {/* Registration Form Section */}
             <div className="relative z-10 container mx-auto px-4 pb-24">
                 <div className="max-w-5xl mx-auto">
-                    <Card className="bg-[#FFFFF2]/5 backdrop-blur-2xl border border-[#B98AFA]/20 shadow-2xl rounded-3xl overflow-hidden animate-in fade-in slide-in-from-bottom duration-700 delay-200">
-                        {/* Gradient accent line */}
-                        <div className="h-1 bg-gradient-to-r from-[#B98AFA] via-[#C7F507] to-[#3FDB82]" />
+                    {REGISTRATION_CLOSED ? (
+                        <Card className="bg-[#FFFFF2]/5 backdrop-blur-2xl border border-[#B98AFA]/20 shadow-2xl rounded-3xl overflow-hidden animate-in fade-in slide-in-from-bottom duration-700 delay-200">
+                            {/* Gradient accent line */}
+                            <div className="h-1 bg-gradient-to-r from-[#B98AFA] via-[#C7F507] to-[#3FDB82]" />
 
-                        <CardHeader className="text-center pb-8 pt-12 px-8">
-                            <div className="mb-6 flex items-center justify-center gap-3">
-                                <Shield className="w-8 h-8 text-[#B98AFA]" />
-                                <CardTitle className="text-4xl md:text-5xl font-black text-[#FFFFF2]">
-                                    Secure Your Spot
-                                </CardTitle>
-                                <Code className="w-8 h-8 text-[#C7F507]" />
-                            </div>
-                            <CardDescription className="text-xl text-[#FFFFF2]/80 max-w-2xl mx-auto leading-relaxed">
-                                Fill out the form below to join the SkillUp50 initiative
-                                <br />
-                                <span className="text-sm text-[#FFFFF2]/60 flex items-center justify-center gap-2 mt-2">
-                                    <Heart className="w-4 h-4 text-[#3FDB82]" />
-                                    Application takes ~3 minutes
-                                </span>
-                            </CardDescription>
-                        </CardHeader>
+                            <CardHeader className="text-center pb-8 pt-12 px-8">
+                                <div className="mb-6 flex items-center justify-center gap-3">
+                                    <AlertTriangle className="w-8 h-8 text-yellow-400" />
+                                    <CardTitle className="text-4xl md:text-5xl font-black text-[#FFFFF2]">
+                                        Registration Closed
+                                    </CardTitle>
+                                    <AlertTriangle className="w-8 h-8 text-yellow-400" />
+                                </div>
+                                <CardDescription className="text-xl text-[#FFFFF2]/80 max-w-2xl mx-auto leading-relaxed">
+                                    Thank you for your interest in SkillUp50!
+                                    <br />
+                                    <span className="text-sm text-[#FFFFF2]/60 flex items-center justify-center gap-2 mt-2">
+                                        <Heart className="w-4 h-4 text-[#3FDB82]" />
+                                        Registration for this cohort is now closed
+                                    </span>
+                                </CardDescription>
+                            </CardHeader>
 
-                        <CardContent className="px-8 pb-12">
-                            <form onSubmit={handleSubmit(onSubmit)} className="space-y-12">
+                            <CardContent className="px-8 pb-12">
+                                <div className="text-center space-y-8">
+                                    <div className="bg-gradient-to-r from-yellow-500/10 via-orange-500/10 to-red-500/10 backdrop-blur-xl rounded-2xl p-8 border border-yellow-500/20">
+                                        <div className="mb-6">
+                                            <div className="w-24 h-24 mx-auto bg-gradient-to-r from-yellow-500/20 to-orange-500/20 rounded-full flex items-center justify-center mb-6">
+                                                <AlertTriangle className="h-12 w-12 text-yellow-400" />
+                                            </div>
+                                        </div>
+                                        <h3 className="text-2xl font-bold text-[#FFFFF2] mb-4">
+                                            Registration Closed
+                                        </h3>
+                                        <p className="text-[#FFFFF2]/80 text-lg leading-relaxed mb-6">
+                                            Registration for SkillUp50 is now closed. 
+                                            We will begin processing the registrations we have received.
+                                        </p>
+                                        <p className="text-[#FFFFF2]/60 text-base">
+                                            Stay tuned for updates and future opportunities.
+                                        </p>
+                                    </div>
+
+                                    <Button
+                                        onClick={() => router.push('/career')}
+                                        className="w-full bg-gradient-to-r from-purple-600 via-pink-600 to-red-600 hover:from-purple-700 hover:via-pink-700 hover:to-red-700 text-white font-semibold py-6 rounded-xl shadow-2xl hover:shadow-purple-500/50 transition-all duration-300 hover:scale-105 group"
+                                    >
+                                        <ArrowLeft className="mr-2 h-5 w-5 group-hover:-translate-x-1 transition-transform" />
+                                        Back to Career Page
+                                    </Button>
+                                </div>
+                            </CardContent>
+                        </Card>
+                    ) : (
+                        <Card className="bg-[#FFFFF2]/5 backdrop-blur-2xl border border-[#B98AFA]/20 shadow-2xl rounded-3xl overflow-hidden animate-in fade-in slide-in-from-bottom duration-700 delay-200">
+                            {/* Gradient accent line */}
+                            <div className="h-1 bg-gradient-to-r from-[#B98AFA] via-[#C7F507] to-[#3FDB82]" />
+
+                            <CardHeader className="text-center pb-8 pt-12 px-8">
+                                <div className="mb-6 flex items-center justify-center gap-3">
+                                    <Shield className="w-8 h-8 text-[#B98AFA]" />
+                                    <CardTitle className="text-4xl md:text-5xl font-black text-[#FFFFF2]">
+                                        Secure Your Spot
+                                    </CardTitle>
+                                    <Code className="w-8 h-8 text-[#C7F507]" />
+                                </div>
+                                <CardDescription className="text-xl text-[#FFFFF2]/80 max-w-2xl mx-auto leading-relaxed">
+                                    Fill out the form below to join the SkillUp50 initiative
+                                    <br />
+                                    <span className="text-sm text-[#FFFFF2]/60 flex items-center justify-center gap-2 mt-2">
+                                        <Heart className="w-4 h-4 text-[#3FDB82]" />
+                                        Application takes ~3 minutes
+                                    </span>
+                                </CardDescription>
+                            </CardHeader>
+
+                            <CardContent className="px-8 pb-12">
+                                <form onSubmit={handleSubmit(onSubmit)} className="space-y-12">
                                 {/* Personal Information Section */}
                                 <div className="space-y-8 relative">
                                     <div className="flex items-center gap-4 mb-8 group">
@@ -759,6 +816,7 @@ export default function SkillUpRegistrationPage() {
                             </form>
                         </CardContent>
                     </Card>
+                    )}
 
                     {/* Footer note */}
                     <div className="text-center mt-12 space-y-4 animate-in fade-in duration-700 delay-500">

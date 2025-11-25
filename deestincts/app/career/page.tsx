@@ -161,12 +161,13 @@ export default function CommunityPage() {
                       </p>
                     </div>
                     <Button 
-                      className="bg-gradient-to-r from-[#B98AFA] to-[#3FDB82] hover:from-[#B98AFA]/90 hover:to-[#3FDB82]/90 text-black font-semibold px-6 py-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
+                      className="bg-gradient-to-r from-gray-400 via-gray-500 to-gray-600 hover:from-gray-400 hover:via-gray-500 hover:to-gray-600 text-black font-semibold px-6 py-3 rounded-xl shadow-lg transition-all duration-300 cursor-not-allowed opacity-75"
+                      disabled
                       onClick={() => {
                         router.push('/skillup50')
                       }}
                     >
-                      Join Now
+                      Registration Closed
                       <ArrowRight className="ml-2 h-4 w-4" />
                     </Button>
                   </div>
@@ -201,12 +202,13 @@ export default function CommunityPage() {
                 {/* Main CTA */}
                 <div className="flex flex-col gap-4 sm:flex-row sm:justify-center">
                   <Button 
-                    className="text-black bg-gradient-to-r from-[#B98AFA] via-[#C7F507] to-[#3FDB82] hover:from-[#B98AFA]/90 hover:via-[#C7F507]/90 hover:to-[#3FDB82]/90 text-lg px-8 py-4 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
+                    className="text-black bg-gradient-to-r from-gray-400 via-gray-500 to-gray-600 hover:from-gray-400 hover:via-gray-500 hover:to-gray-600 text-lg px-8 py-4 rounded-xl font-semibold shadow-lg transition-all duration-300 cursor-not-allowed opacity-75"
+                    disabled
                     onClick={() => {
                       router.push('/skillup50')
                     }}
                   >
-                    Register for SkillUp50
+                    Registration Closed
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Button>
                 </div>

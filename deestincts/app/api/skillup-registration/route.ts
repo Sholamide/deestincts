@@ -4,8 +4,19 @@ import { client } from '@/sanity/lib/client'
 
 const resend = new Resend(process.env.RESEND_API_KEY)
 
+// Registration status - set to true to close registration
+const REGISTRATION_CLOSED = true
+
 export async function POST(request: NextRequest) {
   try {
+    // Check if registration is closed
+    if (REGISTRATION_CLOSED) {
+      return NextResponse.json(
+        { error: 'Registration is currently closed. All spots have been filled.' },
+        { status: 403 }
+      )
+    }
+
     const data = await request.json()
     
     // Validate required fields
