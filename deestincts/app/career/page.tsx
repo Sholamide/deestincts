@@ -160,7 +160,7 @@ export default function CommunityPage() {
                         Exclusive tech bootcamp in Lagos, Nigeria
                       </p>
                     </div>
-                    <Button 
+                    {/* <Button 
                       className="bg-gradient-to-r from-gray-400 via-gray-500 to-gray-600 hover:from-gray-400 hover:via-gray-500 hover:to-gray-600 text-black font-semibold px-6 py-3 rounded-xl shadow-lg transition-all duration-300 cursor-not-allowed opacity-75"
                       disabled
                       onClick={() => {
@@ -169,7 +169,7 @@ export default function CommunityPage() {
                     >
                       Registration Closed
                       <ArrowRight className="ml-2 h-4 w-4" />
-                    </Button>
+                    </Button> */}
                   </div>
                 </div>
               </div>
