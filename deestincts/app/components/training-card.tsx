@@ -107,7 +107,7 @@ export function TrainingCard({ training }: TrainingCardProps) {
         </div>
 
         <div className="flex gap-2">
-          <Link href={`/community/trainings/${training.slug}`} className="flex-1">
+          <Link href={`/career/trainings/${training.slug}`} className="flex-1">
             <Button
               className="w-full bg-[#060606] hover:bg-[#060606]/90 text-white"
               disabled={training.status === "archived"}

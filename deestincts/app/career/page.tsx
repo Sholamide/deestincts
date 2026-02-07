@@ -230,6 +230,27 @@ export default function CommunityPage() {
           </div>
         </section>
 
+
+{/* Upcoming Trainings */}
+{upcomingTrainings.length > 0 && (
+          <section className="py-16 md:py-24">
+            <div className="container px-4 md:px-6">
+              <div className="mb-12">
+                <h2 className="mb-4 text-3xl font-bold md:text-4xl">
+                  <BookOpen className="mr-3 inline h-8 w-8 text-blue-400" />
+                  Upcoming Trainings
+                </h2>
+                <p className="text-white/70">Get early access to our upcoming training sessions</p>
+              </div>
+              <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                {upcomingTrainings.map((training) => (
+                  <TrainingCard key={training.id} training={training} />
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+        
         {/* Active Trainings */}
         <section className="py-16 md:py-24 bg-white/5">
           <div className="container px-4 md:px-6">
@@ -250,25 +271,7 @@ export default function CommunityPage() {
           </div>
         </section>
 
-        {/* Upcoming Trainings */}
-        {upcomingTrainings.length > 0 && (
-          <section className="py-16 md:py-24">
-            <div className="container px-4 md:px-6">
-              <div className="mb-12">
-                <h2 className="mb-4 text-3xl font-bold md:text-4xl">
-                  <BookOpen className="mr-3 inline h-8 w-8 text-blue-400" />
-                  Upcoming Trainings
-                </h2>
-                <p className="text-white/70">Get early access to our upcoming training sessions</p>
-              </div>
-              <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                {upcomingTrainings.map((training) => (
-                  <TrainingCard key={training.id} training={training} />
-                ))}
-              </div>
-            </div>
-          </section>
-        )}
+        
 
 
         {/* Archived Trainings */}
