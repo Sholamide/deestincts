@@ -9,6 +9,16 @@ interface ContactData {
   company?: string;
 }
 
+export interface TicketData {
+  name: string;
+  email: string;
+  phone?: string;
+  eventTitle?: string;
+  eventDate?: string;
+  eventTime?: string;
+  venue?: string;
+}
+
 export const AcknowledgmentEmail: React.FC<{ data: ContactData }> = ({ data }) => (
   <div style={{ fontFamily: 'Arial, sans-serif', maxWidth: '600px', margin: '0 auto' }}>
     <div style={{ backgroundColor: '#f8f9fa', padding: '20px', borderRadius: '8px' }}>
@@ -97,3 +107,174 @@ export const NotificationEmail: React.FC<{ data: ContactData }> = ({ data }) => 
 );
 
 
+
+export const TicketEmail: React.FC<{ data: TicketData }> = ({ data }) => {
+  return (
+    <div
+      style={{
+        fontFamily: '-apple-system, BlinkMacOSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+        maxWidth: '560px',
+        margin: '0 auto',
+        backgroundColor: '#0f0f17',
+        color: '#e2e8f0',
+        padding: '32px 24px',
+        borderRadius: '16px',
+        boxShadow: '0 10px 30px rgba(0, 0, 0, 0.5)',
+      }}
+    >
+      {/* Header with gradient accent */}
+      <div
+        style={{
+          textAlign: 'center',
+          paddingBottom: '24px',
+          borderBottom: '1px solid rgba(139, 92, 246, 0.3)',
+        }}
+      >
+        <h1
+          style={{
+            fontSize: '36px',
+            fontWeight: 900,
+            margin: '0',
+            background: 'linear-gradient(90deg, #a78bfa, #f472b6, #fbbf24)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            letterSpacing: '-1px',
+          }}
+        >
+          Ctrl + Chill
+        </h1>
+        <p
+          style={{
+            margin: '8px 0 0',
+            fontSize: '18px',
+            fontWeight: 600,
+            color: '#c4b5fd',
+          }}
+        >
+          Not Another Design Class 🎟️
+        </p>
+      </div>
+
+      {/* Greeting */}
+      <div style={{ margin: '32px 0 24px' }}>
+        <h2
+          style={{
+            fontSize: '24px',
+            margin: '0 0 12px',
+            color: '#e0e7ff',
+          }}
+        >
+          Hey {data.name} — you&apos;re in! 🔥
+        </h2>
+        <p style={{ margin: '0', lineHeight: 1.6, color: '#cbd5e1' }}>
+          Your spot is confirmed. Get ready for games, real brand breakdowns, pitching, networking, and the chance to win an internship with Deestincts.
+        </p>
+      </div>
+
+      {/* Ticket Card */}
+      <div
+        style={{
+          background: 'linear-gradient(135deg, rgba(30, 41, 59, 0.9), rgba(49, 46, 129, 0.6))',
+          borderRadius: '16px',
+          padding: '24px',
+          margin: '24px 0',
+          border: '1px solid rgba(139, 92, 246, 0.25)',
+          boxShadow: '0 8px 32px rgba(0, 0, 0, 0.4)',
+        }}
+      >
+        <div style={{ textAlign: 'center', marginBottom: '16px' }}>
+          <div
+            style={{
+              display: 'inline-block',
+              background: 'rgba(139, 92, 246, 0.15)',
+              color: '#c4b5fd',
+              fontSize: '13px',
+              fontWeight: 600,
+              padding: '4px 12px',
+              borderRadius: '999px',
+              marginBottom: '8px',
+            }}
+          >
+            OFFICIAL TICKET
+          </div>
+        </div>
+
+        <h3
+          style={{
+            fontSize: '22px',
+            fontWeight: 700,
+            margin: '0 0 16px',
+            color: '#e0e7ff',
+            textAlign: 'center',
+          }}
+        >
+          {data.eventTitle || 'Ctrl + Chill 2026'}
+        </h3>
+
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '12px',
+            fontSize: '15px',
+            color: '#cbd5e1',
+          }}
+        >
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+            <span style={{ color: '#a78bfa', fontWeight: 600 }}>📅</span>
+            <span>{data.eventDate || '26th February 2026'}</span>
+            <span style={{ margin: '0 8px', color: '#64748b' }}>•</span>
+            <span>{data.eventTime || '10:00 AM WAT'}</span>
+          </div>
+
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+            <span style={{ color: '#f472b6', fontWeight: 600 }}>📍</span>
+            <span>{data.venue || 'Cre8tive Space, Surulere, Lagos'}</span>
+          </div>
+
+          {/* {data.ticketId && (
+            <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+              <span style={{ color: '#fbbf24', fontWeight: 600 }}>🎫</span>
+              <span>Ticket ID: {data.ticketId}</span>
+            </div>
+          )} */}
+        </div>
+
+        {/* QR placeholder – replace with real QR if you generate one */}
+        {/* {data.qrCodeUrl && (
+          <div style={{ textAlign: 'center', marginTop: '24px' }}>
+            <img
+              src={data.qrCodeUrl}
+              alt="QR Code for check-in"
+              style={{ width: '140px', height: '140px', borderRadius: '12px' }}
+            />
+            <p style={{ fontSize: '13px', color: '#94a3b8', marginTop: '8px' }}>
+              Scan at the door
+            </p>
+          </div>
+        )} */}
+      </div>
+
+      {/* Closing */}
+      <div style={{ textAlign: 'center', marginTop: '32px' }}>
+        <p style={{ margin: '0 0 16px', fontSize: '16px', color: '#e0e7ff' }}>
+          Bring good vibes, your laptop (if you want), and energy — we can’t wait to see you!
+        </p>
+
+        <p style={{ margin: '0', fontSize: '15px', color: '#a78bfa', fontWeight: 600 }}>
+          See you on the 26th ✨
+        </p>
+
+        <p
+          style={{
+            margin: '24px 0 0',
+            fontSize: '14px',
+            color: '#64748b',
+          }}
+        >
+          — Deestincts 
+        </p>
+      </div>
+    </div>
+  );
+};

@@ -37,6 +37,7 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-hook-form": "^7.60.0",
+    "redis": "^5.10.0",
     "resend": "^4.7.0",
     "sanity": "^3.76.1",
     "sonner": "^1.7.0",
