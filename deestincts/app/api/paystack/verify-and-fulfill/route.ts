@@ -7,7 +7,7 @@ const resend = new Resend(process.env.RESEND_API_KEY)
 
 const PAYSTACK_SECRET = process.env.PAYSTACK_SECRET_KEY;
 const PAYSTACK_VERIFY_URL = 'https://api.paystack.co/transaction/verify';
-const EXPECTED_AMOUNT = 30000; // kobo (matches initialize) 2500000
+const EXPECTED_AMOUNT = 2500000; // kobo (matches initialize) 2500000
 
 export async function POST(req: NextRequest) {
   if (!PAYSTACK_SECRET) {
