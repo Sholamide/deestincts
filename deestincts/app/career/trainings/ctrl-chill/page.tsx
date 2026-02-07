@@ -173,6 +173,7 @@ export default function Home() {
   {/* Responsive height: taller on desktop, shorter on mobile to avoid excessive scrolling */}
   <div className="
     relative w-full 
+    md:mt-24
     h-[50vh]           /* mobile: half screen */
     sm:h-[60vh]        /* small tablets */
     md:h-[70vh]        /* medium screens */
