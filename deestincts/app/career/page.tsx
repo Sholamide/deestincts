@@ -92,61 +92,54 @@ export default function CommunityPage() {
           </div>
         </section> */}
 
-        {/* SkillUp50 Promotion Video Section */}
-        <section className="relative overflow-hidden py-24 md:py-32">
+        {/* Ctrl Chill Promotion Video Section */}
+        <section className="relative overflow-hidden">
           <div className="container px-4 md:px-6">
             <div className="mx-auto max-w-6xl">
               {/* Video Container - Hero Focus */}
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl mb-12">
-                <video
-                  className="w-full h-auto min-h-[400px] md:min-h-[500px] lg:min-h-[600px] object-contain"
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  preload="auto"
-                >
-                  <source src="/skillup.MP4" type="video/mp4" />
-                  Your browser does not support the video tag.
-                </video>
-                {/* Video Overlay with SkillUp branding */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none" />
-                
-                {/* SkillUp Logo overlay on video */}
-                <div className="absolute top-6 left-6">
-                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-xl overflow-hidden shadow-lg bg-white/10 backdrop-blur-sm">
-                    <Image
-                      src="/skilluplogo.PNG"
-                      alt="SkillUp50 Logo"
-                      width={64}
-                      height={64}
-                      className="object-cover"
-                      priority
-                    />
-                  </div>
-                </div>
+              <div className="
+    relative w-full 
+    md:mt-24
+    h-[50vh]           /* mobile: half screen */
+    sm:h-[60vh]        /* small tablets */
+    md:h-[70vh]        /* medium screens */
+    lg:h-[80vh]        /* large desktops */
+    xl:h-[85vh]        /* extra large */
+    min-h-[320px]      /* never too small */
+    max-h-[900px]      /* prevent insane height on ultra-wide monitors */
+  ">
+                <Image
+                  src="/ctrlflyer.PNG"
+                  alt="Ctrl + Chill Event Flyer"
+                  fill
+                  priority
+                  quality={85}
+                  className="
+        object-contain     /* default: show full flyer without cropping */
+        md:object-cover    /* on medium+ screens: fill nicely if flyer is wide */
+        brightness-[0.65] 
+        contrast-[1.12]    /* slight contrast boost */
+        transition-transform duration-700
+      "
+                  sizes="(max-width: 640px) 100vw, 
+             (max-width: 1024px) 100vw, 
+             100vw"
+                />
 
-                {/* Registration Counter - Top Right */}
-                <div className="absolute top-6 right-6">
-                  <div className="bg-black/60 backdrop-blur-sm rounded-xl p-2 lg:p-4 border border-[#B98AFA]/30 shadow-lg">
-                    <div className="text-center">
-                      <div className="text-2xl md:text-3xl font-bold text-[#C7F507] mb-1">
-                        {count}+
-                      </div>
-                      <div className="text-xs text-white/80">
-                        People registered so far
-                      </div>
-                      {/* <div className="text-xs text-[#B98AFA] font-semibold mt-1">
-                        Only {500 - count} spots left!
-                      </div> */}
-                    </div>
-                  </div>
-                </div>
-
+                {/* Overlay gradient – stronger on mobile to improve text visibility */}
+                <div className="
+      absolute inset-0 
+      bg-gradient-to-b 
+      from-transparent 
+      via-black/40 
+      md:via-black/50 
+      to-black/70 
+      pointer-events-none
+    " />
               </div>
 
               {/* Standalone CTA Section */}
-              <div className="mt-8">
+              <div className="mt-1">
                 <div className="bg-black/60 backdrop-blur-sm rounded-xl p-6 border border-[#B98AFA]/30 shadow-lg">
                   <div className="flex items-center justify-between">
                     <div>
@@ -154,10 +147,10 @@ export default function CommunityPage() {
                         <span className="text-black">🎯 Limited Time</span>
                       </div>
                       <h2 className="text-2xl md:text-3xl font-bold text-white mb-2">
-                        SkillUp<span className="text-[#C7F507]">50</span>
+                        Ctrl + <span className="text-[#C7F507]">Chill</span>
                       </h2>
                       <p className="text-white/80 text-sm md:text-base">
-                        Exclusive tech bootcamp in Lagos, Nigeria
+                        Exclusive design class in Lagos, Nigeria
                       </p>
                     </div>
                     {/* <Button 
@@ -180,14 +173,14 @@ export default function CommunityPage() {
                   Transform Your Tech Career
                 </h1>
                 <p className="mb-8 text-lg text-white/80 max-w-3xl mx-auto">
-                  Join Nigeria&apos;s most exclusive tech bootcamp. Only 50 spots available for this intensive program in Lagos.
+                  Join Nigeria&apos;s most exclusive tech bootcamp. Only 25 spots available for this intensive program in Lagos.
                 </p>
-                
+
                 {/* Quick Stats */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8 max-w-2xl mx-auto">
                   <div className="bg-white/5 backdrop-blur-sm p-4 border rounded-xl border-[#B98AFA]/20">
                     <Users className="h-6 w-6 text-[#B98AFA] mx-auto mb-2" />
-                    <p className="text-sm text-white/80">50 Spots Only</p>
+                    <p className="text-sm text-white/80">25 Spots Only</p>
                   </div>
                   <div className="bg-white/5 backdrop-blur-sm rounded-xl p-4 border  border-[#C7F507]/20">
                     <Target className="h-6 w-6 text-[#C7F507] mx-auto mb-2" />
@@ -198,17 +191,16 @@ export default function CommunityPage() {
                     <p className="text-sm text-white/80">Hands-on Learning</p>
                   </div>
                 </div>
-                
+
                 {/* Main CTA */}
                 <div className="flex flex-col gap-4 sm:flex-row sm:justify-center">
-                  <Button 
-                    className="text-black bg-gradient-to-r from-gray-400 via-gray-500 to-gray-600 hover:from-gray-400 hover:via-gray-500 hover:to-gray-600 text-lg px-8 py-4 rounded-xl font-semibold shadow-lg transition-all duration-300 cursor-not-allowed opacity-75"
-                    disabled
+                  <Button
+                    className="text-black bg-gradient-to-r from-pink-400 via-yellow-300 to-green-400  text-lg px-8 py-4 rounded-xl font-semibold shadow-lg transition-all duration-300 opacity-75"
                     onClick={() => {
-                      router.push('/skillup50')
+                      router.push('/career/trainings/ctrl-chill')
                     }}
                   >
-                    Registration Closed
+                    Register
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Button>
                 </div>
@@ -231,8 +223,8 @@ export default function CommunityPage() {
         </section>
 
 
-{/* Upcoming Trainings */}
-{upcomingTrainings.length > 0 && (
+        {/* Upcoming Trainings */}
+        {upcomingTrainings.length > 0 && (
           <section className="py-16 md:py-24">
             <div className="container px-4 md:px-6">
               <div className="mb-12">
@@ -250,7 +242,7 @@ export default function CommunityPage() {
             </div>
           </section>
         )}
-        
+
         {/* Active Trainings */}
         <section className="py-16 md:py-24 bg-white/5">
           <div className="container px-4 md:px-6">
@@ -271,7 +263,7 @@ export default function CommunityPage() {
           </div>
         </section>
 
-        
+
 
 
         {/* Archived Trainings */}
