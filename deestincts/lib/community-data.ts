@@ -5,7 +5,7 @@ export interface Training {
     instructor: string
     instructorImage: string
     duration: string
-    level: "Beginner" | "Intermediate" | "Advanced"
+    level?: "Beginner" | "Intermediate" | "Advanced"
     status: "active" | "archived" | "upcoming"
     registrations: number
     maxCapacity: number
@@ -57,7 +57,7 @@ export interface Training {
       instructor: "deostincts",
       instructorImage: "/skilluplogo.png",
       duration: "1 day",
-      level: "Beginner",
+      // level: "Beginner",
       status: "upcoming",
       registrations: 0,
       maxCapacity: 25,

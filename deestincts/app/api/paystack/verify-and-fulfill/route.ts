@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { Resend } from 'resend'
-import { TicketEmail } from '@/app/components/emails/email-templates';
 import { getRedis } from '@/lib/redis';
+import TicketEmail from '@/app/components/emails/ticket-email';
 
 const resend = new Resend(process.env.RESEND_API_KEY)
 

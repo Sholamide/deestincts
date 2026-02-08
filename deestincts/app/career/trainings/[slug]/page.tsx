@@ -75,9 +75,11 @@ export default async function TrainingPage({ params }: TrainingPageProps) {
                     <Badge className={getStatusColor(training.status)} variant="outline">
                       {training.status.charAt(0).toUpperCase() + training.status.slice(1)}
                     </Badge>
-                    <Badge className={getLevelColor(training.level)} variant="secondary">
-                      {training.level}
-                    </Badge>
+                    {training.level && (
+                      <Badge className={getLevelColor(training.level)} variant="secondary">
+                        {training.level}
+                      </Badge>
+                    )}
                     <Badge variant="outline" className="border-white/20 text-white/80">
                       {training.category}
                     </Badge>
@@ -179,9 +181,8 @@ export default async function TrainingPage({ params }: TrainingPageProps) {
                               {[...Array(5)].map((_, i) => (
                                 <Star
                                   key={i}
-                                  className={`h-4 w-4 ${
-                                    i < review.rating ? "fill-yellow-400 text-yellow-400" : "text-white/20"
-                                  }`}
+                                  className={`h-4 w-4 ${i < review.rating ? "fill-yellow-400 text-yellow-400" : "text-white/20"
+                                    }`}
                                 />
                               ))}
                             </div>
