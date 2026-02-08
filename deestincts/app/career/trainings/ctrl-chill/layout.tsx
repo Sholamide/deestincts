@@ -35,7 +35,7 @@ export const metadata: Metadata = {
         siteName: 'Deestincts',
         images: [
             {
-                url: '/ctrlchill.jpeg',
+                url: '/ctrlflyer.PNG',
                 width: 1200,
                 height: 630,
                 alt: 'Ctrl + Chill – Networking, games, live brand review & pitch for designers in Lagos',
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
     twitter: {
         card: 'summary_large_image',
         title: 'Ctrl + Chill - Not Another Design Class',
-        description: 'Networking + games + live brand case study + pitch competition in Lagos. Winner gets internship at Deestincts. Only 25 spots – Feb 26, 2026. #CtrlChill',images: ['/ctrlchill.jpeg'],
+        description: 'Networking + games + live brand case study + pitch competition in Lagos. Winner gets internship at Deestincts. Only 25 spots – Feb 26, 2026. #CtrlChill',images: ['/ctrlflyer.PNG'],
         creator: '@deestincts',
     },
     robots: {
