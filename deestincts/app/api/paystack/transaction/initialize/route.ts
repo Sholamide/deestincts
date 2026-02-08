@@ -24,8 +24,8 @@ export async function POST(req: NextRequest) {
 
         const payload: Record<string, unknown> = {
             email,
-            // amount: '2500000',
-            amount: '30000',
+            amount: '2500000',
+            //amount: '30000',
         };
         if (name || phone) {
             payload.metadata = { name, phone };
