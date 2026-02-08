@@ -331,7 +331,7 @@ const colors = {
 }
 
 export default function CommunityPage() {
-  const activeTrainings = trainings.filter((t) => t.status === "active")
+  const activeTrainings = trainings.filter((t) => t.status !== "archived")
   const upcomingTrainings = trainings.filter((t) => t.status === "upcoming")
   const archivedTrainings = trainings.filter((t) => t.status === "archived")
   const communityStats = getCommunityStats()
@@ -418,11 +418,11 @@ export default function CommunityPage() {
                     <div>
                       <div className="mb-3 inline-flex items-center gap-2">
                         <Sparkles className="h-5 w-5" style={{ color: colors.pink }} />
-                        <span 
+                        <span
                           className="text-sm font-semibold px-3 py-1 rounded-full"
-                          style={{ 
+                          style={{
                             backgroundColor: `${colors.pink}22`,
-                            color: colors.pink 
+                            color: colors.pink
                           }}
                         >
                           Limited Spots
@@ -475,7 +475,7 @@ export default function CommunityPage() {
             <div className="container px-4 md:px-6">
               <div className="mb-10 flex items-center gap-3">
                 <BookOpen className="h-7 w-7" style={{ color: colors.pink }} />
-                <h2 className="text-3xl md:text-4xl font-bold">
+                <h2 className="text-3xl text-white md:text-4xl font-bold">
                   Upcoming Trainings
                 </h2>
               </div>
@@ -493,7 +493,7 @@ export default function CommunityPage() {
           <div className="container px-4 md:px-6">
             <div className="mb-10 flex items-center gap-3">
               <Users className="h-7 w-7" style={{ color: colors.mint }} />
-              <h2 className="text-3xl md:text-4xl font-bold">
+              <h2 className="text-3xl text-white md:text-4xl font-bold">
                 Active Trainings
               </h2>
             </div>
@@ -548,7 +548,7 @@ export default function CommunityPage() {
                     focus-visible:ring-offset-0 focus-visible:ring-2 focus-visible:ring-[#ffcaf7]/40
                   "
                 />
-                <Button 
+                <Button
                   className="bg-[#ffcaf7] hover:bg-[#ffcaf7]/90 text-black font-medium"
                 >
                   Subscribe

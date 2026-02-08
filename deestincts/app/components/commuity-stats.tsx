@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { Users, BookOpen, Award, Globe, Star, GraduationCap } from "lucide-react"
+import { Users, BookOpen, Globe, Star, GraduationCap } from "lucide-react"
 
 interface CommunityStatsProps {
   stats: {
@@ -17,7 +17,7 @@ interface CommunityStatsProps {
 export function CommunityStats({ stats }: CommunityStatsProps) {
   const [animatedStats, setAnimatedStats] = useState({
     totalMembers: 0,
-    activeTrainings: 0,
+    activeTrainings: 2,
     // totalPublications: 0,
     averageRating: 0,
     totalGraduates: 0,
