@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { Users, BookOpen, Award, Globe, Star, GraduationCap } from "lucide-react"
+import { Users, BookOpen, Globe, Star, GraduationCap } from "lucide-react"
 
 interface CommunityStatsProps {
   stats: {

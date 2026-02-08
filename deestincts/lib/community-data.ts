@@ -54,7 +54,7 @@ export interface Training {
       title: "Ctrl + Chill",
       description:
         "Not another design class. Learn as you have fun, analyse projects real-time, and pitch & secure an internship role. Only 25 spots available at CR8TIVE SPACE in Lagos.",
-      instructor: "deostincts",
+      instructor: "deestincts",
       instructorImage: "/skilluplogo.png",
       duration: "1 day",
       // level: "Beginner",
@@ -261,7 +261,8 @@ export interface Training {
   export function getCommunityStats() {
     return {
       totalMembers: 2847,
-      activeTrainings: trainings.filter((t) => t.status === "active").length,
+      activeTrainings: 2,
+      // activeTrainings: trainings.filter((t) => t.status === "active").length,
       totalPublications: publications.length,
       averageRating: 4.8,
       totalGraduates: 1256,

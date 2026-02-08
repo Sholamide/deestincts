@@ -3,7 +3,7 @@
 import type React from "react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { Mail, Phone, MapPin, Clock, Send } from "lucide-react";
+import { Mail, Phone, MapPin, Clock, Send, MessageCircle } from "lucide-react";
 import { Label } from "../components/ui/label";
 import { Input } from "../components/ui/input";
 import { Textarea } from "../components/ui/textarea";
@@ -74,6 +74,182 @@ export default function ContactPage() {
         </section>
 
         <section className="py-16 md:py-24">
+          <div className="container px-4 md:px-6">
+            <div className="grid gap-12 md:grid-cols-2">
+              {/* Left column: Contact Information */}
+              <div>
+                <h2 className="mb-6 text-3xl font-bold">Contact Information</h2>
+                <div className="space-y-8">
+                  {/* Email */}
+                  <div className="flex items-start gap-4">
+                    <div className="rounded-full bg-[#C3122B]/10 p-3">
+                      <Mail className="h-6 w-6 text-[#5b5a5a]" />
+                    </div>
+                    <div>
+                      <h3 className="mb-1 text-lg font-medium">Email Us</h3>
+                      <a
+                        href="mailto:contact@deestincts.com"
+                        className="text-white/70 hover:underline"
+                      >
+                        contact@deestincts.com
+                      </a>
+                    </div>
+                  </div>
+
+                  {/* Phone (Call) */}
+                  <div className="flex items-start gap-4">
+                    <div className="rounded-full bg-[#C3122B]/10 p-3">
+                      <Phone className="h-6 w-6 text-[#5b5a5a]" />
+                    </div>
+                    <div>
+                      <h3 className="mb-1 text-lg font-medium">Call Us</h3>
+                      <a
+                        href="tel:+2348135154634"
+                        className="text-white/70 hover:underline"
+                      >
+                        08135154634
+                      </a>
+                    </div>
+                  </div>
+
+                  {/* WhatsApp */}
+                  <div className="flex items-start gap-4">
+                    <div className="rounded-full bg-[#C3122B]/10 p-3">
+                      <MessageCircle className="h-6 w-6 text-[#5b5a5a]" />
+                    </div>
+                    <div>
+                      <h3 className="mb-1 text-lg font-medium">WhatsApp</h3>
+                      <a
+                        href="https://wa.me/2349054356854"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-white/70 hover:underline"
+                      >
+                        09054356854
+                      </a>
+                    </div>
+                  </div>
+
+                  {/* Address */}
+                  <div className="flex items-start gap-4">
+                    <div className="rounded-full bg-[#C3122B]/10 p-3">
+                      <MapPin className="h-6 w-6 text-[#5b5a5a]" />
+                    </div>
+                    <div>
+                      <h3 className="mb-1 text-lg font-medium">Visit Us</h3>
+                      <p className="text-white/70">Ogudu GRA,</p>
+                      <p className="text-white/70">Lagos State</p>
+                      <p className="text-white/70">Nigeria</p>
+                    </div>
+                  </div>
+
+                  {/* Office Hours */}
+                  <div className="flex items-start gap-4">
+                    <div className="rounded-full bg-[#C3122B]/10 p-3">
+                      <Clock className="h-6 w-6 text-[#5b5a5a]" />
+                    </div>
+                    <div>
+                      <h3 className="mb-1 text-lg font-medium">Office Hours</h3>
+                      <p className="text-white/70">Monday - Friday: 9:00 AM - 6:00 PM</p>
+                      <p className="text-white/70">Saturday: 10:00 AM - 2:00 PM</p>
+                      <p className="text-white/70">Sunday: Closed</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Social Links */}
+                <div className="mt-12">
+                  <h3 className="mb-4 text-lg font-medium">Connect With Us</h3>
+                  <div className="flex space-x-5">
+                    <Link href="https://www.facebook.com/share/1FSHbzwvxD/?mibextid=LQQJ4d" target="_blank">
+                      <Image src="/socialicons-03.svg" alt="Facebook" width={32} height={32} />
+                    </Link>
+                    <Link href="https://twitter.com/Deestincts_" target="_blank">
+                      <Image src="/socialicons-01.svg" alt="Twitter" width={32} height={32} />
+                    </Link>
+                    <Link href="https://www.instagram.com/deestincts?igsh=MTZiMzdicGU3NTlwbw%3D%3D&utm_source=qr" target="_blank">
+                      <Image src="/socialicons-02.svg" alt="Instagram" width={32} height={32} />
+                    </Link>
+                    <Link href="https://www.linkedin.com/company/deestincts/" target="_blank">
+                      <Image src="/socialicons-04.svg" alt="LinkedIn" width={32} height={32} />
+                    </Link>
+                  </div>
+                </div>
+              </div>
+
+              {/* Right column: Contact Form */}
+              <div>
+                <div className="rounded-xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm">
+                  <h2 className="mb-6 text-2xl font-bold">Send Us a Message</h2>
+                  <form onSubmit={handleSubmit(onSubmit)} className="space-y-4" noValidate>
+                    <div className="grid gap-4 sm:grid-cols-2">
+                      <div className="grid gap-2">
+                        <Label htmlFor="name">Name</Label>
+                        <Input
+                          id="name"
+                          {...register("name", { required: "Name is required" })}
+                          placeholder="Your name"
+                          className="border-white/10 bg-white/5 text-white placeholder:text-white/50 focus-visible:ring-[#5b5a5a]"
+                        />
+                        {errors.name && <p className="text-sm text-red-400">{errors.name.message}</p>}
+                      </div>
+                      <div className="grid gap-2">
+                        <Label htmlFor="email">Email</Label>
+                        <Input
+                          id="email"
+                          type="email"
+                          {...register("email", {
+                            required: "Email is required",
+                            pattern: { value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, message: "Enter a valid email" },
+                          })}
+                          placeholder="Your email"
+                          className="border-white/10 bg-white/5 text-white placeholder:text-white/50 focus-visible:ring-[#5b5a5a]"
+                        />
+                        {errors.email && <p className="text-sm text-red-400">{errors.email.message}</p>}
+                      </div>
+                    </div>
+                    <div className="grid gap-2">
+                      <Label htmlFor="subject">Subject</Label>
+                      <Input
+                        id="subject"
+                        {...register("subject", { required: "Subject is required" })}
+                        placeholder="Subject of your message"
+                        className="border-white/10 bg-white/5 text-white placeholder:text-white/50 focus-visible:ring-[#5b5a5a]"
+                      />
+                      {errors.subject && <p className="text-sm text-red-400">{errors.subject.message}</p>}
+                    </div>
+                    <div className="grid gap-2">
+                      <Label htmlFor="message">Message</Label>
+                      <Textarea
+                        id="message"
+                        {...register("message", {
+                          required: "Message is required",
+                          minLength: { value: 10, message: "Message should be at least 10 characters" },
+                        })}
+                        placeholder="Your message"
+                        className="min-h-[150px] border-white/10 bg-white/5 text-white placeholder:text-white/50 focus-visible:ring-[#5b5a5a]"
+                      />
+                      {errors.message && <p className="text-sm text-red-400">{errors.message.message}</p>}
+                    </div>
+                    <Button
+                      type="submit"
+                      className="w-full bg-[#5b5a5a] hover:bg-[#5b5a5a]/90 text-white"
+                      disabled={isSubmitting}
+                    >
+                      {isSubmitting ? "Sending..." : <>Send Message <Send className="ml-2 h-4 w-4" /></>}
+                    </Button>
+                    {isSuccess && (
+                      <div className="rounded-md bg-green-500/10 p-4 text-center text-green-400">
+                        Thank you for your message! We&apos;ll get back to you soon.
+                      </div>
+                    )}
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        {/* <section className="py-16 md:py-24">
           <div className="container px-4 md:px-6">
             <div className="grid gap-12 md:grid-cols-2">
               <div>
@@ -207,7 +383,7 @@ export default function ContactPage() {
               </div>
             </div>
           </div>
-        </section>
+        </section> */}
 
         <section className="py-16 md:py-24 bg-black/30">
           <div className="container px-4 md:px-6">

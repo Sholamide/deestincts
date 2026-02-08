@@ -102,7 +102,7 @@ export function EventRegistrationForm() {
           name="name"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Full Name</FormLabel>
+              <FormLabel className='text-white'>Full Name</FormLabel>
               <FormControl>
                 <Input placeholder="Deestincts User" {...field} />
               </FormControl>
@@ -116,7 +116,7 @@ export function EventRegistrationForm() {
           name="email"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Email Address</FormLabel>
+              <FormLabel className='text-white'>Email Address</FormLabel>
               <FormControl>
                 <Input placeholder="your.email@example.com" type="email" {...field} />
               </FormControl>
@@ -130,7 +130,7 @@ export function EventRegistrationForm() {
           name="phone"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Phone Number</FormLabel>
+              <FormLabel className='text-white'>Phone Number</FormLabel>
               <FormControl>
                 <Input placeholder="08012345678" {...field} />
               </FormControl>
@@ -142,7 +142,7 @@ export function EventRegistrationForm() {
         <Button
           type="submit"
           disabled={loading}
-          className="w-full bg-gradient-to-r from-pink-500 to-yellow-500 hover:from-pink-600 hover:to-yellow-600 text-white font-bold py-5 text-lg rounded-lg disabled:opacity-50 disabled:cursor-not-allowed"
+          className="w-full bg-[#d5e6b4] text-black font-bold py-5 text-lg rounded-lg disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {loading ? <Loader2 className="h-6 w-6 animate-spin" /> : 'Register & Pay'}
         </Button>
