@@ -38,24 +38,48 @@ export function TrainingCard({ training }: TrainingCardProps) {
 
   return (
     <div className="group relative overflow-hidden rounded-xl border border-white/10 bg-white/5 transition-all duration-300 hover:border-white/20 hover:bg-white/10">
-      <div className="aspect-[16/9] overflow-hidden">
+      {/* <div className="aspect-[16/9] overflow-hidden">
         <Image
           src={training.image || "/placeholder.svg"}
           alt={training.title}
           width={600}
           height={400}
-          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+          className="h-full w-full object-contain transition-transform duration-500 group-hover:scale-105"
         />
+      </div> */}
+      <div className="relative aspect-[16/9] overflow-hidden rounded-lg shadow-lg">
+        <Image
+          src={training.image || "/placeholder.svg"}
+          alt={training.title}
+          width={600}
+          height={400}               // ← use fill instead of width/height
+          className="
+      object-cover     // fills container, crops if needed
+      transition-transform duration-500 
+      group-hover:scale-105
+    "
+          sizes="(max-width: 768px) 100vw, 50vw" // good for responsive
+          priority={false} // or true if above fold
+        />
+        {/* Dark gradient overlay at the BOTTOM only – makes text very readable */}
+        <div className="
+      absolute inset-0 
+      bg-gradient-to-t 
+      from-black/80 via-black/40 to-transparent 
+      pointer-events-none
+    " />
       </div>
 
-      <div className="p-6">
+      <div className="p-6 relative z-10">
         <div className="mb-3 flex items-center justify-between">
           <Badge className={getStatusColor(training.status)} variant="outline">
             {training.status.charAt(0).toUpperCase() + training.status.slice(1)}
           </Badge>
-          <Badge className={getLevelColor(training.level)} variant="secondary">
-            {training.level}
-          </Badge>
+          {training.level && (
+            <Badge className={getLevelColor(training.level)} variant="secondary">
+              {training.level}
+            </Badge>
+          )}
         </div>
 
         <h3 className="mb-2 text-xl font-bold text-white group-hover:text-[#bebbbb] transition-colors">
