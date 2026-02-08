@@ -265,7 +265,7 @@ export const TicketEmail: React.FC<{ data: TicketData }> = ({ data }) => {
               color: '#000000',
             }}
           >
-            — Deestincts Crew
+            — Deestincts
           </p>
         </div>
       </div>
