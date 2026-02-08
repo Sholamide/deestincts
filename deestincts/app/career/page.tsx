@@ -421,8 +421,8 @@ export default function CommunityPage() {
                         <span
                           className="text-sm font-semibold px-3 py-1 rounded-full"
                           style={{
-                            backgroundColor: `${colors.pink}`,
-                            color: colors.pink
+                            backgroundColor: `${colors.mint}`,
+                            color: "#000000"
                           }}
                         >
                           Limited Spots
