@@ -175,7 +175,7 @@ export default function CommunityPage() {
         )}
 
         {/* Active Trainings */}
-        <section className="py-16 md:py-20">
+        {/* <section className="py-16 md:py-20">
           <div className="container px-4 md:px-6">
             <div className="mb-10 flex items-center gap-3">
               <Users className="h-7 w-7" style={{ color: colors.mint }} />
@@ -189,7 +189,7 @@ export default function CommunityPage() {
               ))}
             </div>
           </div>
-        </section>
+        </section> */}
 
         {/* Archived */}
         {archivedTrainings.length > 0 && (
