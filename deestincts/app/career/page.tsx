@@ -421,7 +421,7 @@ export default function CommunityPage() {
                         <span
                           className="text-sm font-semibold px-3 py-1 rounded-full"
                           style={{
-                            backgroundColor: `${colors.pink}22`,
+                            backgroundColor: `${colors.pink}`,
                             color: colors.pink
                           }}
                         >
