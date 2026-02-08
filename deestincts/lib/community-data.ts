@@ -261,7 +261,8 @@ export interface Training {
   export function getCommunityStats() {
     return {
       totalMembers: 2847,
-      activeTrainings: trainings.filter((t) => t.status === "active").length,
+      activeTrainings: 2,
+      // activeTrainings: trainings.filter((t) => t.status === "active").length,
       totalPublications: publications.length,
       averageRating: 4.8,
       totalGraduates: 1256,

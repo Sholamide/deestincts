@@ -17,7 +17,7 @@ interface CommunityStatsProps {
 export function CommunityStats({ stats }: CommunityStatsProps) {
   const [animatedStats, setAnimatedStats] = useState({
     totalMembers: 0,
-    activeTrainings: 2,
+    activeTrainings: 0,
     // totalPublications: 0,
     averageRating: 0,
     totalGraduates: 0,
