@@ -45,10 +45,10 @@ export const TicketEmail = ({ data }: TicketEmailProps) => {
                     {/* Hero SVG Header */}
                     <Section style={headerSection}>
                         <Img
-                            src="https://www.deestincts.com/images/ticketing.svg"
+                            src="https://www.deestincts.com/images/ticketing.png"
                             alt="Ctrl + Chill Ticket Header"
-                            width="100%"
-                            height="auto"
+                            width="600"
+                            height="200"
                             style={headerImage}
                         />
                     </Section>
@@ -153,7 +153,8 @@ const headerSection = {
 };
 
 const headerImage = {
-    maxWidth: "100%",
+    width: "100%",
+    maxWidth: "600px",
     height: "auto",
     display: "block",
     margin: "0 auto",
