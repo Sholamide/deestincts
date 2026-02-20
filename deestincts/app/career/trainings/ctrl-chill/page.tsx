@@ -206,7 +206,7 @@ import { CountdownTimer } from "@/app/components/countdowntimer";
 import { EventRegistrationForm } from "@/app/components/event-registration-form";
 import { Users, Trophy, Sparkles, CheckCircle, ChevronDown } from "lucide-react";
 import Image from 'next/image';
-import { useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 const colors = {
   mint: "#d5e6b4",
@@ -241,6 +241,19 @@ const testimonials = [
   },
 ];
 
+const reviewImages = [
+  // "/reviews/review1.png",
+  "/reviews/review2.png",
+  "/reviews/review3.png",
+  "/reviews/skillup-reviews-2.png",
+  "/reviews/skillup-reviews-3.png",
+  "/reviews/skillup-reviews-4.png",
+  "/reviews/skillup-reviews-5.png",
+  "/reviews/skillup-reviews-6.png",
+  "/reviews/skillup-reviews-7.png",
+  // "/reviews/skillup-reviews-8.png",
+];
+
 const faqs = [
   {
     question: "Who should attend?",
@@ -260,6 +273,122 @@ const faqs = [
     answer: "Yes. You'll receive a certificate of participation.",
   },
 ];
+
+
+function ReviewCarousel() {
+  const [current, setCurrent] = useState(0);
+  const [isAnimating, setIsAnimating] = useState(false);
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const total = reviewImages.length;
+
+  const goTo = useCallback((index: number) => {
+    if (isAnimating) return;
+    setIsAnimating(true);
+    setCurrent((index + total) % total);
+    setTimeout(() => setIsAnimating(false), 400);
+  }, [isAnimating, total]);
+
+  useEffect(() => {
+    timerRef.current = setTimeout(() => goTo(current + 1), 3500);
+    return () => { if (timerRef.current) clearTimeout(timerRef.current); };
+  }, [current, goTo]);
+
+  const prev = () => { if (timerRef.current) clearTimeout(timerRef.current); goTo(current - 1); };
+  const next = () => { if (timerRef.current) clearTimeout(timerRef.current); goTo(current + 1); };
+
+  // Show 3 slides: prev, current, next (with current prominent)
+  const indices = [
+    (current - 1 + total) % total,
+    current,
+    (current + 1) % total,
+  ];
+
+  return (
+    <div className="relative w-full select-none">
+      {/* Main carousel track */}
+      <div className="flex items-center justify-center gap-4 md:gap-6 px-2 py-4">
+        {indices.map((imgIdx, pos) => {
+          const isCenter = pos === 1;
+          return (
+            <div
+              key={imgIdx}
+              onClick={() => !isCenter && goTo(imgIdx)}
+              className="relative overflow-hidden rounded-2xl border transition-all duration-500 cursor-pointer flex-shrink-0"
+              style={{
+                width: isCenter ? "min(480px, 72vw)" : "min(180px, 22vw)",
+                height: isCenter ? "min(480px, 72vw)" : "min(180px, 22vw)",
+                borderColor: isCenter ? colors.pink : "rgba(255,255,255,0.08)",
+                boxShadow: isCenter
+                  ? `0 0 60px 8px rgba(255,202,247,0.18), 0 8px 48px rgba(0,0,0,0.7)`
+                  : "0 4px 20px rgba(0,0,0,0.4)",
+                opacity: isCenter ? 1 : 0.45,
+                transform: isCenter ? "scale(1)" : "scale(0.88)",
+                zIndex: isCenter ? 10 : 5,
+              }}
+            >
+              <Image
+                src={reviewImages[imgIdx]}
+                alt={`SkillUp 50 review ${imgIdx + 1}`}
+                fill
+                className="object-cover"
+                sizes="(max-width: 640px) 72vw, 480px"
+              />
+              {/* Glow overlay on center */}
+              {isCenter && (
+                <div className="absolute inset-0 pointer-events-none rounded-2xl"
+                  style={{ boxShadow: "inset 0 0 40px rgba(255,202,247,0.06)" }} />
+              )}
+            </div>
+          );
+        })}
+      </div>
+
+      {/* Prev / Next buttons */}
+      <button
+        onClick={prev}
+        className="absolute left-0 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full flex items-center justify-center border border-white/20 backdrop-blur-md transition-all duration-200 hover:scale-110 active:scale-95"
+        style={{ backgroundColor: "rgba(15,15,23,0.85)", color: colors.pink }}
+        aria-label="Previous"
+      >
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <path d="M13 4L7 10L13 16" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
+      </button>
+      <button
+        onClick={next}
+        className="absolute right-0 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full flex items-center justify-center border border-white/20 backdrop-blur-md transition-all duration-200 hover:scale-110 active:scale-95"
+        style={{ backgroundColor: "rgba(15,15,23,0.85)", color: colors.pink }}
+        aria-label="Next"
+      >
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <path d="M7 4L13 10L7 16" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
+      </button>
+
+      {/* Dot indicators */}
+      <div className="flex justify-center gap-2 mt-5">
+        {reviewImages.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => { if (timerRef.current) clearTimeout(timerRef.current); goTo(i); }}
+            className="rounded-full transition-all duration-300"
+            style={{
+              width: i === current ? "28px" : "8px",
+              height: "8px",
+              backgroundColor: i === current ? colors.pink : "rgba(255,255,255,0.2)",
+            }}
+            aria-label={`Go to slide ${i + 1}`}
+          />
+        ))}
+      </div>
+
+      {/* Counter */}
+      <p className="text-center mt-3 text-sm font-medium" style={{ color: "rgba(255,255,255,0.35)" }}>
+        {current + 1} / {total}
+      </p>
+    </div>
+  );
+}
 
 function FAQItem({ question, answer }: { question: string; answer: string }) {
   const [open, setOpen] = useState(false);
@@ -522,7 +651,8 @@ export default function Home() {
           </div>
 
           {/* Review Images Grid */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+          <ReviewCarousel />
+          {/* <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
             {[
               "/reviews/review1.png",
               "/reviews/review2.png",
@@ -544,7 +674,7 @@ export default function Home() {
                 />
               </div>
             ))}
-          </div>
+          </div> */}
         </section>
 
         {/* Testimonials */}
