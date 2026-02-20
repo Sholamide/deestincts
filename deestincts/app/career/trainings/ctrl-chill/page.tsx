@@ -304,7 +304,7 @@ export default function Home() {
 
         <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 md:hidden">
           <div className="bg-[#0f0f17]/80 backdrop-blur-md px-5 py-2.5 rounded-full text-white text-sm font-medium shadow-lg border border-white/10">
-            Limited to 50 spots ↓
+            Limited to 40 spots ↓
           </div>
         </div>
       </div>
@@ -339,7 +339,7 @@ export default function Home() {
               <p className="text-base text-gray-400 mt-1">Ticket Price</p>
             </div>
             <div className="bg-[#0f0f17]/80 backdrop-blur-md px-8 py-5 rounded-2xl border border-white/10 shadow-xl">
-              <p className="text-3xl font-black" style={{ color: colors.pink }}>Only 50 Seats</p>
+              <p className="text-3xl font-black" style={{ color: colors.pink }}>Only 40 Seats</p>
               <p className="text-base text-gray-400 mt-1">Limited Capacity 🔥</p>
             </div>
           </div>
@@ -471,7 +471,7 @@ export default function Home() {
           {/* Urgency signals */}
           <div className="mt-10 flex flex-col sm:flex-row justify-center gap-4 flex-wrap text-center">
             {[
-              "👉 Only 50 seats ever",
+              "👉 Only 40 seats ever",
               "👉 Early access pricing ends in 5 days",
               "👉 Limited portfolio review slots",
               "👉 First 15 tickets include a bonus session",
@@ -511,10 +511,40 @@ export default function Home() {
             ))}
           </div>
 
-          {/* Photo placeholder banner */}
-          {/* <div className="w-full rounded-2xl border border-white/10 bg-white/5 h-44 flex items-center justify-center mb-12">
-            <p className="text-gray-500 text-sm italic">[ Photos/Clips from SkillUp 50 — add media here ]</p>
-          </div> */}
+         {/* Review Video */}
+         <div className="w-full rounded-2xl overflow-hidden border border-white/10 mb-8">
+            <video
+              src="/reviews/reviewvideo.mp4"
+              controls
+              playsInline
+              className="w-full max-h-[480px] object-cover"
+            />
+          </div>
+
+          {/* Review Images Grid */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+            {[
+              "/reviews/review1.png",
+              "/reviews/review2.png",
+              "/reviews/review3.png",
+              "/reviews/skillup-reviews-2.png",
+              "/reviews/skillup-reviews-3.png",
+              "/reviews/skillup-reviews-4.png",
+              "/reviews/skillup-reviews-5.png",
+              "/reviews/skillup-reviews-6.png",
+              "/reviews/skillup-reviews-7.png",
+            ].map((src, i) => (
+              <div key={i} className="relative aspect-square rounded-xl overflow-hidden border border-white/10">
+                <Image
+                  src={src}
+                  alt={`SkillUp 50 review ${i + 1}`}
+                  fill
+                  className="object-cover hover:scale-105 transition-transform duration-300"
+                  sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, 25vw"
+                />
+              </div>
+            ))}
+          </div>
         </section>
 
         {/* Testimonials */}
@@ -592,7 +622,7 @@ export default function Home() {
         {/* Registration */}
         <section id="register" className="pb-20">
           <h2 className="text-4xl md:text-5xl font-black text-center mb-10" style={{ color: colors.yellow }}>
-            Secure Your Spot Now
+            Secure Your Seat Now
           </h2>
 
           <div className="max-w-2xl mx-auto p-8 md:p-10 rounded-3xl border border-white/10 bg-white/5 backdrop-blur-lg shadow-2xl">
@@ -600,7 +630,7 @@ export default function Home() {
           </div>
 
           <p className="text-center mt-8 text-gray-400 text-base">
-            ₦25,000 • Pay via Paystack • Limited to 50 participants • #CtrlChill
+            ₦25,000 • Pay via Paystack • Limited to 40 participants • #CtrlChill
           </p>
         </section>
       </div>
