@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 
 export function CountdownTimer() {
-  const targetDate = new Date('2026-02-26T10:00:00+01:00'); // Lagos time (WAT = UTC+1)
+  const targetDate = new Date('2026-03-28T10:00:00+01:00'); // Lagos time (WAT = UTC+1)
 
   const calculateTimeLeft = () => {
     const now = new Date();
