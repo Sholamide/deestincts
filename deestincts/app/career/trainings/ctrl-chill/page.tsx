@@ -102,9 +102,9 @@ function ReviewCarousel() {
   ];
 
   return (
-    <div className="relative w-full select-none">
+    <div className="relative w-full select-none overflow-hidden">
       {/* Main carousel track */}
-      <div className="flex items-center justify-center gap-4 md:gap-6 px-2 py-4">
+      <div className="flex items-center justify-center gap-3 md:gap-6 px-2 py-4">
         {indices.map((imgIdx, pos) => {
           const isCenter = pos === 1;
           return (
@@ -143,20 +143,28 @@ function ReviewCarousel() {
 
       {/* Prev / Next buttons */}
       <button
-        onClick={prev}
-        className="absolute left-0 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full flex items-center justify-center border border-white/20 backdrop-blur-md transition-all duration-200 hover:scale-110 active:scale-95"
-        style={{ backgroundColor: "rgba(15,15,23,0.85)", color: colors.pink }}
-        aria-label="Previous"
+      onClick={prev}
+      className="absolute left-2 md:left-0 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full flex items-center justify-center border border-white/20 backdrop-blur-md transition-all duration-200 hover:scale-110 active:scale-95"
+      style={{ backgroundColor: "rgba(15,15,23,0.85)", color: colors.pink }}
+      aria-label="Previous"
+        // onClick={prev}
+        // className="absolute left-0 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full flex items-center justify-center border border-white/20 backdrop-blur-md transition-all duration-200 hover:scale-110 active:scale-95"
+        // style={{ backgroundColor: "rgba(15,15,23,0.85)", color: colors.pink }}
+        // aria-label="Previous"
       >
         <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
           <path d="M13 4L7 10L13 16" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
       </button>
       <button
-        onClick={next}
-        className="absolute right-0 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full flex items-center justify-center border border-white/20 backdrop-blur-md transition-all duration-200 hover:scale-110 active:scale-95"
-        style={{ backgroundColor: "rgba(15,15,23,0.85)", color: colors.pink }}
-        aria-label="Next"
+      onClick={next}
+      className="absolute right-2 md:right-0 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full flex items-center justify-center border border-white/20 backdrop-blur-md transition-all duration-200 hover:scale-110 active:scale-95"
+      style={{ backgroundColor: "rgba(15,15,23,0.85)", color: colors.pink }}
+      aria-label="Next"
+        // onClick={next}
+        // className="absolute right-0 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full flex items-center justify-center border border-white/20 backdrop-blur-md transition-all duration-200 hover:scale-110 active:scale-95"
+        // style={{ backgroundColor: "rgba(15,15,23,0.85)", color: colors.pink }}
+        // aria-label="Next"
       >
         <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
           <path d="M7 4L13 10L7 16" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
@@ -216,27 +224,26 @@ export default function Home() {
     <div className="min-h-screen" style={{ backgroundColor: "#0a0a0f" }}>
       {/* Hero Flyer */}
       <div className="relative w-full overflow-hidden">
-        <div className="relative mt-32 w-full h-[75vh] sm:h-[82vh] md:h-[88vh] min-h-[440px] max-h-[960px] overflow-hidden">
+      <div className="relative mt-24 md:mt-32 w-full 
+          h-[58vh] sm:h-[65vh] md:h-[88vh] lg:h-[100vh]
+          min-h-[360px]
+          overflow-hidden
+        ">
+        {/* <div className="relative mt-32 w-full 
+  h-[50vh] sm:h-[60vh] md:h-[88vh] lg:h-[100vh]
+  min-h-[320px]
+  overflow-hidden
+"> */}
           <Image
             src="/ctrlflyer.PNG"
             alt="Ctrl + Chill Event Flyer"
             fill
             priority
             quality={90}
-            className="object-cover object-top brightness-[0.78] contrast-[1.08] transition-transform duration-1000"
+            className="object-contain md:object-cover md:object-top transition-transform duration-1000"
+            // className="object-contain sm:object-cover sm:object-top  transition-transform duration-1000"
             sizes="100vw"
           />
-          {/* <div className="relative mt-32 w-full h-[55vh] sm:h-[65vh] md:h-[75vh] lg:h-[80vh] min-h-[360px] max-h-[880px] overflow-hidden">
-          <Image
-            src="/ctrlflyer.PNG"
-            alt="Ctrl + Chill Event Flyer"
-            fill
-            priority
-            quality={82}
-            className="object-contain sm:object-cover brightness-[0.78] contrast-[1.08] transition-transform duration-1000"
-            sizes="100vw"
-          /> */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0f] via-transparent to-transparent pointer-events-none" />
         </div>
 
         <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 md:hidden">
@@ -247,10 +254,11 @@ export default function Home() {
       </div>
 
       {/* Main Content */}
-      <div className="relative container mx-auto px-5 sm:px-6 py-12 md:py-16 max-w-6xl -mt-12 md:-mt-16">
+      {/* <div className="relative container mx-auto px-5 sm:px-6 py-12 md:py-16 max-w-6xl -mt-12 md:-mt-16"> */}
+      <div className="relative container mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16 max-w-6xl -mt-12 md:-mt-16">
 
         {/* Hero Title Block */}
-        <header className="text-center mb-16 md:mb-20">
+        <header className="text-center my-12 md:mb-20">
           <div className="inline-flex items-center gap-3 mb-4">
             <Sparkles className="w-9 h-9 md:w-11 md:h-11" style={{ color: colors.pink }} />
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tight" style={{ color: colors.mint }}>
