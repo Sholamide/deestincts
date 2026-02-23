@@ -55,7 +55,7 @@ export interface Training {
       description:
         "Not another design class. Learn as you have fun, analyse projects real-time, and pitch & secure an internship role. Only 25 spots available at CR8TIVE SPACE in Lagos.",
       instructor: "deestincts",
-      instructorImage: "/skilluplogo.png",
+      instructorImage: "/images/deestincts.png",
       duration: "1 day",
       // level: "Beginner",
       status: "upcoming",
@@ -65,7 +65,7 @@ export interface Training {
       startDate: "2026-02-26",
       endDate: "2026-02-26",
       category: "Design Workshop",
-      image: "/ctrlchill.jpeg",
+      image: "/ctrlflyer.PNG",
       slug: "ctrl-chill",
       rating: 4.9,
       totalReviews: 0,

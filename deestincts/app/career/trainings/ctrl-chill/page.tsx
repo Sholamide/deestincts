@@ -351,7 +351,7 @@ function ReviewCarousel() {
         aria-label="Previous"
       >
         <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-          <path d="M13 4L7 10L13 16" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/>
+          <path d="M13 4L7 10L13 16" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
       </button>
       <button
@@ -361,7 +361,7 @@ function ReviewCarousel() {
         aria-label="Next"
       >
         <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-          <path d="M7 4L13 10L7 16" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/>
+          <path d="M7 4L13 10L7 16" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
       </button>
 
@@ -484,10 +484,10 @@ export default function Home() {
           <div className="mt-10">
             <a
               href="#register"
-              className="inline-block px-10 py-4 rounded-full text-lg font-black shadow-2xl transition-all duration-300 hover:scale-105"
+              className="inline-block px-4 py-4 rounded-full text-2xl font-black shadow-2xl transition-all duration-300 hover:scale-105"
               style={{ backgroundColor: colors.yellow, color: "#0a0a0f" }}
             >
-              👉 Secure My Seat
+              Secure My Seat
             </a>
           </div>
         </header>
@@ -640,8 +640,8 @@ export default function Home() {
             ))}
           </div>
 
-         {/* Review Video */}
-         <div className="w-full rounded-2xl overflow-hidden border border-white/10 mb-8">
+          {/* Review Video */}
+          <div className="w-full rounded-2xl overflow-hidden border border-white/10 mb-8">
             <video
               src="/reviews/reviewvideo.mp4"
               controls
@@ -709,9 +709,9 @@ export default function Home() {
           </p>
 
           <div className="flex flex-col md:flex-row justify-center gap-6 mb-10 text-lg font-medium">
-            <span style={{ color: colors.pink }}>26th February 2026</span>
+            <span style={{ color: colors.pink }}>Saturday, 28th March 2026</span>
             <span style={{ color: colors.mint }}>10:00 AM</span>
-            <span style={{ color: colors.yellow }}>Cre8tive Space, Surulere, Lagos</span>
+            <span style={{ color: colors.yellow }}>Bridge by Obsidian, 6 University Rd, Onike Lagos, Nigeria</span>
           </div>
 
           <CountdownTimer />
@@ -730,10 +730,10 @@ export default function Home() {
           </p>
           <a
             href="#register"
-            className="inline-block px-10 py-4 rounded-full text-lg font-black shadow-2xl transition-all duration-300 hover:scale-105"
+            className="inline-block px-4 py-4 rounded-full text-xl font-black shadow-2xl transition-all duration-300 hover:scale-105"
             style={{ backgroundColor: colors.yellow, color: "#0a0a0f" }}
           >
-            👉 Secure Your Seat Now
+            Secure Your Seat Now
           </a>
         </section>
 
