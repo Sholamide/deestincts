@@ -34,6 +34,11 @@ export async function POST(req: NextRequest) {
       react: AcknowledgmentEmail({ data: { name, email, subject, message, phone, company } }),
     });
 
+    // const { data, error } = await resend.contacts.segments.add({
+    //   email: 'steve.wozniak@gmail.com',
+    //   segmentId: '7998dd5a-3f61-4104-b7b6-2e20036eeee3',
+    // });
+
     // Send notification email to admin
     const notificationResult = await resend.emails.send({
       from: FROM_EMAIL,

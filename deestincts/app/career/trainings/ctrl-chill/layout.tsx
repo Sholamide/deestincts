@@ -1,8 +1,8 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-    title: 'Ctrl + Chill - Not Another Design Class | Deestincts',
-    description: 'Join Ctrl + Chill in Lagos on February 26, 2026: Networking, games, live brand case study review, and pitch competition. Only 25 spots — winner gets an internship at Deestincts. ₦25,000.',
+    title: 'Ctrl + Chill - The Creative Direction Room for Ambitious Creatives. The 1-Day Reset for Creatives',
+    description: 'Ctrl + Chill is a 1-Day Reset for Creatives — a curated Creative Direction Room for ambitious designers, developers, and founders ready to gain clarity, reposition their careers, and build with intention.',
     keywords: [
         'Ctrl + Chill',
         'Not Another Design Class',
@@ -29,8 +29,8 @@ export const metadata: Metadata = {
         canonical: '/career/trainings/ctrl-chill',
     },
     openGraph: {
-        title: 'Ctrl + Chill - Not Another Design Class',
-        description: 'Curated networking + games-driven creative event in Lagos. Live brand case study, pitch competition (winner gets internship at Deestincts). Only 25 spots – Feb 26, 2026.',
+        title: 'The Creative Direction Room for Ambitious Creatives. The 1-Day Reset for Creatives',
+        description: 'Ctrl + Chill is a 1-Day Reset for Creatives — a curated Creative Direction Room for ambitious designers, developers, and founders ready to gain clarity, reposition their careers, and build with intention.',
         url: 'https://deestincts.com/career/trainings/ctrl-chill',
         siteName: 'Deestincts',
         images: [
@@ -46,8 +46,8 @@ export const metadata: Metadata = {
     },
     twitter: {
         card: 'summary_large_image',
-        title: 'Ctrl + Chill - Not Another Design Class',
-        description: 'Networking + games + live brand case study + pitch competition in Lagos. Winner gets internship at Deestincts. Only 25 spots – Feb 26, 2026. #CtrlChill',images: ['/ctrlflyer.PNG'],
+        title: 'The Creative Direction Room for Ambitious Creatives. The 1-Day Reset for Creatives',
+        description: 'Ctrl + Chill is a 1-Day Reset for Creatives — a curated Creative Direction Room for ambitious designers, developers, and founders ready to gain clarity, reposition their careers, and build with intention.',images: ['/ctrlflyer.PNG'],
         creator: '@deestincts',
     },
     robots: {

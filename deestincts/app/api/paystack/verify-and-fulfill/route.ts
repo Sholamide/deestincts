@@ -99,10 +99,10 @@ export async function POST(req: NextRequest) {
           email,
           phone,
           eventTitle: 'Ctrl + Chill',
-          eventDate: '26th Feb',
+          eventDate: '28th March',
           eventTime: '10:00 AM',
           venue:
-            'CR8TIVE SPACE: E10, Adeniran Ogunsanya Shopping Mall, Surulere, Lagos, Nigeria',
+            'Bridge by Obsidian: 6 University Rd, Onike Lagos, Nigeria',
         },
       }),
     });
