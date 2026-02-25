@@ -20,8 +20,6 @@ interface TicketEmailProps {
         eventDate?: string;
         eventTime?: string;
         venue?: string;
-        ticketId?: string;
-        qrCodeUrl?: string;
     };
 }
 
@@ -32,8 +30,6 @@ export const TicketEmail = ({ data }: TicketEmailProps) => {
         eventDate = "26th February 2026",
         eventTime = "10:00 AM WAT",
         venue = "CR8TIVE SPACE: E10, Adeniran Ogunsanya Shopping Mall, Surulere, Lagos, Nigeria",
-        ticketId,
-        qrCodeUrl,
     } = data;
 
     return (
@@ -93,27 +89,7 @@ export const TicketEmail = ({ data }: TicketEmailProps) => {
                                 <span style={iconPink}>📍</span>
                                 <span>{venue}</span>
                             </div>
-
-                            {ticketId && (
-                                <div style={detailRow}>
-                                    <span style={iconYellow}>🎫</span>
-                                    <span>Ticket ID: {ticketId}</span>
-                                </div>
-                            )}
                         </div>
-
-                        {qrCodeUrl && (
-                            <Section style={qrSection}>
-                                <Img
-                                    src={qrCodeUrl}
-                                    alt="QR Code for check-in"
-                                    width={160}
-                                    height={160}
-                                    style={qrCode}
-                                />
-                                <Text style={qrText}>Scan at the door</Text>
-                            </Section>
-                        )}
                     </Section>
 
                     {/* Closing */}
@@ -122,9 +98,9 @@ export const TicketEmail = ({ data }: TicketEmailProps) => {
                             Bring good vibes, your laptop (if you want), and energy — we can’t wait to see you!
                         </Text>
 
-                        <Text style={seeYouText}>See you on the 26th ✨</Text>
+                        <Text style={seeYouText}>See you on the 28th ✨</Text>
 
-                        <Text style={footerText}>— Deestincts Crew</Text>
+                        <Text style={footerText}>— Deestincts</Text>
                     </Section>
                 </Container>
             </Body>
@@ -192,18 +168,6 @@ const badgeWrapper = {
     marginBottom: "20px",
 };
 
-const badge = {
-    display: "inline-block",
-    backgroundColor: "#000000",
-    color: "#ffffff",
-    fontSize: "14px",
-    fontWeight: 700,
-    padding: "8px 24px",
-    borderRadius: "999px",
-    letterSpacing: "1px",
-    textTransform: "uppercase",
-    boxShadow: "0 4px 12px rgba(0,0,0,0.5)",
-};
 
 const ticketTitle = {
     fontSize: "24px",
